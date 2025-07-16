@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\TaskMail\\TaskMail\\TaskMail.csproj": {}
+    "E:\\TaskMail\\TaskMail\\TaskMail\\TaskMail.csproj": {}
   },
   "projects": {
-    "E:\\TaskMail\\TaskMail\\TaskMail.csproj": {
+    "E:\\TaskMail\\TaskMail\\TaskMail\\TaskMail.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\TaskMail\\TaskMail\\TaskMail.csproj",
+        "projectUniqueName": "E:\\TaskMail\\TaskMail\\TaskMail\\TaskMail.csproj",
         "projectName": "TaskMail",
-        "projectPath": "E:\\TaskMail\\TaskMail\\TaskMail.csproj",
-        "packagesPath": "C:\\Users\\ggurumurthy\\.nuget\\packages\\",
-        "outputPath": "E:\\TaskMail\\TaskMail\\obj\\",
+        "projectPath": "E:\\TaskMail\\TaskMail\\TaskMail\\TaskMail.csproj",
+        "packagesPath": "C:\\Users\\dsuresh\\.nuget\\packages\\",
+        "outputPath": "E:\\TaskMail\\TaskMail\\TaskMail\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ggurumurthy\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\dsuresh\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -44,7 +44,15 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
+            "swashbuckle.AspNetcore": {
               "target": "Package",
               "version": "[9.0.3, )"
             }
@@ -68,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
