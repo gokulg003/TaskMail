@@ -5,14 +5,14 @@ using Dapper;
 using TaskMail.DataModels;
 using TaskMail.Services.common;
 
-namespace TaskMail.Services.Services
+namespace TaskMailService.Services
 {
-    public class TaskMail_Service : ITaskMail_Service
+    public class TaskMailLogin_Service : ITaskMailLogin_Service
     {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
 
-        public TaskMail_Service(IConfiguration config, IMapper mapper)
+        public TaskMailLogin_Service(IConfiguration config, IMapper mapper)
         {
             _config = config;
             _mapper = mapper;

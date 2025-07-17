@@ -1,10 +1,10 @@
 using CD_Info.Mappings;
-using TASKMAIL.Services.Services;
+using TaskMailService.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<ITM_Service, TM_Service>();
+builder.Services.AddScoped<ITaskMailLogin_Service, TaskMailLogin_Service>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

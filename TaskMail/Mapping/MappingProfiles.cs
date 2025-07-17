@@ -1,4 +1,5 @@
 using AutoMapper;
+using TaskMail.DataModels;
 
 namespace CD_Info.Mappings
 {
