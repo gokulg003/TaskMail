@@ -1,5 +1,5 @@
-public interface ITM_Service
+public interface ITaskMail_Service
 {
-    LoginVM Login(LoginVM loginVm);
+    TaskMail_Login_VM Login(TaskMail_Login_VM loginVm, in string Username,in string Password);
 }
 
