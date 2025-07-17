@@ -1,5 +1,8 @@
-public class TaskMail_Login_VM
-{
-    public int UserName { get; set; }
-    public int Password { get; set; }
+namespace TaskMail_ViewModels
+ {
+    public class TaskMail_Login_VM
+    {
+        public int UserName { get; set; }
+        public int Password { get; set; }
+    }
 }

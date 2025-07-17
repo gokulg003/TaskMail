@@ -1,3 +1,4 @@
+namespace TaskMail.DataModels
 {
 public class TaskMail_Login_DM
 {
