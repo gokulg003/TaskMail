@@ -2,6 +2,7 @@ using System.Data;
 using System.Data.SqlClient;
 using AutoMapper;
 using Dapper;
+using TaskMail.DataModels;
 using TaskMail.Services.common;
 
 namespace TaskMail.Services.Services
