@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TaskMail")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bbf2474cd8a80eca97debb14beec4b12988b659")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b71921e4f932dfe7492203de6fff205b2247bdb")]
 [assembly: System.Reflection.AssemblyProductAttribute("TaskMail")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TaskMail")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

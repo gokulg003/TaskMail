@@ -6,8 +6,8 @@ namespace CD_Info.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<TM_Login_VM, TM_Login_DM>();
-            CreateMap<TM_Login_DM, TM_Login_VM>();
+            CreateMap<TaskMail_Login_VM, TaskMail_Login_DM>();
+            CreateMap<TaskMail_Login_DM, TaskMail_Login_VM>();
         }
     }
 }

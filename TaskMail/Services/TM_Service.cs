@@ -2,14 +2,18 @@ using System.Data;
 using System.Data.SqlClient;
 using AutoMapper;
 using Dapper;
+using Microsoft.VisualBasic;
+using TaskMail.Services.common;
 
-namespace TASKMAIL.Services.Services
+
+
+namespace TaskMail.Services.Services
 {
-    public class TM_Service : ITM_Service
+    public class TaskMail_Service : ITaskMail_Service
     {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-        public TM_Service(IConfiguration config, IMapper mapper)
+        public TaskMail_Service(IConfiguration config, IMapper mapper)
         {
             _config = config;
             _mapper = mapper;
@@ -19,7 +23,7 @@ namespace TASKMAIL.Services.Services
             get { return new SqlConnection(_config.GetConnectionString("DefaultConnection")); }
         }
 
-        public LoginVM Login(LoginVM loginVm)
+        public TaskMail_Login_VM Login(TaskMail_Login_VM loginVm, in string Username, in string Password)
         {
             try
             {
@@ -27,16 +31,14 @@ namespace TASKMAIL.Services.Services
                 {
                     conn.Open();
                     var param = new DynamicParameters();
-                    param.Add("@UserName", loginVm.UserName);
-                    param.Add("@Password", loginVm.Password);
-                    param.Add("@ErrorMsg", dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
-                    var model = conn.QueryFirst<TM_Login_DM>(
-                        "Task_Mail_Login_SP",
-                        param,
-                        commandType: CommandType.StoredProcedure
-                    );
-                    var result = param.Get<string>("@ErrorMsg");
-                    return new LoginVM { Message = result };
+                    param.Add(Constant.UserName, dbType: DbType.String, size: 200, direction: ParameterDirection.Input);
+                    param.Add(Constant.Password, dbType: DbType.String, size: 200, direction: ParameterDirection.Input);
+                    param.Add(Constant.errmsglogin, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
+                    var model = conn.Query<TaskMail_Login_DM>(Constant.Login_SP, param, commandType: CommandType.StoredProcedure);
+                    Username = param.Get<Int16>(Constants.UserName);
+                    Password = param.Get<string>(Constants.Password);
+                    return errmsglogin;
+                   
                 }
                 
             }
