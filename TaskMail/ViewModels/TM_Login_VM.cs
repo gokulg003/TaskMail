@@ -1,4 +1,4 @@
-
+namespace TaskMail.ViewModels;
 public class TaskMail_Login_VM
 {
     public int UserName { get; set; }

@@ -1,3 +1,5 @@
+using TaskMail.ViewModels;
+
 namespace TaskMailService.Services
 {
     public interface ITaskMailLogin_Service

@@ -4,6 +4,8 @@ using AutoMapper;
 using Dapper;
 using TaskMail.DataModels;
 using TaskMail.Services.common;
+using TaskMail.ViewModels;
+using TaskMail.DataModels;
 
 namespace TaskMailService.Services
 {
