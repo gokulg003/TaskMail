@@ -42,8 +42,8 @@ namespace TaskMailService.Services
                     string encodedUsername = Base64Encode(loginVm.UserName);
                     string encodedPassword = Base64Encode(loginVm.Password);
                     var param = new DynamicParameters();
-                    param.Add(Constant.UserName, Username, DbType.String, ParameterDirection.Input, 200);
-                    param.Add(Constant.Password, Password, DbType.String, ParameterDirection.Input, 200);
+                    param.Add(Constant.UserName, encodedUsername, DbType.String, ParameterDirection.Input, 200);
+                    param.Add(Constant.Password, encodedPassword, DbType.String, ParameterDirection.Input, 200);
                     param.Add(Constant.errmsglogin, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
                     var result = conn.Query<TaskMail_Login_DM>(Constant.Login_SP, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
                     string errmsg = param.Get<string>(Constant.errmsglogin);
