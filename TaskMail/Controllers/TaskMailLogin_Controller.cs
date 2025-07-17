@@ -25,12 +25,15 @@ namespace TaskMail.Controllers
  
             var result = _TaskMailLogin_Service.Login(loginVm, loginVm.UserName, loginVm.Password);
  
-            if (!string.IsNullOrEmpty(result.Message))
+            if (result.Message == "Successful")
             {
-                return Unauthorized(result.Message);
+                return Ok(new { Message = result.Message });
+            }
+            else
+            {
+                return Unauthorized(new { Message = result.Message });
             }
 
-            return Ok(result);
         }
 
 
