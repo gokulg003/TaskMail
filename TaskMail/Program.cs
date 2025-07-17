@@ -1,4 +1,4 @@
-using CD_Info.Mappings;
+using TaskMailcommon.Mappings;
 using TaskMailService.Services;
 
 
