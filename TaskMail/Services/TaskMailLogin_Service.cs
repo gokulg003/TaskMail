@@ -5,6 +5,8 @@ using Dapper;
 using TaskMail.Services.common;
 using TaskMail.ViewModels;
 using TaskMail.DataModels;
+using System;
+using System.Text;
 
 namespace TaskMailService.Services
 {
@@ -23,6 +25,12 @@ namespace TaskMailService.Services
         {
             get { return new SqlConnection(_config.GetConnectionString("DefaultConnection")); }
         }
+        
+        public string Base64Encode(string plainText)
+        {
+        var plainBytes = Encoding.UTF8.GetBytes(plainText);
+        return Convert.ToBase64String(plainBytes);
+        }
 
        public TaskMail_Login_VM Login(TaskMail_Login_VM loginVm, in string Username, in string Password)
         {
@@ -31,6 +39,8 @@ namespace TaskMailService.Services
                 using (IDbConnection conn = GetConnection)
                 {
                     conn.Open();
+                    string encodedUsername = Base64Encode(loginVm.UserName);
+                    string encodedPassword = Base64Encode(loginVm.Password);
                     var param = new DynamicParameters();
                     param.Add(Constant.UserName, Username, DbType.String, ParameterDirection.Input, 200);
                     param.Add(Constant.Password, Password, DbType.String, ParameterDirection.Input, 200);
