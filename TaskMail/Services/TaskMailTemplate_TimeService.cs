@@ -19,7 +19,6 @@ namespace TaskMailService.Services
             _mapper = mapper;
         }
 
-      
         public IDbConnection GetConnection
         {
             get { return new SqlConnection(_config.GetConnectionString("DefaultConnection")); }
