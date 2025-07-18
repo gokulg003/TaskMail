@@ -20,18 +20,18 @@ namespace TaskMail.Controllers
         {
             if (loginVm == null || string.IsNullOrWhiteSpace(loginVm.UserName) || string.IsNullOrWhiteSpace(loginVm.Password))
             {
-                return BadRequest("Username and Password are required.");
+               return BadRequest(new { statusCode = 400, message = "Username and Password are required.", data = (object?)null });
             }
  
             var result = _TaskMailLogin_Service.Login(loginVm, loginVm.UserName, loginVm.Password);
  
-            if (result.Message == "Successful")
+            if (result.Message == "Success")
             {
-                return Ok(new { Message = result.Message });
+                return Ok(new { statusCode = 200, message ="Success", data = loginVm });
             }
             else
             {
-                return Unauthorized(new { Message = result.Message });
+                return Unauthorized(new { statusCode = 401, message = result.Message, data = (object?)null  });
             }
 
         }

@@ -40,13 +40,20 @@ namespace TaskMailService.Services
                     param.Add(Constant.errmsglogin, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
                     var result = conn.Query<TaskMail_Login_DM>(Constant.Login_SP, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
                     string errmsg = param.Get<string>(Constant.errmsglogin);
-                    if (!string.IsNullOrEmpty(errmsg))
+                    if (!string.IsNullOrEmpty(errmsg)&& errmsg != "Success")
                     {
                         loginVm.Message = errmsg;
                         return loginVm;
                     }
-                    var viewModel = _mapper.Map<TaskMail_Login_VM>(result);
-                    return viewModel;
+        
+                    if (result != null)
+                    {
+                        loginVm.UserName = result.UserName;
+                        loginVm.Email = result.Email; 
+                        loginVm.Message = "Success";
+                    }
+        
+                    return loginVm;
                 }
             }
             catch (Exception ex)
@@ -55,6 +62,8 @@ namespace TaskMailService.Services
                 return loginVm;
             }
         }
+                
+        
 
     }
 }
