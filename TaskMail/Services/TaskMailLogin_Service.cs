@@ -5,8 +5,6 @@ using Dapper;
 using TaskMail.DataModels;
 using TaskMail.Services.common;
 using TaskMail.ViewModels;
-using TaskMail.DataModels;
-
 
 namespace TaskMailService.Services
 {
@@ -21,6 +19,7 @@ namespace TaskMailService.Services
             _mapper = mapper;
         }
 
+        [Obsolete]
         public IDbConnection GetConnection
         {
             get { return new SqlConnection(_config.GetConnectionString("DefaultConnection")); }
@@ -33,10 +32,9 @@ namespace TaskMailService.Services
                 using (IDbConnection conn = GetConnection)
                 {
                     conn.Open();
-                    var encodedUsername = Base64Helper.Encode(loginVm.UserName);
                     var encodedPassword = Base64Helper.Encode(loginVm.Password);
                     var param = new DynamicParameters();
-                    param.Add(Constant.UserName, encodedUsername, DbType.String, ParameterDirection.Input, 200);
+                    param.Add(Constant.UserName, Username, DbType.String, ParameterDirection.Input, 200);
                     param.Add(Constant.Password, encodedPassword, DbType.String, ParameterDirection.Input, 200);
                     param.Add(Constant.Email, dbType: DbType.String, size: 50, direction: ParameterDirection.Output);
                     param.Add(Constant.errmsglogin, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
@@ -51,7 +49,7 @@ namespace TaskMailService.Services
         
                     if (result != null)
                     {
-                        loginVm.UserName =  Base64Helper.Decode(result.UserName);;
+                        loginVm.UserName =  result.UserName;
                         loginVm.Email = result.Email; 
                         loginVm.Message = "Success";
                     }
@@ -65,8 +63,5 @@ namespace TaskMailService.Services
                 return loginVm;
             }
         }
-                
-        
-
     }
 }

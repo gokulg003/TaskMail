@@ -34,10 +34,6 @@ namespace TaskMail.Controllers
             {
                 return Unauthorized(new { statusCode = 401, message = result.Message, data = (object?)null  });
             }
-
         }
-
-
-
     }
 }
