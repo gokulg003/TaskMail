@@ -7,6 +7,7 @@ using TaskMail.Services.common;
 using TaskMail.ViewModels;
 using TaskMail.DataModels;
 
+
 namespace TaskMailService.Services
 {
     public class TaskMailLogin_Service : ITaskMailLogin_Service
@@ -50,7 +51,7 @@ namespace TaskMailService.Services
         
                     if (result != null)
                     {
-                        loginVm.UserName = result.UserName;
+                        loginVm.UserName =  Base64Helper.Decode(result.UserName);;
                         loginVm.Email = result.Email; 
                         loginVm.Message = "Success";
                     }
