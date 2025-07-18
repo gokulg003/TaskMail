@@ -37,10 +37,12 @@ namespace TaskMailService.Services
                     var param = new DynamicParameters();
                     param.Add(Constant.UserName, encodedUsername, DbType.String, ParameterDirection.Input, 200);
                     param.Add(Constant.Password, encodedPassword, DbType.String, ParameterDirection.Input, 200);
+                    param.Add(Constant.Email, dbType: DbType.String, size: 50, direction: ParameterDirection.Output);
                     param.Add(Constant.errmsglogin, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
                     var result = conn.Query<TaskMail_Login_DM>(Constant.Login_SP, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
                     string errmsg = param.Get<string>(Constant.errmsglogin);
-                    if (!string.IsNullOrEmpty(errmsg)&& errmsg != "Success")
+                    string email = param.Get<string>(Constant.Email);
+                    if (!string.IsNullOrEmpty(errmsg) && errmsg != "Success")
                     {
                         loginVm.Message = errmsg;
                         return loginVm;

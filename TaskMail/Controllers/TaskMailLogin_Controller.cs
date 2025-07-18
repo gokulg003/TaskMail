@@ -27,7 +27,8 @@ namespace TaskMail.Controllers
  
             if (result.Message == "Success")
             {
-                return Ok(new { statusCode = 200, message ="Success", data = loginVm });
+                return Ok(new { statusCode = 200, message ="Success", data = new{userName = result.UserName,
+                        email = result.Email}});
             }
             else
             {
