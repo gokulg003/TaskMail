@@ -27,16 +27,16 @@ namespace TaskMailService.Services
             }
         }
 
-        public List<TaskMail_Template_Time_DM> Template_Time(TaskMail_Template_Time_VM TemplateTime_VM,TemplateTimeSupplements templateTimeSupplements)
+        public List<TaskMail_Template_Time_VM> Template_Time(TaskMail_Template_Time_VM templateTime_VM,TemplateTimeSupplements templateTimeSupplements)
         {
-            var templatetimedm = new List<TaskMail_Template_Time_DM>();
+            var templatetime = new List<TaskMail_Template_Time_VM>();
             try
             {
                 using (IDbConnection con = Connection)
                 {
                     con.Open();
                     var parameters = new DynamicParameters();
-                    parameters.Add(Constant.Resource, templateTimeSupplements.TM_Template_Time_PK , DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(Constant.Resource, templateTimeSupplements.TM_Template_Time_PK, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Type, templateTimeSupplements.TM_Type, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Month, templateTimeSupplements.TM_Month, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Date, templateTimeSupplements.TM_Date, DbType.Int64, ParameterDirection.Input, 18);
@@ -45,17 +45,18 @@ namespace TaskMailService.Services
                     parameters.Add(Constant.Out_Time, templateTimeSupplements.TM_Out_Time, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Total_Duration, templateTimeSupplements.TM_Total_Duration, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Break_Duration, templateTimeSupplements.TM_Break_Duration, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.Act_Work_Hours, templateTimeSupplements.TM_Act_Work_Hours, DbType.Int64, ParameterDirection.Input, 18); 
+                    parameters.Add(Constant.Act_Work_Hours, templateTimeSupplements.TM_Act_Work_Hours, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Comments, templateTimeSupplements.TM_Comments, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(Constant.errmsgTemplateTime, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
 
-                    templatetimedm = con.Query<TaskMail_Template_Time_DM>(Constant.TemplateTime_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    templatetime = con.Query<TaskMail_Template_Time_VM>(Constant.TemplateTime_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    return templatetime;
                 }
             }
             catch (Exception ex)
             {
-                TemplateTime_VM.Message = "Login failed: " + ex.Message;
-                return templatetimedm; 
+                templateTime_VM.Message = "Login failed: " + ex.Message;
+                return templatetime; 
             }
         }
 
