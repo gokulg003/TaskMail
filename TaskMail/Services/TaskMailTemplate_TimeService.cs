@@ -1,63 +1,62 @@
-using System.Data;
-using System.Data.SqlClient;
-using AutoMapper;
-using Dapper;
-using TaskMail.DataModels;
-using TaskMail.Services.common;
-using TaskMail.ViewModels;
+// using System.Data;
+// using System.Data.SqlClient;
+// using AutoMapper;
+// using Dapper;
+// using TaskMail.DataModels;
+// using TaskMail.Services.common;
+// using TaskMail.ViewModels;
 
-namespace TaskMailService.Services
-{
-    public class TaskMailTemplateTime_Service : ITaskMailTemplateTime_Service
-    {
-        private readonly IConfiguration _config;
-        private readonly IMapper _mapper;
+// namespace TaskMailService.Services
+// {
+//     public class TaskMailTemplateTime_Service : ITaskMailTemplateTime_Service
+//     {
+//         private readonly IConfiguration _config;
+//         private readonly IMapper _mapper;
 
-        public TaskMailTemplateTime_Service(IConfiguration config, IMapper mapper)
-        {
-            _config = config;
-            _mapper = mapper;
-        }
+//         public TaskMailTemplateTime_Service(IConfiguration config, IMapper mapper)
+//         {
+//             _config = config;
+//             _mapper = mapper;
+//         }
 
-        public IDbConnection GetConnection
-        {
-            get { return new SqlConnection(_config.GetConnectionString("DefaultConnection")); }
-        }
+//         public IDbConnection Connection
+//         {
+//             get
+//             {
+//                 return new SqlConnection(_config.GetConnectionString(Constant.databaseName));
+//             }
+//         }
 
-        public List<TaskMail_TemplateTime_DM> Template_Time()
-        {
-            var templatetimedm = new List<TaskMail_TemplateTime_DM>();
-            try
-            {
-                using (IDbConnection con = Connection)
-                {
-                    con.Open();
-                    var parameters = new DynamicParameters();
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18); 
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constant.policyPkDbParam, policyId, DbType.Int64, ParameterDirection.Input, 18);
-                    templatetimedm = con.Query<TaskMail_TemplateTime_DM>(Constant.TemplateTime_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
-                    status = parameters.Get<Int16>(Constants.status);
-                    message = parameters.Get<string>(Constants.errMsg);
-                }
-            }
-            catch (Exception ex)
-            {
-                TraceLog.LogError(Convert.ToString(Header.UserPK), Header.UserID, "AdditionalAddressServices-GetAdditionalAddress", ex, "policyId:" + policyId.ToString());
-                status = -1;
-                message = ex.Message;
-            }
-        }
+//         public List<TaskMail_Template_Time_DM> Template_Time()
+//         {
+//             var templatetimedm = new List<TaskMail_Template_Time_DM>();
+//             try
+//             {
+//                 using (IDbConnection con = Connection)
+//                 {
+//                     con.Open();
+//                     var parameters = new DynamicParameters();
+//                     parameters.Add(Constant.Resource,TM_Template_Time_PK , DbType.Int64, ParameterDirection.Input, 18);
+//                     parameters.Add(Constant.Type, policyId, DbType.Int64, ParameterDirection.Input, 18);
+//                     parameters.Add(Constant.Month, policyId, DbType.Int64, ParameterDirection.Input, 18);
+//                     parameters.Add(Constant.Date, policyId, DbType.Int64, ParameterDirection.Input, 18);
+//                     parameters.Add(Constant.Year, policyId, DbType.Int64, ParameterDirection.Input, 18);
+//                     parameters.Add(Constant.In_Time, policyId, DbType.Int64, ParameterDirection.Input, 18);
+//                     parameters.Add(Constant.Out_Time, policyId, DbType.Int64, ParameterDirection.Input, 18);
+//                     parameters.Add(Constant.Total_Duration, policyId, DbType.Int64, ParameterDirection.Input, 18);
+//                     parameters.Add(Constant.Break_Duration, policyId, DbType.Int64, ParameterDirection.Input, 18);
+//                     parameters.Add(Constant.Act_Work_Hours, policyId, DbType.Int64, ParameterDirection.Input, 18); 
+//                     parameters.Add(Constant.Comments, policyId, DbType.Int64, ParameterDirection.Input, 18);
+//                     templatetimedm = con.Query<TaskMail_Template_Time_DM>(Constant.TemplateTime_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+//                 }
+//             }
+//             catch (Exception ex)
+//             {
+//                 loginVm.Message = "Login failed: " + ex.Message;
+//                 return loginVm; 
+//             }
+//         }
 
 
-    }
-}
+//     }
+// }

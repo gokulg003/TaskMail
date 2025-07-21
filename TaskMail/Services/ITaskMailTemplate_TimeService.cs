@@ -1,9 +1,9 @@
-using TaskMail.ViewModels;
+// using TaskMail.ViewModels;
 
-namespace TaskMailService.Services
-{
-    public interface ITaskMailTemplateTime_Service
-    {
-        TaskMail_TemplateTime_VM Template_Time(TaskMail_TemplateTime_VM TemplateTime_VM);
-    }
-}
+// namespace TaskMailService.Services
+// {
+//     public interface ITaskMailTemplateTime_Service
+//     {
+//         TaskMail_Template_Time_VM Template_Time(TaskMail_Template_Time_VM TemplateTime_VM);
+//     }
+// }

@@ -18,8 +18,6 @@ namespace TaskMailService.Services
             _config = config;
             _mapper = mapper;
         }
-
-        [Obsolete]
         public IDbConnection GetConnection
         {
             get { return new SqlConnection(_config.GetConnectionString("DefaultConnection")); }
