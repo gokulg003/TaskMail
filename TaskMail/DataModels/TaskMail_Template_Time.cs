@@ -4,8 +4,8 @@ namespace TaskMail.ViewModels;
 
 public class TaskMail_Template_Time_DM
 {
-    public string TM_Template_Time_PK { get; set; }
-    public string TM_Type { get; set; }
+    public string? TM_UserName { get; set; }
+    public string? TM_Type { get; set; }
     public long TM_Month { get; set; }
     public long TM_Date { get; set; }
     public long TM_Year { get; set; }

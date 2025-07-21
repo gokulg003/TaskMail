@@ -4,8 +4,8 @@ namespace TaskMail.ViewModels;
 
 public class TemplateTimeSupplements
 {
-    public string Resource { get; set; }
-    public string Type { get; set; }
+    public string? Resource { get; set; }
+    public string? Type { get; set; }
     public long Month { get; set; }
     public long Date { get; set; }
     public long Year { get; set; }
