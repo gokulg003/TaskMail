@@ -15,6 +15,7 @@ namespace TaskMail.Services.common
         public const string Email = "@Email";
 
         //TemplateTime
+        public const string errmsgTemplateTime = "@ErrorMsgGrid";
         public const string Resource = "@TM_Template_Time_PK";
         public const string Type = "@TM_Type";
         public const string Month = "@TM_Month";

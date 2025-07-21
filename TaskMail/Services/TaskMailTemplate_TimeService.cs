@@ -28,8 +28,8 @@ namespace TaskMailService.Services
         }
 
         public List<TaskMail_Template_Time_VM> Template_Time(TaskMail_Template_Time_VM TemplateTime_VM,in string TM_Template_Time_PK,
-        in string TM_Type, in string TM_Month,in string TM_Date, in string TM_Year, in string TM_In_Time, in string TM_Out_Time,
-        in string TM_Total_Duration, in string TM_Break_Duration, in string TM_Act_Work_Hours, in string TM_Comments)
+        in string TM_Type, in string TM_Month,in string TM_Date, in string TM_Year, in System.TimeSpan TM_In_Time, in System.TimeSpan TM_Out_Time,
+        in System.TimeSpan TM_Total_Duration, in System.TimeSpan TM_Break_Duration, in System.TimeSpan TM_Act_Work_Hours, in string TM_Comments)
         {
             var templatetimedm = new List<TaskMail_Template_Time_DM>();
             try
@@ -49,6 +49,8 @@ namespace TaskMailService.Services
                     parameters.Add(Constant.Break_Duration, TM_Break_Duration, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Act_Work_Hours, TM_Act_Work_Hours, DbType.Int64, ParameterDirection.Input, 18); 
                     parameters.Add(Constant.Comments, TM_Comments, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(Constant.errmsgTemplateTime, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
+
                     templatetimedm = con.Query<TaskMail_Template_Time_DM>(Constant.TemplateTime_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
                 }
             }
