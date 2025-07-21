@@ -16,8 +16,8 @@ public class TaskMail_Template_Time_Mapping : Profile
      .ForMember(dest => dest.TM_Total_Duration, opt => opt.MapFrom(src => src.Total_Duration))
      .ForMember(dest => dest.TM_Break_Duration, opt => opt.MapFrom(src => src.Break_Duration))
      .ForMember(dest => dest.TM_Act_Work_Hours, opt => opt.MapFrom(src => src.Act_Work_Hours))
-     .ForMember(dest => dest.TM_Comments, opt => opt.MapFrom(src => src.Comments))
-     .ReverseMap()
+     .ForMember(dest => dest.TM_Comments, opt => opt.MapFrom(src => src.Comments)).ReverseMap()
+
      .ForMember(dest => dest.Resource, opt => opt.MapFrom(src => src.TM_Template_Time_PK))
      .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.TM_Type))
      .ForMember(dest => dest.Month, opt => opt.MapFrom(src => src.TM_Month))
@@ -28,7 +28,7 @@ public class TaskMail_Template_Time_Mapping : Profile
      .ForMember(dest => dest.Total_Duration, opt => opt.MapFrom(src => src.TM_Total_Duration))
      .ForMember(dest => dest.Break_Duration, opt => opt.MapFrom(src => src.TM_Break_Duration))
      .ForMember(dest => dest.Act_Work_Hours, opt => opt.MapFrom(src => src.TM_Act_Work_Hours))
-     .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.TM_Comments));
+     .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.TM_Comments)).ReverseMap();
        }
    }
  
