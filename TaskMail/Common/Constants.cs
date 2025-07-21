@@ -34,7 +34,7 @@ namespace TaskMail.Services.common
         public const string Login_SP = "Task_Mail_Login_SP";
 
         //Template Time
-        public const string TemplateTime_SP = "Task_Mail_Login_SP";
+        public const string TemplateTime_SP = "TM_Template_Time_SP";
 
 
 

@@ -22,9 +22,7 @@ namespace TaskMail.Controllers
             {
                return BadRequest(new { statusCode = 400, message = "Username and Password are required.", data = (object?)null });
             }
- 
             var result = _TaskMailLogin_Service.Login(loginVm, loginVm.UserName, loginVm.Password);
- 
             if (result.Message == "Success")
             {
                 return Ok(new { statusCode = 200, message ="Success", data = new{userName = result.UserName,

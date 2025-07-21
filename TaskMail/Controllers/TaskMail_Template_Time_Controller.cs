@@ -16,9 +16,15 @@ namespace TaskMail.Controllers
         }
 
         [HttpPost("Template_Time")]
-        public ActionResult <TaskMail_Template_Time_VM> Template_Time(TaskMail_Template_Time_VM TemplateTime_VM, TemplateTimeSupplements templateTimeSupplements)
+        public ActionResult<List<TaskMail_Template_Time_VM>> Template_Time([FromBody] TemplateTimeSupplements templateTimeSupplements)
         {
-            var result =_TaskMailTemplateTime_Service.Template_Time(templateTimeSupplements)
-         }
+            var vm = new TaskMail_Template_Time_VM();
+            var result = _TaskMailTemplateTime_Service.Template_Time(vm, templateTimeSupplements);
+            if (!string.IsNullOrEmpty(vm.Message))
+            {
+                return BadRequest(vm.Message); 
+            }
+            return Ok(result);
+        }
     }
 }

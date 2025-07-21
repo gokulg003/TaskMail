@@ -5,10 +5,12 @@ using TaskMailService.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ITaskMailLogin_Service, TaskMailLogin_Service>();
+builder.Services.AddScoped<ITaskMailTemplateTime_Service, TaskMailTemplateTime_Service>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(typeof(TaskMail_Template_Time_Mapping));
 
 
 

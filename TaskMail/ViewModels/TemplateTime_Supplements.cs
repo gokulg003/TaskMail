@@ -4,16 +4,17 @@ namespace TaskMail.ViewModels;
 
 public class TemplateTimeSupplements
 {
-    public string TM_Template_Time_PK { get; set; }
-    public string TM_Type { get; set; }
-    public long TM_Month { get; set; }
-    public long TM_Date { get; set; }
-    public long TM_Year { get; set; }
-    public System.TimeSpan TM_In_Time { get; set; }
-    public System.TimeSpan TM_Out_Time { get; set; }
-    public System.TimeSpan TM_Total_Duration { get; set; }
-    public System.TimeSpan TM_Break_Duration  { get; set; }
-    public System.TimeSpan TM_Act_Work_Hours{ get; set; }
-    public string? TM_Comments { get; set; }
+    public string Resource { get; set; }
+    public string Type { get; set; }
+    public long Month { get; set; }
+    public long Date { get; set; }
+    public long Year { get; set; }
+    public System.TimeSpan In_Time { get; set; }
+    public System.TimeSpan Out_Time { get; set; }
+    public System.TimeSpan Total_Duration { get; set; }
+    public System.TimeSpan Break_Duration { get; set; }
+    public System.TimeSpan Act_Work_Hours { get; set; }
+    public string? Comments { get; set; }
+
 }
 
