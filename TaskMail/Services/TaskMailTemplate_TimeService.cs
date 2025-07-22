@@ -1,5 +1,5 @@
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using AutoMapper;
 using Dapper;
 using TaskMail.DataModels;
@@ -23,7 +23,7 @@ namespace TaskMailService.Services
         {
             get
             {
-                return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+                return new SqlConnection(_config.GetConnectionString(Constant.databaseName));
             }
         }
 

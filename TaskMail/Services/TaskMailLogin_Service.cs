@@ -1,5 +1,5 @@
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using AutoMapper;
 using Dapper;
 using TaskMail.DataModels;
@@ -18,19 +18,23 @@ namespace TaskMailService.Services
             _config = config;
             _mapper = mapper;
         }
-        public IDbConnection GetConnection
+
+        public IDbConnection Connection
         {
-            get { return new SqlConnection(_config.GetConnectionString("DefaultConnection")); }
+            get
+            {
+                return new SqlConnection(_config.GetConnectionString(Constant.databaseName));
+            }
         }
 
        public TaskMail_Login_VM Login(TaskMail_Login_VM loginVm, in string Username, in string Password)
         {
             try
             {
-                using (IDbConnection conn = GetConnection)
+                using (IDbConnection conn = Connection)
                 {
                     conn.Open();
-                    var encodedPassword = Base64Helper.Encode(loginVm.Password);
+                    var encodedPassword = Base64Helper.Encode(loginVm.Password.ToString());
                     var param = new DynamicParameters();
                     param.Add(Constant.UserName, Username, DbType.String, ParameterDirection.Input, 200);
                     param.Add(Constant.Password, encodedPassword, DbType.String, ParameterDirection.Input, 200);
@@ -44,14 +48,14 @@ namespace TaskMailService.Services
                         loginVm.Message = errmsg;
                         return loginVm;
                     }
-        
+
                     if (result != null)
                     {
-                        loginVm.UserName =  result.UserName;
-                        loginVm.Email = result.Email; 
+                        loginVm.UserName = result.UserName;
+                        loginVm.Email = result.Email;
                         loginVm.Message = "Success";
                     }
-        
+
                     return loginVm;
                 }
             }

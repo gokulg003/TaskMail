@@ -2,3 +2,6 @@
 
 # IDE0052: Remove unread private members
 dotnet_diagnostic.IDE0052.severity = none
+
+# CS0618: Type or member is obsolete
+dotnet_diagnostic.CS0618.severity = error
