@@ -31,10 +31,10 @@ namespace TaskMail.Services.common
         //Stored Procedure
 
         //Login
-        public const string Login_SP = "Task_Mail_Login_SP";
+        public const string Login_SP = "TM_LoginValidation";
 
         //Template Time
-        public const string TemplateTime_SP = "TM_Template_Time_SP";
+        public const string TemplateTime_SP = "TM_TaskHeader";
 
 
 
