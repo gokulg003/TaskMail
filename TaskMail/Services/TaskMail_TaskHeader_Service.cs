@@ -47,6 +47,11 @@ namespace TaskMailService.Services
                     parameters.Add(Constant.Break_Duration, taskHeaderSupplements.Break_Duration, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Act_Work_Hours, taskHeaderSupplements.Act_Work_Hours, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Comments, taskHeaderSupplements.Comments, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(Constant.TM_InsertedBy, "TaskMail\\Admin", DbType.String);  // Use correct spelling!
+                    parameters.Add(Constant.TM_InsertDate, DateTime.Now, DbType.DateTime);
+                    parameters.Add(Constant.TM_UpdatedBy, "TaskMail\\Admin", DbType.String);
+                    parameters.Add(Constant.TM_UpdatedDate, DateTime.Now, DbType.DateTime);
+
                     parameters.Add(Constant.errmsgTemplateTime, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
                     taskHeader = con.Query<TaskMail_TaskHeader_VM>(Constant.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
                     string errmsg = parameters.Get<string>(Constant.errmsgTemplateTime);
