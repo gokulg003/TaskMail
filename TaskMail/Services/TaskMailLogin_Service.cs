@@ -52,7 +52,7 @@ namespace TaskMailService.Services
 
                     if (result != null)
                     {
-                        loginVm.UserName = result.UserName;
+                        loginVm.UsersName = result.UsersName;
                         loginVm.Email = result.Email;
                         loginVm.Message = errmsg;
                         return loginVm;

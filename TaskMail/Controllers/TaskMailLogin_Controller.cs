@@ -19,14 +19,14 @@ namespace TaskMail.Controllers
      [HttpPost("login")]
         public ActionResult<TaskMail_Login_VM> Login([FromBody] TaskMail_Login_VM loginVm)
         {
-            if (loginVm == null || string.IsNullOrWhiteSpace(loginVm.UserName) || string.IsNullOrWhiteSpace(loginVm.Password))
+            if (loginVm == null || string.IsNullOrWhiteSpace(loginVm.UsersName) || string.IsNullOrWhiteSpace(loginVm.Password))
             {
                return BadRequest(new { statusCode = 400, message = "Username and Password are required.", data = (object?)null });
             }
-            var result = _TaskMailLogin_Service.Login(loginVm, loginVm.UserName, loginVm.Password);
+            var result = _TaskMailLogin_Service.Login(loginVm, loginVm.UsersName, loginVm.Password);
             if (result.Message == "Success")
             {
-                return Ok(new { statusCode = 200, message ="Success", data = new{userName = result.UserName,
+                return Ok(new { statusCode = 200, message ="Success", data = new{userName = result.UsersName,
                         email = result.Email}});
             }
             else
