@@ -12,8 +12,8 @@ public class TaskMail_TaskHeader_DM
     public TimeSpan TM_In_Time { get; set; }
     public TimeSpan TM_Out_Time { get; set; }
     public TimeSpan TM_Total_Duration { get; set; }
-    public TimeSpan TM_Break_Duration  { get; set; }
-    public TimeSpan TM_Act_Work_Hours{ get; set; }
+    public TimeSpan TM_Break_Duration { get; set; }
+    public TimeSpan TM_Act_Work_Hours { get; set; }
     public string? TM_Comments { get; set; }
 }
 
