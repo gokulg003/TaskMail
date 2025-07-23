@@ -10,7 +10,7 @@ namespace TaskMail.Controllers
     public class TaskMailLogin_Controller : ControllerBase
     {
         private readonly ITaskMailLogin_Service _TaskMailLogin_Service;
-        private readonly DefaultParameters _header;
+        // private readonly DefaultParameters _header;
 
         public TaskMailLogin_Controller(ITaskMailLogin_Service TaskMailLogin_Service)
         {
@@ -19,10 +19,10 @@ namespace TaskMail.Controllers
      [HttpPost("login")]
         public ActionResult<TaskMail_Login_VM> Login([FromBody] TaskMail_Login_VM loginVm)
         {
-            if (loginVm == null || string.IsNullOrWhiteSpace(loginVm.UsersName) || string.IsNullOrWhiteSpace(loginVm.Password))
-            {
-               return BadRequest(new { statusCode = 400, message = "Username and Password are required.", data = (object?)null });
-            }
+            // if (loginVm == null || string.IsNullOrWhiteSpace(loginVm.UsersName) || string.IsNullOrWhiteSpace(loginVm.Password))
+            // {
+            //    return BadRequest(new { statusCode = 400, message = "Username and Password are required.", data = (object?)null });
+            // }
             var result = _TaskMailLogin_Service.Login(loginVm, loginVm.UsersName, loginVm.Password);
             if (result.Message == "Success")
             {
