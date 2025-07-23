@@ -15,7 +15,7 @@ public class TaskMail_TaskHeader_DM
     public TimeSpan TM_Break_Duration { get; set; }
     public TimeSpan TM_Act_Work_Hours { get; set; }
     public string? TM_Comments { get; set; }
-    public string? TM_InsertedBy { get; set; }
+    public string? TM_InsertededBy { get; set; }
     public string? TM_InsertDate { get; set; }
     public string? TM_UpdatedBy { get; set; }
     public string? TM_UpdatedDate{ get; set; }    

@@ -32,7 +32,7 @@ namespace TaskMail.Services.common
         public const string Break_Duration = "@TM_Break_Duration";
         public const string Act_Work_Hours = "@TM_Act_Work_Hours";
         public const string Comments = "@TM_Comments";
-        public const string TM_InsertedBy = "@TM_InsertedBy";
+        public const string TM_InsertedBy = "@TM_InsertededBy";
         public const string TM_InsertDate = "@TM_InsertDate";
         public const string TM_UpdatedBy = "@TM_UpdatedBy";
         public const string TM_UpdatedDate = "@TM_UpdatedDate";
