@@ -1,8 +1,7 @@
 using System.Text.Json.Serialization;
 
 namespace TaskMail.ViewModels;
-
-public class TemplateTimeSupplements
+public class TaskMail_TaskHeader_VM
 {
     public string? Resource { get; set; }
     public string? Type { get; set; }
@@ -15,6 +14,7 @@ public class TemplateTimeSupplements
     public System.TimeSpan Break_Duration { get; set; }
     public System.TimeSpan Act_Work_Hours { get; set; }
     public string? Comments { get; set; }
-
+    [JsonIgnore]
+    public string? Message { get; set; }
 }
 

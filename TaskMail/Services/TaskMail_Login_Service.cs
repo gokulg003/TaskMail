@@ -8,13 +8,13 @@ using TaskMail.ViewModels;
 
 namespace TaskMailService.Services
 {
-    public class TaskMailLogin_Service : ITaskMailLogin_Service
+    public class TaskMail_Login_Service : ITaskMail_Login_Service
     {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
         // public DefaultParameters Header { get; set; }
 
-        public TaskMailLogin_Service(IConfiguration config, IMapper mapper)
+        public TaskMail_Login_Service(IConfiguration config, IMapper mapper)
         {
             _config = config;
             _mapper = mapper;
