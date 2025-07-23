@@ -5,7 +5,7 @@ using TaskMailService.Services;
 namespace TaskMail.Controllers
 {
     [ApiController]
-    [Route("api/PD")]
+    [Route("api")]
     public class TaskMail_TaskHeaderController : ControllerBase
     {
         private readonly ITaskMail_TaskHeader_Service _TaskMail_TaskHeader_Service;

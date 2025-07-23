@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace TaskMail.Controllers
 {
     [ApiController]
-    [Route("api/PD")]
+    [Route("api")]
     public class TaskMail_LoginController : ControllerBase
     {
         private readonly ITaskMail_Login_Service _TaskMail_Login_Service;
