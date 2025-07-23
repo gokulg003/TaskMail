@@ -12,6 +12,7 @@ namespace TaskMailService.Services
     {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
+        public DefaultParameters Header { get; set; }
 
         public TaskMailLogin_Service(IConfiguration config, IMapper mapper)
         {
@@ -27,16 +28,16 @@ namespace TaskMailService.Services
             }
         }
 
-       public TaskMail_Login_VM Login(TaskMail_Login_VM loginVm, in string Username, in string Password)
+       public TaskMail_Login_VM Login(TaskMail_Login_VM loginVm, in string Usersname, in string Password)
         {
             try
             {
                 using (IDbConnection conn = Connection)
                 {
                     conn.Open();
+                    var param = new DynamicParameters(Header);
                     var encodedPassword = Base64Helper.Encode(loginVm.Password.ToString());
-                    var param = new DynamicParameters();
-                    param.Add(Constant.UserName, Username, DbType.String, ParameterDirection.Input, 200);
+                    param.Add(Constant.UsersName, Usersname, DbType.String, ParameterDirection.Input, 200);
                     param.Add(Constant.Password, encodedPassword, DbType.String, ParameterDirection.Input, 200);
                     param.Add(Constant.Email, dbType: DbType.String, size: 50, direction: ParameterDirection.Output);
                     param.Add(Constant.errmsglogin, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);

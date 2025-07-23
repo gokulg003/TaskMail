@@ -10,6 +10,7 @@ namespace TaskMail.Controllers
     public class TaskMailLogin_Controller : ControllerBase
     {
         private readonly ITaskMailLogin_Service _TaskMailLogin_Service;
+        private readonly DefaultParameters _header;
 
         public TaskMailLogin_Controller(ITaskMailLogin_Service TaskMailLogin_Service)
         {

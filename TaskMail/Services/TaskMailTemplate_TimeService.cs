@@ -48,7 +48,7 @@ namespace TaskMailService.Services
                     parameters.Add(Constant.Act_Work_Hours, templateTimeSupplements.Act_Work_Hours, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(Constant.Comments, templateTimeSupplements.Comments, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(Constant.errmsgTemplateTime, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
-                    templatetime = con.Query<TaskMail_Template_Time_VM>(Constant.TemplateTime_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    templatetime = con.Query<TaskMail_Template_Time_VM>(Constant.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
                     string errmsg = parameters.Get<string>(Constant.errmsgTemplateTime);
                     if (!string.IsNullOrEmpty(errmsg))
                     {

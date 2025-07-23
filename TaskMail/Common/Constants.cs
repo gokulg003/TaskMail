@@ -8,9 +8,14 @@ namespace TaskMail.Services.common
 
         //constants 
 
+        public const string TM_Users_PK = "TM_Users_PK";
+        // public const string UserName = "UsersName";
+        // public const string Email = "Email";
+        public const string TM_Type = "TM_Type";
+
         //Login
         public const string errmsglogin = "@ErrorMsg";
-        public const string UserName = "@UserName";
+        public const string UsersName = "@UsersName";
         public const string Password = "@Password";
         public const string Email = "@Email";
 
@@ -33,8 +38,10 @@ namespace TaskMail.Services.common
         //Login
         public const string Login_SP = "TM_LoginValidation";
 
-        //Template Time
-        public const string TemplateTime_SP = "TM_TaskHeader";
+        //TaskHeader
+        public const string TaskHeader_SP = "TM_TaskHeader";
+
+
 
 
 
