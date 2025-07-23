@@ -54,7 +54,8 @@ namespace TaskMailService.Services
                     {
                         loginVm.UserName = result.UserName;
                         loginVm.Email = result.Email;
-                        loginVm.Message = "Success";
+                        loginVm.Message = errmsg;
+                        return loginVm;
                     }
 
                     return loginVm;
