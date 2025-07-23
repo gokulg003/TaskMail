@@ -5,7 +5,7 @@ public class TaskMail_Template_Time_Mapping : Profile
    {
     public TaskMail_Template_Time_Mapping()
     {
-    CreateMap<TaskMail_Template_Time_VM, TaskMail_Template_Time_DM>()
+    CreateMap<TaskMail_TaskHeader_VM, TaskMail_TaskHeader_DM>()
      .ForMember(dest => dest.TM_UserName, opt => opt.MapFrom(src => src.Resource))
      .ForMember(dest => dest.TM_Type, opt => opt.MapFrom(src => src.Type))
      .ForMember(dest => dest.TM_Month, opt => opt.MapFrom(src => src.Month))

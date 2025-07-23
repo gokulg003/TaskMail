@@ -23,7 +23,7 @@ namespace TaskMailService.Services
         {
             get
             {
-                return new SqlConnection(_config.GetConnectionString(Constant.databaseName));
+                return new SqlConnection(_config.GetConnectionString("SITraining"));
             }
         }
 

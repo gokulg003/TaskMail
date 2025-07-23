@@ -7,12 +7,12 @@ namespace TaskMail.Controllers
 {
     [ApiController]
     [Route("api/PD")]
-    public class TaskMail_Login_Controller : ControllerBase
+    public class TaskMail_LoginController : ControllerBase
     {
         private readonly ITaskMail_Login_Service _TaskMail_Login_Service;
         // private readonly DefaultParameters _header;
 
-        public TaskMail_Login_Controller(ITaskMail_Login_Service TaskMail_Login_Service)
+        public TaskMail_LoginController(ITaskMail_Login_Service TaskMail_Login_Service)
         {
             _TaskMail_Login_Service = TaskMail_Login_Service;
         }

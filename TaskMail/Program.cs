@@ -4,8 +4,8 @@ using TaskMailService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<ITaskMailLogin_Service, TaskMailLogin_Service>();
-builder.Services.AddScoped<ITaskMailTemplateTime_Service, TaskMailTemplateTime_Service>();
+builder.Services.AddScoped<ITaskMail_Login_Service, TaskMail_Login_Service>();
+builder.Services.AddScoped<ITaskMail_TaskHeader_Service, TaskMail_TaskHeader_Service>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
