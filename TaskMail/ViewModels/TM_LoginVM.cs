@@ -1,8 +1,10 @@
 using System.Text.Json.Serialization;
-public class TaskMail_Login_VM
+
+namespace TaskMail.ViewModels;
+public class TM_LoginVM
 {
     public string? UsersName { get; set; }
-    public string? Password { get; set; }
+    public string? Passcode { get; set; }
     [JsonIgnore]
     public string? Message { get; set; }
     [JsonIgnore]

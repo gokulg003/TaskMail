@@ -9,11 +9,11 @@ public class TaskHeaderSupplements
     public long Month { get; set; }
     public long Date { get; set; }
     public long Year { get; set; }
-    public System.TimeSpan In_Time { get; set; }
-    public System.TimeSpan Out_Time { get; set; }
-    public System.TimeSpan Total_Duration { get; set; }
-    public System.TimeSpan Break_Duration { get; set; }
-    public System.TimeSpan Act_Work_Hours { get; set; }
+    public string? In_Time { get; set; }
+    public string? Out_Time { get; set; }
+    public string? Total_Duration { get; set; }
+    public string? Break_Duration { get; set; }
+    public string? Act_Work_Hours { get; set; }
     public string? Comments { get; set; }
 
 }

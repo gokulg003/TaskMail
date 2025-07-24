@@ -2,10 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TaskMail.DataModels
 {
-    public class TaskMail_Login_DM
+    public class TM_LoginDM
     {
         public string? UsersName { get; set; }
-        public string? Password { get; set; }
+        public string? Passcode { get; set; }
         public string? Email { get; set; }
     }
 }

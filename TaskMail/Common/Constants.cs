@@ -1,9 +1,9 @@
 namespace TaskMail.Services.common
 {
-    public class Constant
+    public class Constants
     {
         //DB
-        public const string databaseName = "SITraining";
+       public const string databaseName = "SimpleInspireDB";
 
 
         //constants 

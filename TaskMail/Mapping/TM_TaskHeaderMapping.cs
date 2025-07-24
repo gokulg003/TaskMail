@@ -1,11 +1,11 @@
 using AutoMapper;
 using TaskMail.ViewModels; 
 using TaskMail.DataModels;
-public class TaskMail_Template_Time_Mapping : Profile
+public class TM_TaskHeaderMapping : Profile
    {
-    public TaskMail_Template_Time_Mapping()
+    public TM_TaskHeaderMapping()
     {
-    CreateMap<TaskMail_TaskHeader_VM, TaskMail_TaskHeader_DM>()
+    CreateMap<TM_TaskHeaderVM, TM_TaskHeaderDM>()
      .ForMember(dest => dest.TM_UserName, opt => opt.MapFrom(src => src.Resource))
      .ForMember(dest => dest.TM_Type, opt => opt.MapFrom(src => src.Type))
      .ForMember(dest => dest.TM_Month, opt => opt.MapFrom(src => src.Month))

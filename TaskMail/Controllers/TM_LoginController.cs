@@ -6,20 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace TaskMail.Controllers
 {
     [ApiController]
-    [Route("api")]
-    public class TaskMail_LoginController : ControllerBase
+    [Route("api/my-profile")]
+    public class TM_LoginController : ControllerBase
     {
-        private readonly ITaskMail_Login_Service _TaskMail_Login_Service;
-        // private readonly DefaultParameters _header;
-
-        public TaskMail_LoginController(ITaskMail_Login_Service TaskMail_Login_Service)
+        private readonly ITM_LoginService _TM_LoginService;
+        public TM_LoginController(ITM_LoginService TM_LoginService)
         {
-            _TaskMail_Login_Service = TaskMail_Login_Service;
+            _TM_LoginService = TM_LoginService;
         }
-     [HttpPost("login")]
-        public ActionResult<TaskMail_Login_VM> Login([FromBody] TaskMail_Login_VM loginVm)
+        [Route("user-login")]  
+        [HttpPost]
+        public ActionResult<TM_LoginVM> Login([FromBody] TM_LoginVM loginVM)
         {
-            var result = _TaskMail_Login_Service.Login(loginVm, loginVm.UsersName, loginVm.Password);
+            var result = _TM_LoginService.Login(loginVM);
             if (result.Message == "Success")
             {
                 return Ok(new { statusCode = 200, message ="Success", data = new{userName = result.UsersName,
