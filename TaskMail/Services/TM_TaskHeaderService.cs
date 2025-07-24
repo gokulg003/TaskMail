@@ -2,11 +2,8 @@ using System.Data;
 using System.Data.SqlClient;
 using AutoMapper;
 using Dapper;
-using TaskMail.DataModels;
 using TaskMail.Services.common;
 using TaskMail.ViewModels;
-using System;
-using System.Globalization;
 
 namespace TaskMailService.Services
 {
@@ -37,8 +34,6 @@ namespace TaskMailService.Services
                 using (IDbConnection con = Connection)
                 {
                     con.Open();
-                    // string currentTime = DateTime.Now.ToString("HH:mm:ss");
-                    // TimeSpan inTime = TimeSpan.ParseExact(currentTime, @"HH\:mm\:ss", CultureInfo.InvariantCulture);
                     DateTime manualDate = new DateTime(2025, 07, 24, 14, 30, 0); // year, month, day, hour, minute, second
                     string timeOnly = manualDate.ToString("HH:mm:ss");
 
