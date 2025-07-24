@@ -6,7 +6,7 @@ public class TM_TaskHeaderMapping : Profile
     public TM_TaskHeaderMapping()
     {
     CreateMap<TM_TaskHeaderVM, TM_TaskHeaderDM>()
-     .ForMember(dest => dest.TM_UserName, opt => opt.MapFrom(src => src.Resource))
+     .ForMember(dest => dest.TM_UsersName, opt => opt.MapFrom(src => src.Resource))
      .ForMember(dest => dest.TM_Type, opt => opt.MapFrom(src => src.Type))
      .ForMember(dest => dest.TM_Month, opt => opt.MapFrom(src => src.Month))
      .ForMember(dest => dest.TM_Date, opt => opt.MapFrom(src => src.Date))
@@ -18,7 +18,7 @@ public class TM_TaskHeaderMapping : Profile
      .ForMember(dest => dest.TM_Act_Work_Hours, opt => opt.MapFrom(src => src.Act_Work_Hours))
      .ForMember(dest => dest.TM_Comments, opt => opt.MapFrom(src => src.Comments)).ReverseMap()
 
-     .ForMember(dest => dest.Resource, opt => opt.MapFrom(src => src.TM_UserName))
+     .ForMember(dest => dest.Resource, opt => opt.MapFrom(src => src.TM_UsersName))
      .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.TM_Type))
      .ForMember(dest => dest.Month, opt => opt.MapFrom(src => src.TM_Month))
      .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.TM_Date))
