@@ -19,7 +19,7 @@ namespace TaskMail.Controllers
             _LoginService = loginService;
         }
         [Route("user-login")]
-        [HttpGet]
+        [HttpPost]
         public ActionResult<UserDetails> Login(Login login)
         {
             var result = _LoginService.Login(login, out _status, out _message);

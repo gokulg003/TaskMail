@@ -10,7 +10,7 @@ namespace TaskMail.common
         public const string dbparamstatus = "@Status";
         public const string dbparamerrmsglogin = "@ErrorMsg";
         public const string status = "Status";
-        public const string errMsg = "ErrorMessage";
+        public const string errMsg = "ErrorMsg";
 
 
         public const string TM_Users_PK = "TM_Users_PK";
