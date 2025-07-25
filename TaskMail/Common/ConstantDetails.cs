@@ -1,12 +1,17 @@
-namespace TaskMail.Services.common
+namespace TaskMail.common
 {
-    public class Constants
+    public class ConstantDetails
     {
         //DB
        public const string databaseName = "SimpleInspireDB";
 
 
         //constants 
+        public const string dbparamstatus = "@Status";
+        public const string dbparamerrmsglogin = "@ErrorMsg";
+        public const string status = "Status";
+        public const string errMsg = "ErrorMessage";
+
 
         public const string TM_Users_PK = "TM_Users_PK";
         // public const string UserName = "UsersName";
@@ -14,9 +19,9 @@ namespace TaskMail.Services.common
         public const string TM_Type = "TM_Type";
 
         //Login
-        public const string errmsglogin = "@ErrorMsg";
-        public const string UsersName = "@UsersName";
-        public const string Password = "@Password";
+       
+        public const string dbparamUsersName = "@UsersName";
+        public const string dbparamPassword = "@Password";
         public const string Email = "@Email";
 
         //TemplateTime

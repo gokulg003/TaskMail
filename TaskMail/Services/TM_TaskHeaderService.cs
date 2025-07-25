@@ -2,7 +2,7 @@ using System.Data;
 using System.Data.SqlClient;
 using AutoMapper;
 using Dapper;
-using TaskMail.Services.common;
+using TaskMail.common;
 using TaskMail.ViewModels;
 
 namespace TaskMailService.Services
@@ -22,7 +22,7 @@ namespace TaskMailService.Services
         {
             get
             {
-                return new SqlConnection(_config.GetConnectionString(Constants.databaseName));
+                return new SqlConnection(_config.GetConnectionString(ConstantDetails.databaseName));
             }
         }
 
@@ -38,25 +38,25 @@ namespace TaskMailService.Services
                     string timeOnly = manualDate.ToString("HH:mm:ss");
 
                     var parameters = new DynamicParameters();
-                    parameters.Add(Constants.Resource, taskHeaderSupplements.Resource, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.Type, taskHeaderSupplements.Type, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.Month, taskHeaderSupplements.Month, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.Date, taskHeaderSupplements.Date, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.Year, taskHeaderSupplements.Year, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.In_Time, timeOnly, DbType.Time, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.Out_Time, timeOnly, DbType.Time, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.Total_Duration, timeOnly, DbType.Time, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.Break_Duration, timeOnly, DbType.Time, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.Act_Work_Hours, timeOnly, DbType.Time, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.Comments, taskHeaderSupplements.Comments, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(Constants.TM_InsertedBy, " ", DbType.String);  
-                    parameters.Add(Constants.TM_InsertDate, DateTime.Now, DbType.DateTime);
-                    parameters.Add(Constants.TM_UpdatedBy, " ", DbType.String);
-                    parameters.Add(Constants.TM_UpdatedDate, DateTime.Now, DbType.DateTime);
+                    parameters.Add(ConstantDetails.Resource, taskHeaderSupplements.Resource, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Type, taskHeaderSupplements.Type, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Month, taskHeaderSupplements.Month, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Date, taskHeaderSupplements.Date, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Year, taskHeaderSupplements.Year, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.In_Time, timeOnly, DbType.Time, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Out_Time, timeOnly, DbType.Time, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Total_Duration, timeOnly, DbType.Time, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Break_Duration, timeOnly, DbType.Time, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Act_Work_Hours, timeOnly, DbType.Time, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Comments, taskHeaderSupplements.Comments, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.TM_InsertedBy, " ", DbType.String);  
+                    parameters.Add(ConstantDetails.TM_InsertDate, DateTime.Now, DbType.DateTime);
+                    parameters.Add(ConstantDetails.TM_UpdatedBy, " ", DbType.String);
+                    parameters.Add(ConstantDetails.TM_UpdatedDate, DateTime.Now, DbType.DateTime);
 
-                    parameters.Add(Constants.errmsgTemplateTime, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
-                    taskHeader = con.Query<TM_TaskHeaderVM>(Constants.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
-                    string errmsg = parameters.Get<string>(Constants.errmsgTemplateTime);
+                    parameters.Add(ConstantDetails.errmsgTemplateTime, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
+                    taskHeader = con.Query<TM_TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    string errmsg = parameters.Get<string>(ConstantDetails.errmsgTemplateTime);
                     if (!string.IsNullOrEmpty(errmsg))
                     {
                         taskHeaderVM.Message = errmsg;
