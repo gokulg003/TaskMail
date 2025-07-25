@@ -34,7 +34,7 @@ namespace TaskMailService.Services
                 using (IDbConnection con = Connection)
                 {
                     con.Open();
-                    DateTime manualDate = new DateTime(2025, 07, 24, 14, 30, 0); // year, month, day, hour, minute, second
+                    DateTime manualDate = new DateTime(2025, 07, 24, 14, 30, 0); 
                     string timeOnly = manualDate.ToString("HH:mm:ss");
 
                     var parameters = new DynamicParameters();
