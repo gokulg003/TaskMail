@@ -1,10 +1,10 @@
 using System.Text.Json.Serialization;
 
 namespace TaskMail.ViewModels;
-public class TM_TaskHeaderVM
+public class TaskHeaderVM
 {
-    public string? Resource { get; set; }
-    public string? Type { get; set; }
+    public string Resource { get; set; }
+    public string Type { get; set; }
     public long Month { get; set; }
     public long Date { get; set; }
     public long Year { get; set; }

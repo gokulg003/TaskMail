@@ -9,7 +9,7 @@ var configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(configuration);
 
 builder.Services.AddScoped<ILoginService, LoginService>();
-builder.Services.AddScoped<ITM_TaskHeaderService, TM_TaskHeaderService>();
+builder.Services.AddScoped<ITaskHeaderService, TaskHeaderService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace TaskMail.ViewModels;
 
-public class TM_TaskHeaderDM
+public class TaskHeaderDM
 {
     public string? TM_UsersName { get; set; }
     public string? TM_Type { get; set; }

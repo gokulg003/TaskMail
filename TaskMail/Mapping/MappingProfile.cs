@@ -8,8 +8,8 @@ namespace TaskMailcommon.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<Login, TM_LoginDM>();
-            CreateMap<TM_LoginDM, Login>();
+            CreateMap<Login, LoginDM>();
+            CreateMap<LoginDM, Login>();
         }
     }
 }

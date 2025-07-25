@@ -7,12 +7,12 @@ using TaskMail.ViewModels;
 
 namespace TaskMailService.Services
 {
-    public class TM_TaskHeaderService : ITM_TaskHeaderService
+    public class TaskHeaderService : ITaskHeaderService
     {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
 
-        public TM_TaskHeaderService(IConfiguration config, IMapper mapper)
+        public TaskHeaderService(IConfiguration config, IMapper mapper)
         {
             _config = config;
             _mapper = mapper;
@@ -26,9 +26,9 @@ namespace TaskMailService.Services
             }
         }
 
-        public List<TM_TaskHeaderVM> TaskHeader(TM_TaskHeaderVM taskHeaderVM,TaskHeaderSupplements taskHeaderSupplements)
+        public List<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM,TaskHeaderSupplements taskHeaderSupplements)
         {
-            var taskHeader = new List<TM_TaskHeaderVM>();
+            var taskHeader = new List<TaskHeaderVM>();
             try
             {
                 using (IDbConnection con = Connection)
@@ -55,7 +55,7 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.TM_UpdatedDate, DateTime.Now, DbType.DateTime);
 
                     parameters.Add(ConstantDetails.errmsgTemplateTime, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
-                    taskHeader = con.Query<TM_TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    taskHeader = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
                     string errmsg = parameters.Get<string>(ConstantDetails.errmsgTemplateTime);
                     if (!string.IsNullOrEmpty(errmsg))
                     {
