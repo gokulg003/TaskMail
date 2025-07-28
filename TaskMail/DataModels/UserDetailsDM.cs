@@ -2,9 +2,9 @@
 {
     public class UserDetailsDM
     {
-        public long UsersPk { get; set; }
-        public string UsersName { get; set; }
-        public string UsersEmailId { get; set; }
-        public string UsersType { get; set; }
+        public long UserPk { get; set; }
+        public string UserName { get; set; }
+        public string UserEmailId { get; set; }
+        public string UserType { get; set; }
     }
 }

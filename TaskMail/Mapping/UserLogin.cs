@@ -8,7 +8,7 @@ namespace TaskMail.Mapping
     {
         public UserLogin()
         {
-            CreateMap<UserDetailsDM, UserDetails>() .ForMember(dest => dest.UsersId, opt => opt.MapFrom(src => src.UsersPk))
+            CreateMap<UserDetailsDM, UserDetails>() .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserPk))
                                                     .ReverseMap();
         }
     }

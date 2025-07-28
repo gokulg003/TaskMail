@@ -20,7 +20,7 @@ namespace TaskMail.common
 
         //Login
        
-        public const string dbparamUsersName = "@UserName";
+        public const string dbparamUserName = "@UserName";
         public const string dbparamPassword = "@Password";
         public const string Email = "@Email";
 

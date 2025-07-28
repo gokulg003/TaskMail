@@ -40,7 +40,7 @@ namespace TaskMailService.Services
                     var param = new DynamicParameters();
                     string encodedPassword = Base64Helper.Encode(login.Passcode);
 
-                    param.Add(ConstantDetails.dbparamUsersName, login.UsersName, DbType.String, ParameterDirection.Input, 250);
+                    param.Add(ConstantDetails.dbparamUserName, login.UserName, DbType.String, ParameterDirection.Input, 250);
                     param.Add(ConstantDetails.dbparamPassword, encodedPassword, DbType.String, ParameterDirection.Input, 5000);
 
                     param.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
