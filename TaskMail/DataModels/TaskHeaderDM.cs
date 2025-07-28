@@ -4,7 +4,7 @@ namespace TaskMail.ViewModels;
 
 public class TaskHeaderDM
 {
-    public string TM_UsersName { get; set; }
+    public string TM_UserName { get; set; }
     public string TM_Type { get; set; }
     public long TM_Month { get; set; }
     public long TM_Date { get; set; }
