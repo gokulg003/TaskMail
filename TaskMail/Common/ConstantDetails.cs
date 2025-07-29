@@ -72,8 +72,9 @@ namespace TaskMail.common
         public const string InsertDate = "@InsertDate";
         public const string UpdatedBy = "@UpdatedBy";
         public const string UpdatedDate = "@UpdatedDate";
-       
 
+        //CodeMaster
+        public const string CodeType = "@CodeType";
 
         //Stored Procedure
         //Login
@@ -81,7 +82,10 @@ namespace TaskMail.common
         //TaskHeader
         public const string TaskHeader_SP = "TM_TaskHeader‌put";
         //TaskDetails
-         public const string TaskDetails_SP = "TM_TaskDetails_Insert";
+        public const string TaskDetails_SP = "TM_TaskDetails_Insert";
+
+        //Code_MasterSP
+        public const string CodeMasterSP = "TM_Retrive_DDL_TaskDetails";
 
     }
 }

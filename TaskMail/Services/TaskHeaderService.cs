@@ -4,7 +4,7 @@ using AutoMapper;
 using Dapper;
 using TaskMail.common;
 using TaskMail.ViewModels;
-using Microsoft.AspNetCore.Http;
+
 
 namespace TaskMailService.Services
 {
@@ -31,7 +31,7 @@ namespace TaskMailService.Services
 
         public List<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM, out int status, out string message)
         {
-            var taskHeader = new List<TaskHeaderVM>();
+            var result = new List<TaskHeaderVM>();
             try
             {
                 using (IDbConnection con = Connection)
@@ -64,7 +64,7 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
 
-                    taskHeader = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    result = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
@@ -90,7 +90,7 @@ namespace TaskMailService.Services
                 status = -1;
                 message = ex.Message;
             }
-            return taskHeader;
+            return result;
         }
     }
 }
