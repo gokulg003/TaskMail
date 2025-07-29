@@ -24,7 +24,7 @@ namespace TaskMail.common
         public const string dbparamPassword = "@Password";
         public const string Email = "@Email";
 
-        //TemplateTime
+        //TaskHeader
         public const string errmsgTemplateTime = "@ErrorMsgGrid";
         public const string Resource = "@UserName";
         public const string Type = "@Type";
@@ -41,6 +41,10 @@ namespace TaskMail.common
         public const string TM_InsertDate = "@InsertDate";
         public const string TM_UpdatedBy = "@UpdatedBy";
         public const string TM_UpdatedDate = "@UpdatedDate";
+        public const string  TM_TaskHeader_FK = "@TM_TaskHeader_FK";
+
+        //TaskDetails
+
 
 
         //Stored Procedure
