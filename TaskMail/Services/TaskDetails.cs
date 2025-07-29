@@ -42,22 +42,20 @@ namespace TaskMailService.Services
                     var parameters = new DynamicParameters();
                     string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
                     string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
-                    string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
-
                     parameters.Add(ConstantDetails.Resource, taskDetailsVM.Project, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Sprint, taskDetailsVM.Sprint, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Type, taskDetailsVM.Type, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.SOWIssueNo, taskDetailsVM.SOWIssueNo, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Type, taskDetailsVM.Type, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.SOWIssueNo, taskDetailsVM.SOWIssueNo, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.IsBillable, taskDetailsVM.IsBillable, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.BillingType, taskDetailsVM.BillingType, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Team, taskDetailsVM.Team, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.EstStDt, taskDetailsVM.EstStartDate(), DbType.Date, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDate(), DbType.Date, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.EstHours, timeOnly, DbType.Time, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.ActStDt, taskDetailsVM.ActStartDate(), DbType.Date, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.ActEndDt, taskDetailsVM.ActEndDate(), DbType.Date, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.EstStDt, taskDetailsVM.EstStDt, DbType.Time, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.EstHours, taskDetailsVM.EstHours, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.ActStDt, taskDetailsVM.ActStDt, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.ActEndDt, taskDetailsVM.ActEndDt, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.StTime, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.EndTime, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.ActHours, timeOnly, DbType.Time, ParameterDirection.Input, 18);
@@ -68,14 +66,11 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.UpdatedBy, UserName, DbType.String);
                     parameters.Add(ConstantDetails.UpdatedDate, DateTime.Now, DbType.DateTime);
                     parameters.Add(ConstantDetails.Users_FK, UserId, DbType.String);
-                    parameters.Add(ConstantDetails.TaskHeaderFK, UserId, DbType.String);
-
 
                     taskDetails = con.Query<TaskDetailsVM>(ConstantDetails.TaskDetails_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
 
-                    status = parameters.Get<Int16>(ConstantDetails.status);
-                    message = parameters.Get<string>(ConstantDetails.errMsg);
-
+                    status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
+                    message = parameters.Get<string>(ConstantDetails.errmsgDetails);
                 }
             }
             catch (Exception ex)
