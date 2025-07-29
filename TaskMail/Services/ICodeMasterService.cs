@@ -3,8 +3,8 @@ using TaskMail.ViewModels;
 
 namespace TaskMailService.Services
 {
-    public interface ICodeMaster
+    public interface ICodeMasterService
     {
-        CodeMasterDM GetCodeMaster(out int status, out string message);
+        List<CodeMasterDM> GetCodeMaster(string CodeType, out int status, out string message);
     }
 }
