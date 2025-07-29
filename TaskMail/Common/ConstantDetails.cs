@@ -48,19 +48,12 @@ namespace TaskMail.common
 
 
         //Stored Procedure
-
         //Login
         public const string Login_SP = "TM_LoginValidation";
-
         //TaskHeader
         public const string TaskHeader_SP = "TM_TaskHeader‌put";
-
         //TaskDetails
          public const string TaskDetails_SP = "TM_TaskDetails_Insert";
-
-
-
-
 
     }
 }
