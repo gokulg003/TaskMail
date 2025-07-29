@@ -4,7 +4,8 @@ namespace TaskMailService.Services
 {
     public interface ITaskDetailsService
     {
-        List<TaskHeaderVM> TaskDetails(TaskDetailsVM taskDetailsVM, TaskDetailsSupplements taskHeaderSupplements);
+      List<string> InsertTaskDetails(List<TaskDetailsVM> taskDetailsList, out int status, out string message);
+
     }
 
  
