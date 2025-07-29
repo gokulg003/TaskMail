@@ -13,7 +13,7 @@ namespace TaskMailService.Services
     {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-        // public DefaultParameters Header { get; set; }
+        
 
         public LoginService(IConfiguration config, IMapper mapper)
         {
