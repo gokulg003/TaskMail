@@ -41,8 +41,11 @@ namespace TaskMailService.Services
                     string timeOnly = manualDate.ToString("HH:mm:ss");
 
                     var parameters = new DynamicParameters();
-                    string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
+                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
+                    // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
+
+                    string UserName = "Gokul";
+                    int UserId = 2;
 
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 18);
@@ -59,7 +62,7 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.TM_InsertDate, DateTime.Now, DbType.DateTime);
                     parameters.Add(ConstantDetails.TM_UpdatedBy, UserName, DbType.String);
                     parameters.Add(ConstantDetails.TM_UpdatedDate, DateTime.Now, DbType.DateTime);
-                    parameters.Add(ConstantDetails.TM_Users_FK, UserId, DbType.String);
+                    parameters.Add(ConstantDetails.TM_User_FK, UserId, DbType.Int64);
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
