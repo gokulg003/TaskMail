@@ -1,20 +1,26 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace TaskMail.ViewModels;
+
 public class TaskHeaderVM
 {
     public string Resource { get; set; }
     public string Type { get; set; }
-    public long Month { get; set; }
-    public long Date { get; set; }
-    public long Year { get; set; }
-    public string In_Time { get; set; }
-    public string Out_Time { get; set; }
-    public string Total_Duration { get; set; }
-    public string Break_Duration { get; set; }
-    public string Act_Work_Hours { get; set; }
-    public string? Comments { get; set; }
-    [JsonIgnore]
-    public string? Message { get; set; }
+
+    [Range(1, 12, ErrorMessage = "Month must be between 1 and 12.")]
+    public int Month { get; set; }
+
+    [Range(1, 31, ErrorMessage = "Date must be between 1 and 31.")]
+    public int Date { get; set; }
+    [Range(1900, 2100, ErrorMessage = "Year must be between 1900 and 2100.")]
+    public int Year { get; set; }
+    public string InTime { get; set; }
+    public string OutTime { get; set; }
+    public string TotalDuration { get; set; }
+    public string BreakDuration { get; set; }
+    public string ActualWorkHours { get; set; }
+    public string Comments { get; set; }
+
 }
 

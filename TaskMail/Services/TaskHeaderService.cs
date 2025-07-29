@@ -4,6 +4,7 @@ using AutoMapper;
 using Dapper;
 using TaskMail.common;
 using TaskMail.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace TaskMailService.Services
 {
@@ -13,11 +14,11 @@ namespace TaskMailService.Services
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public TaskHeaderService(IConfiguration config, IMapper mapper, HttpContextAccessor httpContextAccessor)
+        public TaskHeaderService(IConfiguration config, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _config = config;
             _mapper = mapper;
-            _httpContextAccessor = httpContextAccessor;;
+            _httpContextAccessor = httpContextAccessor; ;
         }
 
         public IDbConnection Connection
@@ -28,7 +29,7 @@ namespace TaskMailService.Services
             }
         }
 
-        public List<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM,TaskHeaderSupplements taskHeaderSupplements)
+        public List<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM, out int status, out string message)
         {
             var taskHeader = new List<TaskHeaderVM>();
             try
@@ -36,50 +37,60 @@ namespace TaskMailService.Services
                 using (IDbConnection con = Connection)
                 {
                     con.Open();
-                    DateTime manualDate = new DateTime(2025, 07, 24, 14, 30, 0); 
+                    DateTime manualDate = new DateTime(2025, 07, 24, 14, 30, 0);
                     string timeOnly = manualDate.ToString("HH:mm:ss");
 
                     var parameters = new DynamicParameters();
                     string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
                     string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
 
-                    parameters.Add(ConstantDetails.Resource, taskHeaderSupplements.Resource, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Type, taskHeaderSupplements.Type, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Month, taskHeaderSupplements.Month, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Date, taskHeaderSupplements.Date, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Year, taskHeaderSupplements.Year, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Month, taskHeaderVM.Month, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Date, taskHeaderVM.Date, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Year, taskHeaderVM.Year, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.InTime, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.OutTime, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.TotalDuration, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.BreakDuration, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.ActWorkHours, timeOnly, DbType.Time, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Comments, taskHeaderSupplements.Comments, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.TM_InsertedBy, UserName, DbType.String);  
+                    parameters.Add(ConstantDetails.Comments, taskHeaderVM.Comments, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.TM_InsertedBy, UserName, DbType.String);
                     parameters.Add(ConstantDetails.TM_InsertDate, DateTime.Now, DbType.DateTime);
                     parameters.Add(ConstantDetails.TM_UpdatedBy, UserName, DbType.String);
                     parameters.Add(ConstantDetails.TM_UpdatedDate, DateTime.Now, DbType.DateTime);
                     parameters.Add(ConstantDetails.TM_Users_FK, UserId, DbType.String);
 
-                    parameters.Add(ConstantDetails.errmsgTemplateTime, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
-                    taskHeader = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
-                    string errmsg = parameters.Get<string>(ConstantDetails.errmsgTemplateTime);
-                    if (!string.IsNullOrEmpty(errmsg))
-                    {
-                        taskHeaderVM.Message = errmsg;
-                    }
-                    else
-                    {
-                        taskHeaderVM.Message = "Inserted and fetched list successfully";
-                    }
+                    parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
+                    parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
 
-                    return taskHeader;
+                    taskHeader = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                    status = parameters.Get<Int16>(ConstantDetails.status);
+                    message = parameters.Get<string>(ConstantDetails.errMsg);
+                    // if (!string.IsNullOrEmpty(errmsg))
+                    // {
+                    //     taskHeaderVM.Message = errmsg;
+                    // }
+                    // else
+                    // {
+                    //     taskHeaderVM.Message = "Inserted and fetched list successfully";
+                    // }
+                    // return taskHeader;
                 }
             }
+            //     catch (Exception ex)
+            //     {
+            //         taskHeaderVM.Message = "Login failed: " + ex.Message;
+            //         return taskHeader; 
+            //     }
+            // }
             catch (Exception ex)
             {
-                taskHeaderVM.Message = "Login failed: " + ex.Message;
-                return taskHeader; 
+                status = -1;
+                message = ex.Message;
             }
+            return taskHeader;
         }
     }
 }
