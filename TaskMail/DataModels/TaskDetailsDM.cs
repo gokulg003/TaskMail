@@ -11,7 +11,7 @@ public class TaskDetailsDM
     public string SOWIssueNo { get; set; }
     public string IsBillable { get; set; }
     public string BillingType { get; set; }
-    public string ResName { get; set; }
+    public string Res_Name { get; set; }
     public string Team { get; set; }
     public string EstStDt { get; set; }
     public string EstEndDt { get; set; }

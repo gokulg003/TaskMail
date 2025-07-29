@@ -16,15 +16,17 @@ public class TaskDetailsVM
     public string Team { get; set; }
     public string EstStDt { get; set; }
     public string EstEndDt { get; set; }
+    public DateTime EstStartDate() => DateTime.ParseExact(EstStDt, "M/d/yyyy", null);
+    public DateTime EstEndDate() => DateTime.ParseExact(EstEndDt, "M/d/yyyy", null);
     public string EstHours { get; set; }
     public string ActStDt { get; set; }
     public string ActEndDt { get; set; }
+    public DateTime ActStartDate() => DateTime.ParseExact(ActStDt, "M/d/yyyy", null);
+    public DateTime ActEndDate() => DateTime.ParseExact(ActEndDt, "M/d/yyyy", null);
     public string StTime { get; set; }
     public string EndTime { get; set; }
     public string ActHours { get; set; }
     public int Percentage { get; set; }
     public string Status { get; set; }
     public string Comments { get; set; }
-    [JsonIgnore]
-    public string Message { get; set; }
 }
