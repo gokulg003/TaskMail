@@ -44,7 +44,7 @@ namespace TaskMailService.Services
                     param.Add(ConstantDetails.dbparamPassword, encodedPassword, DbType.String, ParameterDirection.Input, 5000);
 
                     param.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
-                    param.Add(ConstantDetails.dbparamerrmsglogin, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
+                    param.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
 
                     userlogindetailsDM = conn.Query<UserDetailsDM>(ConstantDetails.Login_SP, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
 

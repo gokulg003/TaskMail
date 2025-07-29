@@ -1,32 +1,30 @@
-using Microsoft.AspNetCore.Mvc;
-using TaskMail.ViewModels;
 using TaskMailService.Services;
+using TaskMail.DataModels;
+using TaskMail.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using TaskMail.Common;
 
 namespace TaskMail.Controllers
 {
-    [ApiController]
     [Route("api")]
+    [ApiController]
+  
     public class TaskHeaderController : ControllerBase
     {
         private readonly ITaskHeaderService _TaskHeaderService;
-        // private int _status;
-        // private string _message;
+        private int _status;
+        private string _message;
         public TaskHeaderController(ITaskHeaderService TaskHeaderService)
         {
             _TaskHeaderService = TaskHeaderService;
         }
 
-        [HttpPost("TaskHeader")]
-        public ActionResult<List<TaskHeaderVM>> TaskHeader([FromBody] TaskHeaderSupplements taskHeaderSupplements)
+        [Route("TaskHeader")]
+        [HttpPost]
+        public ActionResult<TaskHeaderVM>TaskHeader(TaskHeaderVM taskHeaderVM)
         {
-            var vm = new TaskHeaderVM();
-            var result = _TaskHeaderService.TaskHeader(vm, taskHeaderSupplements);
-            if (!string.IsNullOrEmpty(vm.Message))
-            {
-                return BadRequest(vm.Message); 
-            }
-            return Ok(result);
+            var result = _TaskHeaderService.TaskHeader(taskHeaderVM,  out _status, out _message);
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
+        }   
         }
-    }
 }

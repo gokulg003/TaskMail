@@ -18,7 +18,7 @@ namespace TaskMailService.Services
         {
             _config = config;
             _mapper = mapper;
-            _httpContextAccessor = httpContextAccessor;;
+            _httpContextAccessor = httpContextAccessor; ;
         }
 
         public IDbConnection Connection
@@ -29,7 +29,7 @@ namespace TaskMailService.Services
             }
         }
 
-        public List<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM, TaskHeaderSupplements taskHeaderSupplements,out int status, out string message)
+        public List<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM, out int status, out string message)
         {
             var taskHeader = new List<TaskHeaderVM>();
             try
@@ -44,29 +44,27 @@ namespace TaskMailService.Services
                     string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
                     string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
 
-                    parameters.Add(ConstantDetails.Resource, taskHeaderSupplements.Resource, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Type, taskHeaderSupplements.Type, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Month, taskHeaderSupplements.Month, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Date, taskHeaderSupplements.Date, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Year, taskHeaderSupplements.Year, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Month, taskHeaderVM.Month, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Date, taskHeaderVM.Date, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Year, taskHeaderVM.Year, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.InTime, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.OutTime, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.TotalDuration, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.BreakDuration, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.ActWorkHours, timeOnly, DbType.Time, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Comments, taskHeaderSupplements.Comments, DbType.String, ParameterDirection.Input, 18);
-                    // parameters.Add(ConstantDetails.TM_InsertedBy, UserName, DbType.String);
+                    parameters.Add(ConstantDetails.Comments, taskHeaderVM.Comments, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.TM_InsertedBy, UserName, DbType.String);
                     parameters.Add(ConstantDetails.TM_InsertDate, DateTime.Now, DbType.DateTime);
-                    // parameters.Add(ConstantDetails.TM_UpdatedBy, UserName, DbType.String);
+                    parameters.Add(ConstantDetails.TM_UpdatedBy, UserName, DbType.String);
                     parameters.Add(ConstantDetails.TM_UpdatedDate, DateTime.Now, DbType.DateTime);
-                    // parameters.Add(ConstantDetails.TM_Users_FK, UserId, DbType.String);
+                    parameters.Add(ConstantDetails.TM_Users_FK, UserId, DbType.String);
 
-                   
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
-                    parameters.Add(ConstantDetails.errmsgTemplateTime, dbType: DbType.String,direction: ParameterDirection.Output, size: 5000);
+                    parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
 
                     taskHeader = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
-                    string errmsg = parameters.Get<string>(ConstantDetails.errmsgTemplateTime);
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
@@ -78,19 +76,21 @@ namespace TaskMailService.Services
                     // {
                     //     taskHeaderVM.Message = "Inserted and fetched list successfully";
                     // }
-                    return taskHeader;
+                    // return taskHeader;
                 }
             }
-        //     catch (Exception ex)
-        //     {
-        //         taskHeaderVM.Message = "Login failed: " + ex.Message;
-        //         return taskHeader; 
-        //     }
-        // }
-        catch (Exception ex)
-        {
-            status = -1;
-            message = ex.Message;
+            //     catch (Exception ex)
+            //     {
+            //         taskHeaderVM.Message = "Login failed: " + ex.Message;
+            //         return taskHeader; 
+            //     }
+            // }
+            catch (Exception ex)
+            {
+                status = -1;
+                message = ex.Message;
+            }
+            return taskHeader;
         }
     }
 }
