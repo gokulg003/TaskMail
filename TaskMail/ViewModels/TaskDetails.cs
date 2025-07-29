@@ -3,20 +3,28 @@ using System.Text.Json.Serialization;
 
 namespace TaskMail.ViewModels;
 
-public class TaskDetails
+public class TaskDetailsVM
 {
     public string Project { get; set; }
     public string Sprint { get; set; }
     public string TaskName { get; set; }
     public string Type { get; set; }
-    public long SOWIssueNo { get; set; }
-    public long Year { get; set; }
-    public string In_Time { get; set; }
-    public string Out_Time { get; set; }
-    public string Total_Duration { get; set; }
-    public string Break_Duration { get; set; }
-    public string Act_Work_Hours { get; set; }
-    public string? Comments { get; set; }
+    public string SOWIssueNo { get; set; }
+    public string IsBillable { get; set; }
+    public string BillingType { get; set; }
+    public string ResName { get; set; }
+    public string Team { get; set; }
+    public string EstStDt { get; set; }
+    public string EstEndDt { get; set; }
+    public string EstHours { get; set; }
+    public string ActStDt { get; set; }
+    public string ActEndDt { get; set; }
+    public string StTime { get; set; }
+    public string EndTime { get; set; }
+    public string ActHours { get; set; }
+    public int Percentage { get; set; }
+    public string Status { get; set; }
+    public string Comments { get; set; }
     [JsonIgnore]
     public string Message { get; set; }
 }

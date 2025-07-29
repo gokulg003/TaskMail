@@ -44,7 +44,34 @@ namespace TaskMail.common
         public const string TM_Users_FK = "@UsersFK";
 
         //TaskDetails
-
+        public const string errmsgDetails = "@errormsg";
+        public const string Project = "@Project";
+        public const string Sprint = "@Sprint";
+        public const string TaskName = "@TaskName";
+        public const string Types = "@Type";
+        public const string SOWIssueNo = "@SOWIssueNo";
+        public const string IsBillable = "@IsBillable";
+        public const string BillingType = "@BillingType";
+        public const string ResName = "@ResName";
+        public const string Team = "@Team";
+        public const string EstStDt = "@EstStDt";
+        public const string EstEndDt = "EstEndDt";
+        public const string EstHours = "@EstHours";
+        public const string ActStDt = "@ActStDt";
+        public const string ActEndDt = "@ActEndDt";
+        public const string StTime = " @StTime";
+        public const string EndTime = " @EndTime";
+        public const string ActHours = "@ActHours";
+        public const string Percentage = "@Percentage";
+        public const string Status = "@Status";
+        public const string CommentsDetails = "@Comments";
+        public const string TaskHeaderFK = "@TaskHeaderFK";
+        public const string Users_FK = "@UsersFK";
+        public const string InsertedBy = "@InsertedBy";
+        public const string InsertDate = "@InsertDate";
+        public const string UpdatedBy = "@UpdatedBy";
+        public const string UpdatedDate = "@UpdatedDate";
+       
 
 
         //Stored Procedure
