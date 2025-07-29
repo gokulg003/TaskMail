@@ -1,8 +1,11 @@
 using TaskMailService.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSingleton<IConfiguration>(configuration);
 

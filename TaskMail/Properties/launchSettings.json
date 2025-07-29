@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Condologic.PolicyFolder": {
+    "TaskMail.Folder": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

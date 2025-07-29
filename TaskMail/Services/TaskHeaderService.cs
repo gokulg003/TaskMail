@@ -4,6 +4,7 @@ using AutoMapper;
 using Dapper;
 using TaskMail.common;
 using TaskMail.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace TaskMailService.Services
 {
@@ -13,7 +14,7 @@ namespace TaskMailService.Services
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public TaskHeaderService(IConfiguration config, IMapper mapper, HttpContextAccessor httpContextAccessor)
+        public TaskHeaderService(IConfiguration config, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _config = config;
             _mapper = mapper;
