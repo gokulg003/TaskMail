@@ -8,7 +8,7 @@ namespace TaskMail.common
 
         //constants 
         public const string dbparamstatus = "@Status";
-        public const string dbparamerrmsglogin = "@ErrorMsg";
+        public const string dbparamerrmsg = "@ErrorMsg";
         public const string status = "Status";
         public const string errMsg = "ErrorMsg";
 
@@ -25,7 +25,7 @@ namespace TaskMail.common
         public const string Email = "@Email";
 
         //TaskHeader
-        public const string errmsgTemplateTime = "@ErrorMsgGrid";
+        public const string errmsg = "@ErrorMsgGrid";
         public const string Resource = "@UserName";
         public const string Type = "@Type";
         public const string Month = "@Month";
