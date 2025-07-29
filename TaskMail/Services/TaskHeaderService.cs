@@ -29,7 +29,7 @@ namespace TaskMailService.Services
             }
         }
 
-        public List<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM,TaskHeaderSupplements taskHeaderSupplements)
+        public List<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM, TaskHeaderSupplements taskHeaderSupplements,out int status, out string message)
         {
             var taskHeader = new List<TaskHeaderVM>();
             try
@@ -37,7 +37,7 @@ namespace TaskMailService.Services
                 using (IDbConnection con = Connection)
                 {
                     con.Open();
-                    DateTime manualDate = new DateTime(2025, 07, 24, 14, 30, 0); 
+                    DateTime manualDate = new DateTime(2025, 07, 24, 14, 30, 0);
                     string timeOnly = manualDate.ToString("HH:mm:ss");
 
                     var parameters = new DynamicParameters();
@@ -55,32 +55,42 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.BreakDuration, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.ActWorkHours, timeOnly, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Comments, taskHeaderSupplements.Comments, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.TM_InsertedBy, UserName, DbType.String);  
+                    // parameters.Add(ConstantDetails.TM_InsertedBy, UserName, DbType.String);
                     parameters.Add(ConstantDetails.TM_InsertDate, DateTime.Now, DbType.DateTime);
-                    parameters.Add(ConstantDetails.TM_UpdatedBy, UserName, DbType.String);
+                    // parameters.Add(ConstantDetails.TM_UpdatedBy, UserName, DbType.String);
                     parameters.Add(ConstantDetails.TM_UpdatedDate, DateTime.Now, DbType.DateTime);
-                    parameters.Add(ConstantDetails.TM_Users_FK, UserId, DbType.String);
+                    // parameters.Add(ConstantDetails.TM_Users_FK, UserId, DbType.String);
 
-                    parameters.Add(ConstantDetails.errmsgTemplateTime, dbType: DbType.String, size: 200, direction: ParameterDirection.Output);
+                   
+                    parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
+                    parameters.Add(ConstantDetails.errmsgTemplateTime, dbType: DbType.String,direction: ParameterDirection.Output, size: 5000);
+
                     taskHeader = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
                     string errmsg = parameters.Get<string>(ConstantDetails.errmsgTemplateTime);
-                    if (!string.IsNullOrEmpty(errmsg))
-                    {
-                        taskHeaderVM.Message = errmsg;
-                    }
-                    else
-                    {
-                        taskHeaderVM.Message = "Inserted and fetched list successfully";
-                    }
 
+                    status = parameters.Get<Int16>(ConstantDetails.status);
+                    message = parameters.Get<string>(ConstantDetails.errMsg);
+                    // if (!string.IsNullOrEmpty(errmsg))
+                    // {
+                    //     taskHeaderVM.Message = errmsg;
+                    // }
+                    // else
+                    // {
+                    //     taskHeaderVM.Message = "Inserted and fetched list successfully";
+                    // }
                     return taskHeader;
                 }
             }
-            catch (Exception ex)
-            {
-                taskHeaderVM.Message = "Login failed: " + ex.Message;
-                return taskHeader; 
-            }
+        //     catch (Exception ex)
+        //     {
+        //         taskHeaderVM.Message = "Login failed: " + ex.Message;
+        //         return taskHeader; 
+        //     }
+        // }
+        catch (Exception ex)
+        {
+            status = -1;
+            message = ex.Message;
         }
     }
 }
