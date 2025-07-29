@@ -45,6 +45,7 @@ namespace TaskMail.common
 
         //TaskDetails
         public const string errmsgDetails = "@errormsg";
+        public const string StatusDetails = "@StatusCode";
         public const string Project = "@Project";
         public const string Sprint = "@Sprint";
         public const string TaskName = "@TaskName";
