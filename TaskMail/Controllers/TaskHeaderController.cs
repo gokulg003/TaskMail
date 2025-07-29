@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskMail.ViewModels;
 using TaskMailService.Services;
+using TaskMail.Common;
 
 namespace TaskMail.Controllers
 {
@@ -9,6 +10,8 @@ namespace TaskMail.Controllers
     public class TaskHeaderController : ControllerBase
     {
         private readonly ITaskHeaderService _TaskHeaderService;
+        // private int _status;
+        // private string _message;
         public TaskHeaderController(ITaskHeaderService TaskHeaderService)
         {
             _TaskHeaderService = TaskHeaderService;
