@@ -24,7 +24,7 @@ namespace TaskMail.Controllers
 
         public ActionResult<List<CodeMasterVM>> GetCodeMaster(string CodeType)
         {
-        var result = _CodeMaster.GetCodeMaster(CodeType,out int status, out string message);
+        var result = _CodeMaster.GetCodeMaster(CodeType,out int _status, out string _message);
         return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
         }
 
