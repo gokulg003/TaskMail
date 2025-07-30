@@ -60,18 +60,18 @@ namespace TaskMail.common
         public const string EstHours = "@EstHours";
         public const string ActStDt = "@ActStDt";
         public const string ActEndDt = "@ActEndDt";
-        public const string StTime = " @StTime";
-        public const string EndTime = " @EndTime";
+        public const string StTime = "@StTime";
+        public const string EndTime = "@EndTime";
         public const string ActHours = "@ActHours";
         public const string Percentage = "@Percentage";
         public const string Status = "@Status";
         public const string CommentsDetails = "@Comments";
         public const string TaskHeaderFK = "@TaskHeaderFK";
-        public const string Users_FK = "@UsersFK";
-        public const string InsertedBy = "@InsertedBy";
-        public const string InsertDate = "@InsertDate";
-        public const string UpdatedBy = "@UpdatedBy";
-        public const string UpdatedDate = "@UpdatedDate";
+        public const string UsersFK = "@UsersFK";
+        public const string UserID = "@InsertedBy";
+        // public const string InsertDate = "@InsertDate";
+        // public const string UpdatedBy = "@UpdatedBy";
+        // public const string UpdatedDate = "@UpdatedDate";
 
         //CodeMaster
         public const string CodeType = "@CodeType";
