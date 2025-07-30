@@ -5,6 +5,7 @@ namespace TaskMail.ViewModels;
 
 public class TaskHeaderVM
 {
+     public long? TaskHeaderId { get; set; }
     public string Resource { get; set; }
     public string Type { get; set; }
 
@@ -21,6 +22,7 @@ public class TaskHeaderVM
     public string BreakDuration { get; set; }
     public string ActWorkHours { get; set; }
     public string Comments { get; set; }
+      public string mode { get; set; }
 
 }
 
