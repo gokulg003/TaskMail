@@ -19,7 +19,7 @@ public class TaskHeaderVM
     public string OutTime { get; set; }
     public string TotalDuration { get; set; }
     public string BreakDuration { get; set; }
-    public string ActualWorkHours { get; set; }
+    public string ActWorkHours { get; set; }
     public string Comments { get; set; }
 
 }
