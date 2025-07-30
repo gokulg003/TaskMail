@@ -27,13 +27,13 @@ namespace TaskMail.Controllers
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
         }
 
-        [Route("TaskHeader")]
-        [HttpPut] 
-        public ActionResult<TaskHeaderVM> TaskHeaderUpdate(TaskHeaderVM taskHeaderVM)
-        {
-            var result = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
-        }
+        // [Route("TaskHeader")]
+        // [HttpPut] 
+        // public ActionResult<TaskHeaderVM> TaskHeaderUpdate(TaskHeaderVM taskHeaderVM)
+        // {
+        //     var result = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message);
+        //     return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
+        // }
 
         }
 }
