@@ -9,11 +9,11 @@ public class TaskHeaderDM
     public long Month { get; set; }
     public long Date { get; set; }
     public long Year { get; set; }
-    public string InTime { get; set; }
-    public string OutTime { get; set; }
-    public string TotalDuration { get; set; }
-    public string BreakDuration { get; set; }
-    public string ActWorkHours { get; set; }
+    public TimeSpan InTime { get; set; }
+    public TimeSpan OutTime { get; set; }
+    public TimeSpan TotalDuration { get; set; }
+    public TimeSpan BreakDuration { get; set; }
+    public TimeSpan ActWorkHours { get; set; }
     public string Comments { get; set; }
     public string UserFK { get; set; }
     public string InsertededBy { get; set; }
