@@ -29,9 +29,9 @@ namespace TaskMailService.Services
             }
         }
 
-        public List<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM, out int status, out string message)
+        public TaskHeaderVM TaskHeader(TaskHeaderVM taskHeaderVM, out int status, out string message)
         {
-            var result = new List<TaskHeaderVM>();
+            var result = new TaskHeaderVM();
             try
             {
                 using (IDbConnection con = Connection)
@@ -64,7 +64,7 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
 
-                    result = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    result = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);

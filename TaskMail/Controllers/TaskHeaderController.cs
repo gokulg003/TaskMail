@@ -8,7 +8,7 @@ namespace TaskMail.Controllers
 {
     [Route("api")]
     [ApiController]
-  
+
     public class TaskHeaderController : ControllerBase
     {
         private readonly ITaskHeaderService _TaskHeaderService;
@@ -21,10 +21,19 @@ namespace TaskMail.Controllers
 
         [Route("TaskHeader")]
         [HttpPost]
-        public ActionResult<TaskHeaderVM>TaskHeader(TaskHeaderVM taskHeaderVM)
+        public ActionResult<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM)
         {
-            var result = _TaskHeaderService.TaskHeader(taskHeaderVM,  out _status, out _message);
+            var result = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
-        }   
+        }
+
+        [Route("TaskHeader")]
+        [HttpPut] 
+        public ActionResult<TaskHeaderVM> TaskHeaderUpdate(TaskHeaderVM taskHeaderVM)
+        {
+            var result = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message);
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
+        }
+
         }
 }
