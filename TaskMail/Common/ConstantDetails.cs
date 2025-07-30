@@ -41,7 +41,7 @@ namespace TaskMail.common
         public const string TM_InsertDate = "@InsertDate";
         public const string TM_UpdatedBy = "@UpdatedBy";
         public const string TM_UpdatedDate = "@UpdatedDate";
-        public const string TM_User_FK = "@UserFK";
+        public const string TM_User_FK = "@User_FK";
 
         //TaskDetails
         public const string errmsgDetails = "@errormsg";
