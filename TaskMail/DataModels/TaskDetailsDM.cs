@@ -13,19 +13,19 @@ public class TaskDetailsDM
     public string BillingType { get; set; }
     public string Res_Name { get; set; }
     public string Team { get; set; }
-    public string EstStDt { get; set; }
-    public string EstEndDt { get; set; }
-    public string EstHours { get; set; }
-    public string ActStDt { get; set; }
-    public string ActEndDt { get; set; }
-    public string StTime { get; set; }
-    public string EndTime { get; set; }
-    public string ActHours { get; set; }
+    public DateTime EstStDt { get; set; }
+    public DateTime EstEndDt { get; set; }
+    public TimeSpan EstHours { get; set; }
+    public DateTime ActStDt { get; set; }
+    public DateTime ActEndDt { get; set; }
+    public TimeSpan StTime { get; set; }
+    public TimeSpan EndTime { get; set; }
+    public TimeSpan ActHours { get; set; }
     public int Percentage { get; set; }
     public string Status { get; set; }
     public string Comments { get; set; }
     public string InsertededBy { get; set; }
-    public string InsertDate { get; set; }
-    public string UpdatedBy { get; set; }
-    public string UpdatedDate{ get; set; }    
+    // public string InsertDate { get; set; }
+    // public string UpdatedBy { get; set; }
+    // public string UpdatedDate{ get; set; }    
 }

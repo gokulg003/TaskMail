@@ -12,6 +12,7 @@ builder.Services.AddSingleton<IConfiguration>(configuration);
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<ITaskHeaderService, TaskHeaderService>();
 builder.Services.AddScoped<ICodeMasterService, CodeMasterService>();
+builder.Services.AddScoped<ITaskDetailsService, TaskDetailsService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
