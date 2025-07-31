@@ -46,7 +46,7 @@ namespace TaskMailService.Services
                     // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
                     int UserId = 22;
                     string UserName = "Devi";
-                    int HeaderId = 222;
+                    int HeaderId = 223;
 
                     foreach (var taskDetailsVM in taskDetailsList)
                     {
@@ -82,6 +82,7 @@ namespace TaskMailService.Services
 
                         parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
                         parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
+                        parameters.Add(ConstantDetails.TaskDetailsPK,dbType: DbType.Int16, direction: ParameterDirection.Output)
                         insertedTaskDetails = con.Query<TaskDetailsVM>(ConstantDetails.TaskDetails_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
 
                         // if (insertedTask != null)
