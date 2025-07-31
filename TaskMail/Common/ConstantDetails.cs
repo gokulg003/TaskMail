@@ -70,8 +70,9 @@ namespace TaskMail.common
         public const string UsersFK = "@UsersFK";
         public const string UserID = "@InsertedBy";
         // public const string InsertDate = "@InsertDate";
-        // public const string UpdatedBy = "@UpdatedBy";
+        public const string UpdatedBy = "@UpdatedBy";
         // public const string UpdatedDate = "@UpdatedDate";
+        public const string TM_Details_ID = "@ID_PK";
 
         //CodeMaster
         public const string CodeType = "@CodeType";
@@ -90,6 +91,9 @@ namespace TaskMail.common
 
         //Code_MasterSP
         public const string CodeMasterSP = "TM_Retrive_DDL_TaskDetails";
+
+        // TaskDetails Update
+         public const string TaskDetails_Update_SP = "TM_TaskDetails_Update";
 
     }
 }
