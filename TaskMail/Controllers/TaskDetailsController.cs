@@ -20,11 +20,12 @@ namespace TaskMail.Controllers
 
         [Route("get-task-details")]
         [HttpPost]
-        public ActionResult<List<TaskDetailsVM>> GetTaskDetails([FromBody] List<TaskDetailsVM> taskDetailsList)
+        public ActionResult<List<TaskDetails>> GetTaskDetails([FromBody] List<TaskDetails> taskDetailsList)
         {
             var result = _taskDetailsService.TaskDetails(taskDetailsList, out _status, out _message);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message,});
         }
+        
 
         // [Route("update-task-details")]
         // [HttpPut]
