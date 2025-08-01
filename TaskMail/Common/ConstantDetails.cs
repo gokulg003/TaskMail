@@ -15,6 +15,8 @@ namespace TaskMail.common
         public const string HeaderPk = "HeaderPk";
 
 
+
+
         public const string TM_User_PK = "TM_User_PK";
         public const string TM_Type = "TM_Type";
 
@@ -42,6 +44,7 @@ namespace TaskMail.common
         //TaskDetails
         public const string errmsgDetails = "@errormsg";
         public const string StatusDetails = "@StatusCode";
+        public const string IdPK = "@ID_PK";
         public const string Project = "@Project";
         public const string Sprint = "@Sprint";
         public const string TaskName = "@TaskName";
@@ -64,11 +67,14 @@ namespace TaskMail.common
         public const string CommentsDetails = "@Comments";
         public const string TaskHeaderFK = "@TaskHeaderFK";
         public const string UsersFK = "@UsersFK";
-        public const string UserID = "@InsertedBy";
+        public const string UserName = "@UserName";
         // public const string InsertDate = "@InsertDate";
         public const string UpdatedBy = "@UpdatedBy";
         // public const string UpdatedDate = "@UpdatedDate";
-        public const string TM_Details_ID = "@ID_PK";
+        // public const string TMDetailsID = "@TaskDetailsID";
+
+        //  public const string DetailsID = "TaskDetailsID";
+
 
         //CodeMaster
         public const string CodeType = "@CodeType";
@@ -89,7 +95,7 @@ namespace TaskMail.common
         public const string CodeMasterSP = "TM_Retrive_DDL_TaskDetails";
 
         // TaskDetails Update
-         public const string TaskDetails_Update_SP = "TM_TaskDetails_Update";
+         public const string TaskDetails_Update_SP = "RetriveTaskDetails";
 
     }
 }
