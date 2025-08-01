@@ -27,18 +27,18 @@ namespace TaskMail.Controllers
         }
         
 
-        // [Route("update-task-details")]
-        // [HttpPut]
-        // public ActionResult<List<TaskDetailsDM>> UpdateTaskDetails(long ID_PK, [FromBody] List<TaskDetails> taskDetailsList)
-        // {
-        //     var result = _taskDetailsService.TaskDetailsUpdate(taskDetailsList, ID_PK, out _status, out _message);
-        //     return StatusCode(CommonDetails.StatusCode(_status), new
-        //     {
-        //         data = result,
-        //         status = _status,
-        //         message = _message
-        //     });
-        // }
+        [Route("update-task-details")]
+        [HttpPut]
+        public ActionResult<List<TaskDetailsDM>> UpdateTaskDetails([FromBody] List<TaskDetails> taskDetailsList)
+        {
+            var result = _taskDetailsService.TaskDetailsUpdate(taskDetailsList, out _status, out _message);
+            return StatusCode(CommonDetails.StatusCode(_status), new
+            {
+                data = result,
+                status = _status,
+                message = _message
+            });
+        }
 
     }
 }

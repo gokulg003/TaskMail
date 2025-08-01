@@ -97,71 +97,71 @@ namespace TaskMailService.Services
             return insertedTaskDetails;
         }
 
-    //    public List<TaskDetailsDM> TaskDetailsUpdate(List<TaskDetails> taskDetailsList, long ID_PK, out int status, out string message)
-    //     {
-    //         var updatedTaskDetails = new List<TaskDetailsDM>();
-    //         status = -1;
-    //         message = null;
+       public List<TaskDetailsDM> TaskDetailsUpdate(List<TaskDetails> taskDetailsList, out int status, out string message)
+        {
+            var updatedTaskDetails = new List<TaskDetailsDM>();
+            status = -1;
+            message = null;
 
-    //         try
-    //         {
-    //             using (IDbConnection con = Connection)
-    //             {
-    //                 con.Open();
-    //                 // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-    //                 // string UpdatedByName = _httpContextAccessor.HttpContext.Request.Headers["X-UpdatedByName"];
-    //                 // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
+            try
+            {
+                using (IDbConnection con = Connection)
+                {
+                    con.Open();
+                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
+                    // string UpdatedByName = _httpContextAccessor.HttpContext.Request.Headers["X-UpdatedByName"];
+                    // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
                    
-    //                 int UserId = 22;
-    //                 int HeaderId = 222;
-    //                 string UpdatedByName = "gokul";
+                    int UserId = 22;
+                    int HeaderId = 222;
+                    string UpdatedByName = "gokul";
 
-    //                 foreach (var taskDetailsVM in taskDetailsList)
-    //                 {
-    //                     var parameters = new DynamicParameters();
+                    foreach (var taskDetailsVM in taskDetailsList)
+                    {
+                        var parameters = new DynamicParameters();
 
-    //                     parameters.Add(ConstantDetails.IdPK, taskDetailsVM.TaskDetailPk, DbType.Int64);  
-    //                     parameters.Add(ConstantDetails.Project, taskDetailsVM.Project, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.Sprint, taskDetailsVM.Sprint, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.Type, taskDetailsVM.Type, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.SOWIssueNo, taskDetailsVM.SOWIssueNo, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.IsBillable, taskDetailsVM.IsBillable, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.BillingType, taskDetailsVM.BillingType, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.Team, taskDetailsVM.Team, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.EstStDt, taskDetailsVM.EstStDt, DbType.Date, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.Date, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.EstHours, taskDetailsVM.EstHours, DbType.Time, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.ActStDt, taskDetailsVM.ActStDt, DbType.Date, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.ActEndDt, taskDetailsVM.ActEndDt, DbType.Date, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.StTime, taskDetailsVM.StTime, DbType.Time, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.EndTime, taskDetailsVM.EndTime, DbType.Time, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.ActHours, taskDetailsVM.ActHours, DbType.Time, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.Percentage, taskDetailsVM.Percentage, DbType.Int64, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.Status, taskDetailsVM.Status, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.CommentsDetails, taskDetailsVM.Comments, DbType.String, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.UpdatedBy, UpdatedByName, DbType.String);
-    //                     parameters.Add(ConstantDetails.UsersFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
-    //                     parameters.Add(ConstantDetails.TaskHeaderFK, HeaderId, DbType.Int64, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.IdPK, taskDetailsVM.TaskDetailPk, DbType.Int64);  
+                        parameters.Add(ConstantDetails.Project, taskDetailsVM.Project, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.Sprint, taskDetailsVM.Sprint, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.Type, taskDetailsVM.Type, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.SOWIssueNo, taskDetailsVM.SOWIssueNo, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.IsBillable, taskDetailsVM.IsBillable, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.BillingType, taskDetailsVM.BillingType, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.Team, taskDetailsVM.Team, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.EstStDt, taskDetailsVM.EstStDt, DbType.Date, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.Date, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.EstHours, taskDetailsVM.EstHours, DbType.Time, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.ActStDt, taskDetailsVM.ActStDt, DbType.Date, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.ActEndDt, taskDetailsVM.ActEndDt, DbType.Date, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.StTime, taskDetailsVM.StTime, DbType.Time, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.EndTime, taskDetailsVM.EndTime, DbType.Time, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.ActHours, taskDetailsVM.ActHours, DbType.Time, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.Percentage, taskDetailsVM.Percentage, DbType.Int64, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.Status, taskDetailsVM.Status, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.CommentsDetails, taskDetailsVM.Comments, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.UpdatedBy, UpdatedByName, DbType.String);
+                        parameters.Add(ConstantDetails.UsersFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.TaskHeaderFK, HeaderId, DbType.Int64, ParameterDirection.Input, 18);
 
-    //                     parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
-    //                     parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
-    //                     updatedTaskDetails=con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Update_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                        parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
+                        parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
+                        updatedTaskDetails=con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Update_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
                     
-    //                     status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
-    //                     message = parameters.Get<string>(ConstantDetails.errmsgDetails);
-    //                 }
-    //             }
-    //         }
-    //         catch (Exception ex)
-    //         {
-    //             status = -1;
-    //             message = ex.Message;
-    //         }
+                        status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
+                        message = parameters.Get<string>(ConstantDetails.errmsgDetails);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                status = -1;
+                message = ex.Message;
+            }
 
-    //         return updatedTaskDetails;
-    //     }
+            return updatedTaskDetails;
+        }
 
 
     }

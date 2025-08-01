@@ -95,7 +95,7 @@ namespace TaskMail.common
         public const string CodeMasterSP = "TM_Retrive_DDL_TaskDetails";
 
         // TaskDetails Update
-         public const string TaskDetails_Update_SP = "RetriveTaskDetails";
+         public const string TaskDetails_Update_SP = "TM_TaskDetails_Update";
 
     }
 }
