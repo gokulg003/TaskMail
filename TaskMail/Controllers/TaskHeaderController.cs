@@ -14,6 +14,9 @@ namespace TaskMail.Controllers
         private readonly ITaskHeaderService _TaskHeaderService;
         private int _status;
         private string _message;
+
+        private int _HeaderId;
+
         public TaskHeaderController(ITaskHeaderService TaskHeaderService)
         {
             _TaskHeaderService = TaskHeaderService;
@@ -23,8 +26,8 @@ namespace TaskMail.Controllers
         [HttpPost]
         public ActionResult<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM)
         {
-            var result = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
+            var result = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message, out _HeaderId);
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, HeaderId = _HeaderId});
         }
 
         // [Route("TaskHeader")]

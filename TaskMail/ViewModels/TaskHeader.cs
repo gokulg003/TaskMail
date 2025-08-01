@@ -3,11 +3,11 @@ using System.Text.Json.Serialization;
 
 namespace TaskMail.ViewModels;
 
-public class TaskHeaderVM
+public class TaskHeader
 {
 
-    [JsonIgnore]
-    public long? TaskHeaderId { get; set; }
+    // [JsonIgnore]
+    // public long? TaskHeaderId { get; set; }
     public string Resource { get; set; }
     public string Type { get; set; }
 
