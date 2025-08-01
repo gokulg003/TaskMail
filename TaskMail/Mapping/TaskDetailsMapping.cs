@@ -6,7 +6,9 @@ public class TaskSetailsMapping : Profile
     public TaskSetailsMapping()
     {
     CreateMap<TaskDetails, TaskDetailsDM>()
-     .ForMember(dest => dest.Res_Name, opt => opt.MapFrom(src => src.ResName))
+     .ForMember(dest => dest.ResName, opt => opt.MapFrom(src => src.ResName))
+     .ForMember(dest => dest.TM_Type, opt => opt.MapFrom(src => src.Type))
+     .ForMember(dest => dest.TM_Status, opt => opt.MapFrom(src => src.Status))
      .ForMember(dest => dest.TaskDetailPk, opt => opt.MapFrom(src => src.TaskDetailPk))
      .ForMember(dest => dest.TaskHeader_FK, opt => opt.MapFrom(src => src.TaskHeader_FK))
      .ForMember(dest => dest.InsertedBy, opt => opt.MapFrom(src => src.InsertedBy)).ReverseMap();

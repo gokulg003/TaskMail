@@ -46,7 +46,7 @@ namespace TaskMailService.Services
                     // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
                     int UserId = 22;
                     string UserName = "Devi";
-                    int HeaderId = 225;
+                    int HeaderId = 226;
 
                     foreach (var taskDetailsVM in taskDetailsList)
                     {
@@ -97,32 +97,30 @@ namespace TaskMailService.Services
             return insertedTaskDetails;
         }
 
-    //    public bool TaskDetailsUpdate(List<TaskDetailsVM> taskDetailsList, out int status, out string message)
-    //    {
+    //    public List<TaskDetailsDM> TaskDetailsUpdate(List<TaskDetails> taskDetailsList, long ID_PK, out int status, out string message)
+    //     {
+    //         var updatedTaskDetails = new List<TaskDetailsDM>();
     //         status = -1;
     //         message = null;
-    //         bool isUpdated = false;
 
     //         try
     //         {
     //             using (IDbConnection con = Connection)
     //             {
     //                 con.Open();
-
     //                 // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-    //                 // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
-    //                 // string DetailsId = _httpContextAccessor.HttpContext.Request.Headers["X-DetailsId"];
     //                 // string UpdatedByName = _httpContextAccessor.HttpContext.Request.Headers["X-UpdatedByName"];
+    //                 // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
+                   
     //                 int UserId = 22;
     //                 int HeaderId = 222;
-    //                 int DetailsId = 22222;
     //                 string UpdatedByName = "gokul";
 
     //                 foreach (var taskDetailsVM in taskDetailsList)
     //                 {
     //                     var parameters = new DynamicParameters();
 
-    //                     parameters.Add(ConstantDetails.TMDetailsID, DetailsId, DbType.Int64);
+    //                     parameters.Add(ConstantDetails.IdPK, taskDetailsVM.TaskDetailPk, DbType.Int64);  
     //                     parameters.Add(ConstantDetails.Project, taskDetailsVM.Project, DbType.String, ParameterDirection.Input, 18);
     //                     parameters.Add(ConstantDetails.Sprint, taskDetailsVM.Sprint, DbType.String, ParameterDirection.Input, 18);
     //                     parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 18);
@@ -144,16 +142,15 @@ namespace TaskMailService.Services
     //                     parameters.Add(ConstantDetails.Status, taskDetailsVM.Status, DbType.String, ParameterDirection.Input, 18);
     //                     parameters.Add(ConstantDetails.CommentsDetails, taskDetailsVM.Comments, DbType.String, ParameterDirection.Input, 18);
     //                     parameters.Add(ConstantDetails.UpdatedBy, UpdatedByName, DbType.String);
-    //                     parameters.Add(ConstantDetails.UsersFK, UserId, DbType.String);
-    //                     parameters.Add(ConstantDetails.TaskHeaderFK, HeaderId, DbType.Int64);
+    //                     parameters.Add(ConstantDetails.UsersFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
+    //                     parameters.Add(ConstantDetails.TaskHeaderFK, HeaderId, DbType.Int64, ParameterDirection.Input, 18);
 
     //                     parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
     //                     parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
-    //                     con.Query<TaskDetailsVM>(ConstantDetails.TaskDetails_Update_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
-
+    //                     updatedTaskDetails=con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Update_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    
     //                     status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
     //                     message = parameters.Get<string>(ConstantDetails.errmsgDetails);
-    //                     isUpdated = status == 2;
     //                 }
     //             }
     //         }
@@ -161,12 +158,11 @@ namespace TaskMailService.Services
     //         {
     //             status = -1;
     //             message = ex.Message;
-    //             isUpdated = false;
     //         }
 
-    //         return isUpdated;
-
+    //         return updatedTaskDetails;
     //     }
+
 
     }
 }
