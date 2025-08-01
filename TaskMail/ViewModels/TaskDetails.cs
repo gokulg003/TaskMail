@@ -5,7 +5,7 @@ namespace TaskMail.ViewModels;
 
 public class TaskDetails
 {
-    public string ID { get; set; }
+   
     public string Project { get; set; }
     public string Sprint { get; set; }
     public string TaskName { get; set; }
@@ -19,7 +19,6 @@ public class TaskDetails
     public string EstEndDt { get; set; }
     public string EstHours { get; set; }
     public string ActStDt { get; set; }
-
     public string ActEndDt { get; set; }
     public string StTime { get; set; }
     public string EndTime { get; set; }
@@ -27,5 +26,10 @@ public class TaskDetails
     public int Percentage { get; set; }
     public string Status { get; set; }
     public string? Comments { get; set; }
-    // public int HeaderId{ get; set; }
+    [JsonIgnore]
+    public string ID { get; set; }
+    [JsonIgnore]
+    public int HeaderId { get; set; }
+     [JsonIgnore]
+    public string InsertededBy { get; set; }
 }
