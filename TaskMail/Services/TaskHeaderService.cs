@@ -29,9 +29,9 @@ namespace TaskMailService.Services
             }
         }
 
-        public TaskHeaderVM TaskHeader(TaskHeaderVM taskHeaderVM, out int status, out string message)
+        public TaskHeaderDM TaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int HeaderId)
         {
-            var result = new TaskHeaderVM();
+            var result = new TaskHeaderDM();
             try
             {
                 using (IDbConnection con = Connection)
@@ -44,8 +44,8 @@ namespace TaskMailService.Services
                     string UserName = "Gokul";
                     int UserId = 2;
 
-                    parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
+                    parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);
                     parameters.Add(ConstantDetails.Month, taskHeaderVM.Month, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Date, taskHeaderVM.Date, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Year, taskHeaderVM.Year, DbType.Int64, ParameterDirection.Input, 18);
@@ -54,32 +54,34 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.TotalDuration, taskHeaderVM.TotalDuration, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.BreakDuration, taskHeaderVM.BreakDuration, DbType.Time, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.ActWorkHours, taskHeaderVM.ActWorkHours, DbType.Time, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.Comments, taskHeaderVM.Comments, DbType.String, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.TM_InsertedBy, UserName, DbType.String);
-                    // parameters.Add(ConstantDetails.TM_InsertDate, DateTime.Now, DbType.DateTime);
-                    // parameters.Add(ConstantDetails.TM_UpdatedBy, UserName, DbType.String);
-                    // parameters.Add(ConstantDetails.TM_UpdatedDate, DateTime.Now, DbType.DateTime);
-                    parameters.Add(ConstantDetails.TM_User_FK, UserId, DbType.Int64);
+                    parameters.Add(ConstantDetails.Comments, taskHeaderVM.Comments, DbType.String, ParameterDirection.Input, 5000);
+
+                    parameters.Add(ConstantDetails.InsertedBy, UserName, DbType.String,ParameterDirection.Input, 250);
+                    parameters.Add(ConstantDetails.UserFK, UserId, DbType.Int64,ParameterDirection.Input, 18);
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
+                    parameters.Add(ConstantDetails.dbparamHeaderPk, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 18);
 
-                    result = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                    result = con.Query<TaskHeaderDM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
+                    HeaderId = parameters.Get<Int16>(ConstantDetails.HeaderPk);
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
+                HeaderId = 0;
             }
             return result;
         }
-        //  public TaskHeaderVM TaskHeaderUpdate(TaskHeaderVM taskHeaderVM, out int status, out string message)
+    }
+        //  public TaskHeader TaskHeaderUpdate(TaskHeader taskHeaderVM, out int status, out string message)
         // {
-        //     var result = new TaskHeaderVM();
+        //     var result = new TaskHeader();
         //     try
         //     {
         //         using (IDbConnection con = Connection)
@@ -111,7 +113,7 @@ namespace TaskMailService.Services
         //             parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
         //             parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
 
-        //             result = con.Query<TaskHeaderVM>(ConstantDetails.TaskHeaderUpdate_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        //             result = con.Query<TaskHeader>(ConstantDetails.TaskHeaderUpdate_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
         //             status = parameters.Get<Int16>(ConstantDetails.status);
         //             message = parameters.Get<string>(ConstantDetails.errMsg);
@@ -126,4 +128,3 @@ namespace TaskMailService.Services
         // }
 
     }
-}
