@@ -1,5 +1,3 @@
-
-
 using System.Data;
 using System.Data.SqlClient;
 using AutoMapper;
@@ -46,7 +44,7 @@ namespace TaskMailService.Services
                     // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
                     int UserId = 22;
                     string UserName = "Devi";
-                    int HeaderId = 226;
+                    // int HeaderId = 226;
 
                     foreach (var taskDetailsVM in taskDetailsList)
                     {
@@ -76,7 +74,7 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.UserName, UserName, DbType.String, ParameterDirection.Input, 18);
 
                         parameters.Add(ConstantDetails.UsersFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.TaskHeaderFK, HeaderId, DbType.Int64, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.TaskHeaderFK,  taskDetailsVM.TaskHeader_FK, DbType.Int64, ParameterDirection.Input, 18);
 
                         parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
                         parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
@@ -113,7 +111,7 @@ namespace TaskMailService.Services
                     // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
                    
                     int UserId = 22;
-                    int HeaderId = 222;
+                    // int HeaderId = 222;
                     string UpdatedByName = "gokul";
 
                     foreach (var taskDetailsVM in taskDetailsList)
@@ -143,7 +141,7 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.CommentsDetails, taskDetailsVM.Comments, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.UpdatedBy, UpdatedByName, DbType.String);
                         parameters.Add(ConstantDetails.UsersFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.TaskHeaderFK, HeaderId, DbType.Int64, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.TaskHeaderFK, taskDetailsVM.TaskHeader_FK, DbType.Int64, ParameterDirection.Input, 18);
 
                         parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
                         parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
