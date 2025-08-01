@@ -4,7 +4,7 @@ namespace TaskMail.ViewModels;
 
 public class TaskDetailsDM
 {
-    public string ID { get; set; }
+    public long TaskDetailPk { get; set; }
     public string Project { get; set; }
     public string Sprint { get; set; }
     public string TaskName { get; set; }
@@ -25,8 +25,8 @@ public class TaskDetailsDM
     public int Percentage { get; set; }
     public string Status { get; set; }
     public string? Comments { get; set; }
-    public int HeaderId{ get; set; }
-    public string InsertededBy { get; set; }
+    public int TaskHeader_FK{ get; set; }
+    public string InsertedBy { get; set; }
     // public string InsertDate { get; set; }
     // public string UpdatedBy { get; set; }
     // public string UpdatedDate{ get; set; }    

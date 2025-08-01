@@ -27,9 +27,9 @@ public class TaskDetails
     public string Status { get; set; }
     public string? Comments { get; set; }
     [JsonIgnore]
-    public string ID { get; set; }
+    public long TaskDetailPk { get; set; }
     [JsonIgnore]
-    public int HeaderId { get; set; }
+    public long TaskHeader_FK { get; set; }
      [JsonIgnore]
-    public string InsertededBy { get; set; }
+    public string InsertedBy { get; set; }
 }
