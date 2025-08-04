@@ -39,18 +39,16 @@ namespace TaskMail.Controllers
                 message = _message
             });
         }
-        // [Route("delete-task-details")]
-        // [HttpDelete]
-        // public ActionResult DeleteDetails(List<TaskDetails> taskDetailsId)
-        // {
-        //     _taskDetailsService.DeleteDetails(taskDetailsId, out _status, out _message);
-        //      return StatusCode(CommonDetails.StatusCode(_status), new
-        //      {
-        //          status = _status,
-        //          message = _message
-     
-        //     });
-        // }
-
+      
+        [HttpDelete("delete")]
+        public IActionResult DeleteTask(TaskDetails request)
+        {
+            int status;
+            string message;
+            bool success = _taskDetailsService.DeleteTaskDetail(request.TaskDetailPk, request.TaskHeader_FK, out status, out message);
+            if (!success)
+                return BadRequest(new { status, message });
+            return Ok(new { status, message });
+        }
     }
 }

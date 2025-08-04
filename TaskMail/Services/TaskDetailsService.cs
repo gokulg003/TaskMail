@@ -161,37 +161,34 @@ namespace TaskMailService.Services
             return updatedTaskDetails;
         }
 
-        // public bool DeleteDetails(List<TaskDetails> id, out int status, out string message)
-        // {
-        //     status = -1;
-        //     message = null;
-        //     id = null;
-        //     try
-        //     {
-        //         using (IDbConnection con = Connection)
-        //         {
-        //             con.Open();
-        //             foreach (var del in id)
-        //             {
-        //                 var parameters = new DynamicParameters();
-        //                 parameters.Add(ConstantDetails.TMDetailsID, del.TaskDetailPk, DbType.Int64);
-        //                 parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
-        //                 parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
-        //                 con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
+        public bool DeleteTaskDetail(long taskDetailPK, long taskHeaderFK,out int status, out string message)
+        {
+            status = -1;
+            message = null;
+            try
+            {
+                using (IDbConnection con = Connection)
+                {
+                    con.Open();
+                    var parameters = new DynamicParameters();
+                    parameters.Add(ConstantDetails.IdPK, taskDetailPK, DbType.Int64);
+                    parameters.Add(ConstantDetails.TaskHeaderFK, taskHeaderFK, DbType.Int64);
+                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
+                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
+                    con.Execute(ConstantDetails.TaskDetails_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
+                    status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
+                    message = parameters.Get<string>(ConstantDetails.errmsgDetails);
+                    return status == 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                status = -1;
+                message = ex.Message;
+                return false;
+            }
+        }
 
-        //                 status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
-        //                 message = parameters.Get<string>(ConstantDetails.errmsgDetails);
-        //             }
-        //         }
 
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         status = -1;
-        //         message = ex.Message;
-        //     }
-        //     return id;
-            
-        // }
     }
 }
