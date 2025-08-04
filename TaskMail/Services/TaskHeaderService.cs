@@ -94,7 +94,6 @@ namespace TaskMailService.Services
 
                     string UserName = "Gokul";
                     int UserId = 2;
-                    HeaderId = 20001;
 
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);
