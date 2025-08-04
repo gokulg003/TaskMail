@@ -99,6 +99,9 @@ namespace TaskMail.common
         public const string TaskDetails_Update_SP = "TM_TaskDetails_Update";
         //  TaskDetails Delete
         public const string TaskDetails_Delete_SP = "TM_TaskDetails_Delete";
+        //TaskDetails Retrive
+
+        public const string TaskDetails_Retrive_SP = "TM_RetriveHeaderTaskDetails";
 
     }
 }

@@ -52,6 +52,17 @@ namespace TaskMail.Controllers
         }
 
 
+        [HttpGet("get-task-details/{taskHeaderFk}")]
+        public IActionResult GetTaskDetails(long taskHeaderFk)
+        {
+            var result = _taskDetailsService.TaskGetDetails(taskHeaderFk, out _status, out _message);
+            return StatusCode(CommonDetails.StatusCode(_status), new
+            {
+                data = result,
+                status = _status,
+                message = _message
+            });
+        }
     
         
     }
