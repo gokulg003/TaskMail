@@ -39,6 +39,8 @@ namespace TaskMail.common
         public const string InsertedBy = "@UserId";
         public const string UserFK = "@UserFk";
 
+        public const string HeaderId = "@TaskHeaderPk";
+
         //TaskDetails
         public const string errmsgDetails = "@errormsg";
         public const string StatusDetails = "@StatusCode";
