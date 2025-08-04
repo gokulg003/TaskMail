@@ -54,12 +54,12 @@ namespace TaskMailService.Services
 
                         parameters.Add(ConstantDetails.Project, taskDetailsVM.Project, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.Sprint, taskDetailsVM.Sprint, DbType.String, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 2000);
+                        parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 200);
                         parameters.Add(ConstantDetails.Type, taskDetailsVM.Type, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.SOWIssueNo, taskDetailsVM.SOWIssueNo, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.IsBillable, taskDetailsVM.IsBillable, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.BillingType, taskDetailsVM.BillingType, DbType.String, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 50);
                         parameters.Add(ConstantDetails.Team, taskDetailsVM.Team, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstStDt, taskDetailsVM.EstStDt, DbType.Date, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.Date, ParameterDirection.Input, 18);
@@ -122,12 +122,12 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.TMDetailsID, taskDetailsVM.TaskDetailPk, DbType.Int64);
                         parameters.Add(ConstantDetails.Project, taskDetailsVM.Project, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.Sprint, taskDetailsVM.Sprint, DbType.String, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 200);
                         parameters.Add(ConstantDetails.Type, taskDetailsVM.Type, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.SOWIssueNo, taskDetailsVM.SOWIssueNo, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.IsBillable, taskDetailsVM.IsBillable, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.BillingType, taskDetailsVM.BillingType, DbType.String, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 50);
                         parameters.Add(ConstantDetails.Team, taskDetailsVM.Team, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstStDt, taskDetailsVM.EstStDt, DbType.Date, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.Date, ParameterDirection.Input, 18);
@@ -177,8 +177,8 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.TMDetailsID, taskDetailPk, DbType.Int64);
                     parameters.Add(ConstantDetails.TaskHeaderFK, taskHeader_FK, DbType.Int64);
 
-                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
-                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
+                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);
+                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size:5000);
 
                     con.Execute(ConstantDetails.TaskDetails_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
 
