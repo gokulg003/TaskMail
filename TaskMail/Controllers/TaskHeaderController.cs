@@ -14,7 +14,6 @@ namespace TaskMail.Controllers
         private readonly ITaskHeaderService _TaskHeaderService;
         private int _status;
         private string _message;
-
         private int _HeaderId;
 
         public TaskHeaderController(ITaskHeaderService TaskHeaderService)
@@ -24,19 +23,17 @@ namespace TaskMail.Controllers
 
         [Route("TaskHeader")]
         [HttpPost]
-        public ActionResult<TaskHeaderVM> TaskHeader(TaskHeaderVM taskHeaderVM)
+        public ActionResult<TaskHeader> TaskHeader(TaskHeader taskHeaderVM)
         {
             var result = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message, out _HeaderId);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, HeaderId = _HeaderId});
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, HeaderId = _HeaderId });
         }
-
-        // [Route("TaskHeader")]
-        // [HttpPut] 
-        // public ActionResult<TaskHeaderVM> TaskHeaderUpdate(TaskHeaderVM taskHeaderVM)
-        // {
-        //     var result = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message);
-        //     return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
-        // }
-
+        [HttpPut("Update/{HeaderId}")]
+        public ActionResult<TaskHeader> TaskHeaderUpdate([FromBody]TaskHeader taskHeaderVM,[FromRoute]int HeaderId)
+        {
+            var result = _TaskHeaderService.TaskHeaderUpdate(taskHeaderVM, out _status, out _message, out _HeaderId,HeaderId);
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, HeaderId = _HeaderId });
         }
+        
+    }
 }
