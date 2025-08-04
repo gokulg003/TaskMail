@@ -6,7 +6,7 @@ namespace TaskMail.ViewModels;
 public class TaskHeader
 {
 
-  
+  [JsonIgnore]
     public long TaskHeaderId { get; set; }
     public string Resource { get; set; }
     public string Type { get; set; }
