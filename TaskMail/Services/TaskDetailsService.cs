@@ -118,7 +118,7 @@ namespace TaskMailService.Services
                     {
                         var parameters = new DynamicParameters();
 
-                        parameters.Add(ConstantDetails.IdPK, taskDetailsVM.TaskDetailPk, DbType.Int64);
+                        parameters.Add(ConstantDetails.TMDetailsID, taskDetailsVM.TaskDetailPk, DbType.Int64);
                         parameters.Add(ConstantDetails.Project, taskDetailsVM.Project, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.Sprint, taskDetailsVM.Sprint, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 18);
@@ -161,37 +161,58 @@ namespace TaskMailService.Services
             return updatedTaskDetails;
         }
 
-        // public bool DeleteDetails(List<TaskDetails> id, out int status, out string message)
-        // {
-        //     status = -1;
-        //     message = null;
-        //     id = null;
-        //     try
-        //     {
-        //         using (IDbConnection con = Connection)
-        //         {
-        //             con.Open();
-        //             foreach (var del in id)
-        //             {
-        //                 var parameters = new DynamicParameters();
-        //                 parameters.Add(ConstantDetails.TMDetailsID, del.TaskDetailPk, DbType.Int64);
-        //                 parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
-        //                 parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
-        //                 con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
 
-        //                 status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
-        //                 message = parameters.Get<string>(ConstantDetails.errmsgDetails);
-        //             }
-        //         }
+        public void DeleteTaskDetail(long taskDetailPk, long taskHeader_FK, out int status, out string message)
+        {
+            status = -1;
+            message = "Unknown error";
 
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         status = -1;
-        //         message = ex.Message;
-        //     }
-        //     return id;
-            
-        // }
+            try
+            {
+                using (IDbConnection con = Connection)
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add(ConstantDetails.TMDetailsID, taskDetailPk, DbType.Int64);
+                    parameters.Add(ConstantDetails.TaskHeaderFK, taskHeader_FK, DbType.Int64);
+                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
+                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
+                    con.Execute(ConstantDetails.TaskDetails_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
+                    status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
+                    message = parameters.Get<string>(ConstantDetails.errmsgDetails);
+                }
+            }
+            catch (Exception ex)
+            {
+                status = -1;
+                message = "Exception: " + ex.Message;
+            }
+        }
+
+        public List<TaskDetailsDM> TaskGetDetails(long taskHeader_FK, out int status, out string message)
+        {
+            var GetTaskDetails = new List<TaskDetailsDM>();
+            status = -1;
+            message = null;
+            try
+            {
+                using (IDbConnection con = Connection)
+                {
+                    con.Open();
+                    var parameters = new DynamicParameters();
+                    parameters.Add(ConstantDetails.TaskHeaderFK, taskHeader_FK, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
+                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
+                    GetTaskDetails= con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Retrive_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    message = parameters.Get<string>(ConstantDetails.errmsgDetails);
+                }
+            }
+            catch (Exception ex)
+            {
+                status = -1;
+                message = "Exception: " + ex.Message;
+            }
+            return GetTaskDetails;
+        }
+
     }
 }
