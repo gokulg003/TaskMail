@@ -19,7 +19,7 @@ namespace TaskMail.Controllers
         {
             _CodeMaster = codeMaster;
         }
-        [Route("Dropdown/{CodeType}")]
+        [Route("dropdown/{CodeType}")]
         [HttpGet]
 
         public ActionResult<List<CodeMasterVM>> GetCodeMaster(string CodeType)

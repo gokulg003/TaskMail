@@ -18,7 +18,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("MyAllowSpecificOrigins") // or whatever your frontend is
+              .AllowCredentials()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 var app = builder.Build();
+
+ 
 
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -28,6 +42,7 @@ app.UseSwaggerUI();
 // app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors();
 app.Run();
 
 
