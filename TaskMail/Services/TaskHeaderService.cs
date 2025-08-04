@@ -29,6 +29,33 @@ namespace TaskMailService.Services
             }
         }
 
+
+        public List<TaskHeaderDM> GetTaskHeader(string UserName,string Fromdate,string Todate,out int status, out string message)
+        {
+            var result = new List<TaskHeaderDM>();
+            try
+            {
+                using (IDbConnection con = Connection)
+                {
+                    con.Open();
+                    var parameters = new DynamicParameters();
+                    parameters.Add(ConstantDetails.Fromdate, Fromdate, DbType.String, ParameterDirection.Input, 15);
+                    parameters.Add(ConstantDetails.Todate, Todate, DbType.String, ParameterDirection.Input, 15);
+                    parameters.Add(ConstantDetails.UserName, UserName, DbType.String, ParameterDirection.Input, 250);
+                    parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output);
+                    parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
+                    result = con.Query<TaskHeaderDM>(ConstantDetails.TaskHeader_RetrieveSP, parameters, commandType: CommandType.StoredProcedure).ToList();
+                    status = parameters.Get<Int16>(ConstantDetails.status);
+                    message = parameters.Get<string>(ConstantDetails.errMsg);
+                }
+            }
+            catch (Exception ex)
+            {
+                status = -1;
+                message = ex.Message;
+            }
+            return result;
+        }
         public TaskHeaderDM TaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int HeaderId)
         {
             var result = new TaskHeaderDM();
