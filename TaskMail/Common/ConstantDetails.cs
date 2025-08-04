@@ -40,9 +40,13 @@ namespace TaskMail.common
         public const string Comments = "@Comments";
         public const string InsertedBy = "@UserId";
         public const string UserFK = "@UserFk";
-
+        //update
         public const string HeaderId = "@TaskHeaderPk";
 
+        //get
+        public const string Fromdate = "@Fromdate";
+        public const string Todate = "@Todate";
+        
         //TaskDetails
         public const string errmsgDetails = "@errormsg";
         public const string StatusDetails = "@StatusCode";
@@ -102,6 +106,9 @@ namespace TaskMail.common
         //TaskDetails Retrive
 
         public const string TaskDetails_Retrive_SP = "TM_RetriveHeaderTaskDetails";
+
+        //TaskHeader Retrieve
+        public const string TaskHeader_RetrieveSP = "RetrieveViewPage";
 
     }
 }

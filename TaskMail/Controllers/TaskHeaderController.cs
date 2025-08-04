@@ -20,15 +20,22 @@ namespace TaskMail.Controllers
         {
             _TaskHeaderService = TaskHeaderService;
         }
+         [HttpGet("get-Taskheader")]
+        public IActionResult GetTaskHeader([FromQuery]string Fromdate,[FromQuery]string Todate,string UserName)
+        {
+            var result = _TaskHeaderService.GetTaskHeader(UserName,Fromdate,Todate, out _status, out _message);
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message});
+        }
 
-        [Route("TaskHeader")]
+
+        [Route("insert-Taskheader")]
         [HttpPost]
         public ActionResult<TaskHeader> TaskHeader(TaskHeader taskHeaderVM)
         {
             var result = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message, out _HeaderId);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, HeaderId = _HeaderId });
         }
-        [HttpPut("Update/{HeaderId}")]
+        [HttpPut("Update-TaskHeader/{HeaderId}")]
         public ActionResult<TaskHeader> TaskHeaderUpdate([FromBody]TaskHeader taskHeaderVM,[FromRoute]int HeaderId)
         {
             var result = _TaskHeaderService.TaskHeaderUpdate(taskHeaderVM, out _status, out _message, out _HeaderId,HeaderId);
