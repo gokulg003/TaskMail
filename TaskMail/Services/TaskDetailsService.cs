@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using AutoMapper;
 using Dapper;
 using TaskMail.common;
@@ -76,8 +77,8 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.UsersFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskHeaderFK, taskDetailsVM.TaskHeader_FK, DbType.Int64, ParameterDirection.Input, 18);
 
-                        parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
-                        parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
+                        parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);
+                        parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size:5000);
                         insertedTaskDetails = con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
 
                         status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
@@ -143,8 +144,9 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.UsersFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskHeaderFK, taskDetailsVM.TaskHeader_FK, DbType.Int64, ParameterDirection.Input, 18);
 
-                        parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
-                        parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
+                        parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);
+                        parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
+
                         updatedTaskDetails = con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Update_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
 
                         status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
@@ -174,9 +176,12 @@ namespace TaskMailService.Services
                     var parameters = new DynamicParameters();
                     parameters.Add(ConstantDetails.TMDetailsID, taskDetailPk, DbType.Int64);
                     parameters.Add(ConstantDetails.TaskHeaderFK, taskHeader_FK, DbType.Int64);
+
                     parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
                     parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
+
                     con.Execute(ConstantDetails.TaskDetails_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
+
                     status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
                     message = parameters.Get<string>(ConstantDetails.errmsgDetails);
                 }
@@ -200,9 +205,13 @@ namespace TaskMailService.Services
                     con.Open();
                     var parameters = new DynamicParameters();
                     parameters.Add(ConstantDetails.TaskHeaderFK, taskHeader_FK, DbType.Int64, ParameterDirection.Input, 18);
+                   
                     parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
                     parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
-                    GetTaskDetails= con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Retrive_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                    GetTaskDetails = con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Retrive_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                    status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
                     message = parameters.Get<string>(ConstantDetails.errmsgDetails);
                 }
             }
