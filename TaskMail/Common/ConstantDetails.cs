@@ -24,7 +24,7 @@ namespace TaskMail.common
 
         public const string dbparamUserName = "@UserName";
         public const string dbparamPassword = "@Password";
-       
+
         //TaskHeader
         public const string errmsg = "@ErrorMsgGrid";
         public const string Resource = "@Resource";
@@ -71,7 +71,7 @@ namespace TaskMail.common
         // public const string InsertDate = "@InsertDate";
         public const string UpdatedBy = "@UpdatedBy";
         // public const string UpdatedDate = "@UpdatedDate";
-        // public const string TMDetailsID = "@TaskDetailsID";
+        public const string TMDetailsID = "@TaskDetailsID";
 
         //  public const string DetailsID = "TaskDetailsID";
 
@@ -95,7 +95,9 @@ namespace TaskMail.common
         public const string CodeMasterSP = "TM_Retrive_DDL_TaskDetails";
 
         // TaskDetails Update
-         public const string TaskDetails_Update_SP = "TM_TaskDetails_Update";
+        public const string TaskDetails_Update_SP = "TM_TaskDetails_Update";
+        //  TaskDetails Delete
+        public const string TaskDetails_Delete_SP = "TM_TaskDetails_Delete";
 
     }
 }

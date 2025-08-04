@@ -23,9 +23,9 @@ namespace TaskMail.Controllers
         public ActionResult<List<TaskDetails>> GetTaskDetails(List<TaskDetails> taskDetailsList)
         {
             var result = _taskDetailsService.TaskDetails(taskDetailsList, out _status, out _message);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message,});
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, });
         }
-        
+
 
         [Route("update-task-details")]
         [HttpPut]
@@ -39,6 +39,18 @@ namespace TaskMail.Controllers
                 message = _message
             });
         }
+        // [Route("delete-task-details")]
+        // [HttpDelete]
+        // public ActionResult DeleteDetails(List<TaskDetails> taskDetailsId)
+        // {
+        //     _taskDetailsService.DeleteDetails(taskDetailsId, out _status, out _message);
+        //      return StatusCode(CommonDetails.StatusCode(_status), new
+        //      {
+        //          status = _status,
+        //          message = _message
+     
+        //     });
+        // }
 
     }
 }
