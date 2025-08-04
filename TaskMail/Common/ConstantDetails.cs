@@ -46,7 +46,6 @@ namespace TaskMail.common
         //TaskDetails
         public const string errmsgDetails = "@errormsg";
         public const string StatusDetails = "@StatusCode";
-        public const string IdPK = "@ID_PK";
         public const string Project = "@Project";
         public const string Sprint = "@Sprint";
         public const string TaskName = "@TaskName";
@@ -67,13 +66,13 @@ namespace TaskMail.common
         public const string Percentage = "@Percentage";
         public const string Status = "@Status";
         public const string CommentsDetails = "@Comments";
-        public const string TaskHeaderFK = "@TaskHeaderFK";
+        public const string TaskHeaderFK = "@HeaderPk";
         public const string UsersFK = "@UsersFK";
         public const string UserName = "@UserName";
         // public const string InsertDate = "@InsertDate";
         public const string UpdatedBy = "@UpdatedBy";
         // public const string UpdatedDate = "@UpdatedDate";
-        public const string TMDetailsID = "@TaskDetailsID";
+        public const string TMDetailsID = "@TaskDetailPk";
 
         //  public const string DetailsID = "TaskDetailsID";
 

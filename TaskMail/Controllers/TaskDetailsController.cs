@@ -39,16 +39,20 @@ namespace TaskMail.Controllers
                 message = _message
             });
         }
-      
-        [HttpDelete("delete")]
-        public IActionResult DeleteTask(TaskDetails request)
+
+        [HttpDelete("task-details/{taskDetailPk}/{headerPk}")]
+        public IActionResult DeleteTaskDetail(long taskDetailPk, long headerPk)
         {
-            int status;
-            string message;
-            bool success = _taskDetailsService.DeleteTaskDetail(request.TaskDetailPk, request.TaskHeader_FK, out status, out message);
-            if (!success)
-                return BadRequest(new { status, message });
-            return Ok(new { status, message });
+            _taskDetailsService.DeleteTaskDetail(taskDetailPk, headerPk, out int status, out string message);
+
+            if (status == 2)
+                return Ok(new { status, message });
+
+            return NotFound(new { status, message });
         }
+
+
+    
+        
     }
 }
