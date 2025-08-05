@@ -5,7 +5,7 @@ using TaskMail.Common;
 
 namespace TaskMail.Controllers
 {
-    [Route("api/task-details")]
+    [Route("api/taskDetails")]
     [ApiController]
     public class TaskDetailsController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace TaskMail.Controllers
 
 
         [HttpPost]
-        [Route("insert-task-details")]
+        [Route("insert")]
         public ActionResult<List<TaskDetails>> GetTaskDetails(List<TaskDetails> taskDetailsList)
         {
             var result = _taskDetailsService.TaskDetails(taskDetailsList, out _status, out _message);
@@ -30,7 +30,7 @@ namespace TaskMail.Controllers
 
 
         [HttpPut]
-        [Route("update-task-details")]
+        [Route("update")]
         public ActionResult<List<TaskDetailsDM>> UpdateTaskDetails(List<TaskDetails> taskDetailsList)
         {
             var result = _taskDetailsService.TaskDetailsUpdate(taskDetailsList, out _status, out _message);
@@ -42,7 +42,7 @@ namespace TaskMail.Controllers
             });
         }
 
-        [HttpDelete("delete/{taskDetailPk}/{headerPk}")]
+        [HttpDelete("delete/{taskdetailid}/{headerid}")]
         public IActionResult DeleteTaskDetail(long taskDetailPk, long headerPk)
         {
             _taskDetailsService.DeleteTaskDetail(taskDetailPk, headerPk, out int status, out string message);
@@ -54,7 +54,7 @@ namespace TaskMail.Controllers
         }
 
 
-        [HttpGet("get-task-details/{taskHeaderFk}")]
+        [HttpGet("get/{taskHeaderid}")]
         public IActionResult GetTaskDetails(long taskHeaderFk)
         {
             var result = _taskDetailsService.TaskGetDetails(taskHeaderFk, out _status, out _message);
