@@ -40,11 +40,11 @@ namespace TaskMailService.Services
                 {
                     con.Open();
 
-                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
+                    string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
+                    string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
                     // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
-                    int UserId = 22;
-                    string UserName = "Devi";
+                    // int UserId = 22;
+                    // string UserName = "Devi";
                     // int HeaderId = 226;
 
                     foreach (var taskDetailsVM in taskDetailsList)
@@ -107,13 +107,13 @@ namespace TaskMailService.Services
                 using (IDbConnection con = Connection)
                 {
                     con.Open();
-                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string UpdatedByName = _httpContextAccessor.HttpContext.Request.Headers["X-UpdatedByName"];
+                    string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
+                    string UpdatedByName = _httpContextAccessor.HttpContext.Request.Headers["X-UpdatedByName"];
                     // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
 
-                    int UserId = 22;
+                    // int UserId = 22;
                     // int HeaderId = 222;
-                    string UpdatedByName = "gokul";
+                    // string UpdatedByName = "gokul";
 
                     foreach (var taskDetailsVM in taskDetailsList)
                     {

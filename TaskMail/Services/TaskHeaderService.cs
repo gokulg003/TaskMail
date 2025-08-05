@@ -65,11 +65,11 @@ namespace TaskMailService.Services
                 {
                     con.Open();
                     var parameters = new DynamicParameters();
-                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
+                    string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
+                    string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
 
-                    string UserName = "Gokul";
-                    int UserId = 2;
+                    // string UserName = "Gokul";
+                    // int UserId = 2;
 
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);
@@ -115,12 +115,12 @@ namespace TaskMailService.Services
                 {
                     con.Open();
                     var parameters = new DynamicParameters();
-                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
-                    // string HeaderPk = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
+                    string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
+                    string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
+                    string HeaderPk = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
 
-                    string UserName = "Gokul";
-                    int UserId = 2;
+                    // string UserName = "Gokul";
+                    // int UserId = 2;
 
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);

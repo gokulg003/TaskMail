@@ -3,6 +3,7 @@ using TaskMail.DataModels;
 using TaskMail.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using TaskMail.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace TaskMail.Controllers
 {
@@ -20,8 +21,8 @@ namespace TaskMail.Controllers
         {
             _TaskHeaderService = TaskHeaderService;
         }
-         [HttpGet("get-Taskheader")]
-        public IActionResult GetTaskHeader([FromQuery]string Fromdate,[FromQuery]string Todate,string UserName)
+        [HttpGet("get-Taskheader")]
+        public IActionResult GetTaskHeader([FromQuery][Required]string Fromdate,[FromQuery][Required]string Todate,[FromQuery][Required]string UserName)
         {
             var result = _TaskHeaderService.GetTaskHeader(UserName,Fromdate,Todate, out _status, out _message);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message});
