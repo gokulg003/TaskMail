@@ -5,10 +5,10 @@ namespace TaskMailService.Services
     public interface ITaskDetailsService
     {
 
-        List<TaskDetailsDM> TaskDetails(List<TaskDetails> taskDetailsList, out int status, out string message);
+        List<TaskDetailsDM> InsertTaskDetails(List<TaskDetails> taskDetailsList, out int status, out string message);
 
-        List<TaskDetailsDM> TaskDetailsUpdate(List<TaskDetails> taskDetailsList, out int status, out string message);
-        public void DeleteTaskDetail(long taskDetailPk, long taskHeader_FK, out int status, out string message);
-        public List<TaskDetailsDM> TaskGetDetails(long taskHeader_FK, out int status, out string message);
+        List<TaskDetailsDM> UpdateTaskDetails(List<TaskDetails> taskDetailsList, out int status, out string message);
+        public void DeleteTaskDetails(long taskDetailPk, long taskHeader_FK, out int status, out string message);
+        public List<TaskDetailsDM> GetTaskDetails(long taskHeader_FK, out int status, out string message);
     }
 }

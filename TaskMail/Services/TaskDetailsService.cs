@@ -29,7 +29,7 @@ namespace TaskMailService.Services
             }
         }
 
-        public List<TaskDetailsDM> TaskDetails(List<TaskDetails> taskDetailsList, out int status, out string message)
+        public List<TaskDetailsDM> InsertTaskDetails(List<TaskDetails> taskDetailsList, out int status, out string message)
         {
             var insertedTaskDetails = new List<TaskDetailsDM>();
             status = -1;
@@ -62,7 +62,7 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 50);
                         parameters.Add(ConstantDetails.Team, taskDetailsVM.Team, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstStDt, taskDetailsVM.EstStDt, DbType.Date, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.Date, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.Date   , ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstHours, taskDetailsVM.EstHours, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.ActStDt, taskDetailsVM.ActStDt, DbType.Date, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.ActEndDt, taskDetailsVM.ActEndDt, DbType.Date, ParameterDirection.Input, 18);
@@ -96,7 +96,7 @@ namespace TaskMailService.Services
             return insertedTaskDetails;
         }
 
-        public List<TaskDetailsDM> TaskDetailsUpdate(List<TaskDetails> taskDetailsList, out int status, out string message)
+        public List<TaskDetailsDM> UpdateTaskDetails(List<TaskDetails> taskDetailsList, out int status, out string message)
         {
             var updatedTaskDetails = new List<TaskDetailsDM>();
             status = -1;
@@ -164,7 +164,7 @@ namespace TaskMailService.Services
         }
 
 
-        public void DeleteTaskDetail(long taskDetailPk, long taskHeader_FK, out int status, out string message)
+        public void DeleteTaskDetails(long taskDetailPk, long taskHeader_FK, out int status, out string message)
         {
             status = -1;
             message = "Unknown error";
@@ -193,7 +193,7 @@ namespace TaskMailService.Services
             }
         }
 
-        public List<TaskDetailsDM> TaskGetDetails(long taskHeader_FK, out int status, out string message)
+        public List<TaskDetailsDM> GetTaskDetails(long taskHeader_FK, out int status, out string message)
         {
             var GetTaskDetails = new List<TaskDetailsDM>();
             status = -1;

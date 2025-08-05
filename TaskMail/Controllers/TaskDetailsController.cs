@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskMailService.Services;
 using TaskMail.ViewModels;
 using TaskMail.Common;
+using AutoMapper;
 
 namespace TaskMail.Controllers
 {
@@ -10,20 +11,23 @@ namespace TaskMail.Controllers
     public class TaskDetailsController : ControllerBase
     {
         private readonly ITaskDetailsService _taskDetailsService;
+        private readonly IMapper _mapper;
         private int _status;
         private string _message;
 
-        public TaskDetailsController(ITaskDetailsService taskDetailsService)
+        public TaskDetailsController(ITaskDetailsService taskDetailsService, IMapper mapper)
         {
             _taskDetailsService = taskDetailsService;
+            _mapper = mapper;
         }
 
 
         [HttpPost]
         [Route("insert")]
-        public ActionResult<List<TaskDetails>> GetTaskDetails(List<TaskDetails> taskDetailsList)
+        public ActionResult<List<TaskDetails>> InsertTaskDetails(List<TaskDetails> taskDetailsList)
         {
-            var result = _taskDetailsService.TaskDetails(taskDetailsList, out _status, out _message);
+            var taskDetailsDMs = _taskDetailsService.InsertTaskDetails(taskDetailsList, out _status, out _message);
+            List<TaskDetails> result = _mapper.Map<List<TaskDetails>>(taskDetailsDMs);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, });
         }
 
@@ -33,7 +37,8 @@ namespace TaskMail.Controllers
         [Route("update")]
         public ActionResult<List<TaskDetailsDM>> UpdateTaskDetails(List<TaskDetails> taskDetailsList)
         {
-            var result = _taskDetailsService.TaskDetailsUpdate(taskDetailsList, out _status, out _message);
+            var taskDetailsDMs = _taskDetailsService.UpdateTaskDetails(taskDetailsList, out _status, out _message);
+            List<TaskDetails> result = _mapper.Map<List<TaskDetails>>(taskDetailsDMs);
             return StatusCode(CommonDetails.StatusCode(_status), new
             {
                 data = result,
@@ -45,7 +50,7 @@ namespace TaskMail.Controllers
         [HttpDelete("delete/{detailsId}/{headerId}")]
         public IActionResult DeleteTaskDetail(long detailsId, long headerId)
         {
-            _taskDetailsService.DeleteTaskDetail(detailsId, headerId, out int status, out string message);
+            _taskDetailsService.DeleteTaskDetails(detailsId, headerId, out int status, out string message);
 
             if (status == 2)
                 return Ok(new { status, message });
@@ -57,7 +62,8 @@ namespace TaskMail.Controllers
         [HttpGet("retrieve/{headerId}")]
         public IActionResult GetTaskDetails(long headerId)
         {
-            var result = _taskDetailsService.TaskGetDetails(headerId, out _status, out _message);
+            var taskDetailsDMs = _taskDetailsService.GetTaskDetails(headerId, out _status, out _message);
+            List<TaskDetails> result = _mapper.Map<List<TaskDetails>>(taskDetailsDMs);
             return StatusCode(CommonDetails.StatusCode(_status), new
             {
                 data = result,
