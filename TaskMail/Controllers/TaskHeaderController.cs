@@ -20,8 +20,8 @@ namespace TaskMail.Controllers
         {
             _TaskHeaderService = TaskHeaderService;
         }
-         [HttpGet("get-Taskheader")]
-        public IActionResult GetTaskHeader([FromQuery]string Fromdate,[FromQuery]string Todate,string UserName)
+        [HttpGet("get-Taskheader/{Fromdate}/{Todate}/{UserName}")]
+        public IActionResult GetTaskHeader(string Fromdate,string Todate,string UserName)
         {
             var result = _TaskHeaderService.GetTaskHeader(UserName,Fromdate,Todate, out _status, out _message);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message});
