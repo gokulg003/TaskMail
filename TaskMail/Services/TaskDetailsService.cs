@@ -119,7 +119,7 @@ namespace TaskMailService.Services
                     {
                         var parameters = new DynamicParameters();
 
-                        parameters.Add(ConstantDetails.TMDetailsID, taskDetailsVM.TaskDetailPk, DbType.Int64);
+                        parameters.Add(ConstantDetails.TMDetailsID, taskDetailsVM.DetailsId, DbType.Int64);
                         parameters.Add(ConstantDetails.Project, taskDetailsVM.Project, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.Sprint, taskDetailsVM.Sprint, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 200);

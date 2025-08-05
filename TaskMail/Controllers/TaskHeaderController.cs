@@ -37,16 +37,16 @@ namespace TaskMail.Controllers
 
         [Route("taskHeader/insert")]
         [HttpPost]
-        public ActionResult<TaskHeader>TaskHeader(TaskHeader taskHeaderVM)
+        public ActionResult<TaskHeader>InsertTaskHeader(TaskHeader taskHeaderVM)
         {
-            var taskHeaderDMs = _TaskHeaderService.TaskHeader(taskHeaderVM, out _status, out _message, out _HeaderId);
+            var taskHeaderDMs = _TaskHeaderService.InsertTaskHeader(taskHeaderVM, out _status, out _message, out _HeaderId);
             TaskHeader result = _mapper.Map<TaskHeader>(taskHeaderDMs);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, HeaderId = _HeaderId });
         }
         [HttpPut("taskHeader/update")]
-        public ActionResult<TaskHeader> TaskHeaderUpdate([FromBody]TaskHeader taskHeaderVM)
+        public ActionResult<TaskHeader> UpdateTaskHeader([FromBody]TaskHeader taskHeaderVM)
         {
-            var taskHeaderDMs = _TaskHeaderService.TaskHeaderUpdate(taskHeaderVM, out _status, out _message, out _HeaderId);
+            var taskHeaderDMs = _TaskHeaderService.UpdateTaskHeader(taskHeaderVM, out _status, out _message, out _HeaderId);
             TaskHeader result = _mapper.Map<TaskHeader>(taskHeaderDMs);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, HeaderId = _HeaderId });
         }

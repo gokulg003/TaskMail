@@ -56,7 +56,7 @@ namespace TaskMailService.Services
             }
             return result;
         }
-        public TaskHeaderDM TaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int HeaderId)
+        public TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int HeaderId)
         {
             var result = new TaskHeaderDM();
             try
@@ -106,7 +106,7 @@ namespace TaskMailService.Services
             return result;
         }
 
-        public TaskHeaderDM TaskHeaderUpdate(TaskHeader taskHeaderVM, out int status, out string message, out int outHeaderId)
+        public TaskHeaderDM UpdateTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int outHeaderId)
         {
             var result = new TaskHeaderDM();
             try

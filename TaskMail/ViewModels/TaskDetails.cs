@@ -5,7 +5,7 @@ namespace TaskMail.ViewModels;
 
 public class TaskDetails
 {
-    public long TaskDetailPk { get; set; }
+    public long DetailsId { get; set; }
     public string Project { get; set; }
     public string Sprint { get; set; }
     public string TaskName { get; set; }

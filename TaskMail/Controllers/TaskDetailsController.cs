@@ -42,10 +42,10 @@ namespace TaskMail.Controllers
             });
         }
 
-        [HttpDelete("delete/{taskdetailid}/{headerid}")]
-        public IActionResult DeleteTaskDetail(long taskDetailid, long headerid)
+        [HttpDelete("delete/{detailsId}/{headerId}")]
+        public IActionResult DeleteTaskDetail(long detailsId, long headerId)
         {
-            _taskDetailsService.DeleteTaskDetail(taskDetailid, headerid, out int status, out string message);
+            _taskDetailsService.DeleteTaskDetail(detailsId, headerId, out int status, out string message);
 
             if (status == 2)
                 return Ok(new { status, message });
@@ -54,10 +54,10 @@ namespace TaskMail.Controllers
         }
 
 
-        [HttpGet("get/{taskHeaderid}")]
-        public IActionResult GetTaskDetails(long taskHeaderid)
+        [HttpGet("retrieve/{headerId}")]
+        public IActionResult GetTaskDetails(long headerId)
         {
-            var result = _taskDetailsService.TaskGetDetails(taskHeaderid, out _status, out _message);
+            var result = _taskDetailsService.TaskGetDetails(headerId, out _status, out _message);
             return StatusCode(CommonDetails.StatusCode(_status), new
             {
                 data = result,
