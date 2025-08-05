@@ -18,7 +18,7 @@ namespace TaskMail.Controllers
         {
             _LoginService = loginService;
         }
-        [Route("user-login")]
+        [Route("login")]
         [HttpPost]
         public ActionResult<UserDetails> Login([FromBody]Login login)
         {

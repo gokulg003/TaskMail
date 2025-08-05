@@ -6,7 +6,7 @@ public class TaskHeaderMapping : Profile
    public TaskHeaderMapping()
    {
       CreateMap<TaskHeaderDM, TaskHeader>()
-       .ForMember(dest => dest.TaskHeaderId, opt => opt.MapFrom(src => src.HeaderPk)).ReverseMap();
+       .ForMember(dest => dest.HeaderId, opt => opt.MapFrom(src => src.HeaderPk)).ReverseMap();
 
       
       // CreateMap<TaskHeader, TaskHeaderDM>()
