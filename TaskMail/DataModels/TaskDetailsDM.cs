@@ -25,7 +25,7 @@ public class TaskDetailsDM
     public int Percentage { get; set; }
     public string Status { get; set; }
     public string Comments { get; set; }
-    public int TaskHeaderFK{ get; set; }
+    public int TaskHeaderFk{ get; set; }
     public string InsertedBy { get; set; }
     // public string InsertDate { get; set; }
     // public string UpdatedBy { get; set; }

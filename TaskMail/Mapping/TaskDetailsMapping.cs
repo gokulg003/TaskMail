@@ -9,8 +9,8 @@ public class TaskSetailsMapping : Profile
     //  .ForMember(dest => dest.ResName, opt => opt.MapFrom(src => src.ResName))
     //  .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
     //  .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
-     .ForMember(dest => dest.DetailsId, opt => opt.MapFrom(src => src.TaskDetailPk)).ReverseMap();
-    //  .ForMember(dest => dest.TaskHeader_FK, opt => opt.MapFrom(src => src.TaskHeader_FK))
+     .ForMember(dest => dest.DetailsId, opt => opt.MapFrom(src => src.TaskDetailPk))
+     .ForMember(dest => dest.HeaderId, opt => opt.MapFrom(src => src.TaskHeaderFk)).ReverseMap();
     //  .ForMember(dest => dest.InsertedBy, opt => opt.MapFrom(src => src.InsertedBy)).ReverseMap();
    
     // CreateMap<TaskDetails, TaskDetailsDM>()
