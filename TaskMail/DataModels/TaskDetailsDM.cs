@@ -16,12 +16,12 @@ public class TaskDetailsDM
     public string Team { get; set; }
     public string EstStDt { get; set; }
     public string EstEndDt { get; set; }
-    public TimeSpan EstHours { get; set; }
+    public string EstHours { get; set; }
     public string ActStDt { get; set; }
     public string ActEndDt { get; set; }
-    public TimeSpan StTime { get; set; }
-    public TimeSpan EndTime { get; set; }
-    public TimeSpan ActHours { get; set; }
+    public string StTime { get; set; }
+    public string EndTime { get; set; }
+    public string ActHours { get; set; }
     public int Percentage { get; set; }
     public string Status { get; set; }
     public string Comments { get; set; }
