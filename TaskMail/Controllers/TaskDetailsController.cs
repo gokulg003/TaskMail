@@ -43,9 +43,9 @@ namespace TaskMail.Controllers
         }
 
         [HttpDelete("delete/{taskdetailid}/{headerid}")]
-        public IActionResult DeleteTaskDetail(long taskDetailPk, long headerPk)
+        public IActionResult DeleteTaskDetail(long taskDetailid, long headerid)
         {
-            _taskDetailsService.DeleteTaskDetail(taskDetailPk, headerPk, out int status, out string message);
+            _taskDetailsService.DeleteTaskDetail(taskDetailid, headerid, out int status, out string message);
 
             if (status == 2)
                 return Ok(new { status, message });
@@ -55,9 +55,9 @@ namespace TaskMail.Controllers
 
 
         [HttpGet("get/{taskHeaderid}")]
-        public IActionResult GetTaskDetails(long taskHeaderFk)
+        public IActionResult GetTaskDetails(long taskHeaderid)
         {
-            var result = _taskDetailsService.TaskGetDetails(taskHeaderFk, out _status, out _message);
+            var result = _taskDetailsService.TaskGetDetails(taskHeaderid, out _status, out _message);
             return StatusCode(CommonDetails.StatusCode(_status), new
             {
                 data = result,
