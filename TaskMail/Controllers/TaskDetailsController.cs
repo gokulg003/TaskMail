@@ -18,8 +18,9 @@ namespace TaskMail.Controllers
             _taskDetailsService = taskDetailsService;
         }
 
-        [Route("get-task-details")]
+
         [HttpPost]
+        [Route("insert-task-details")]
         public ActionResult<List<TaskDetails>> GetTaskDetails(List<TaskDetails> taskDetailsList)
         {
             var result = _taskDetailsService.TaskDetails(taskDetailsList, out _status, out _message);
@@ -27,8 +28,9 @@ namespace TaskMail.Controllers
         }
 
 
-        [Route("update-task-details")]
+
         [HttpPut]
+        [Route("update-task-details")]
         public ActionResult<List<TaskDetailsDM>> UpdateTaskDetails(List<TaskDetails> taskDetailsList)
         {
             var result = _taskDetailsService.TaskDetailsUpdate(taskDetailsList, out _status, out _message);
@@ -40,7 +42,7 @@ namespace TaskMail.Controllers
             });
         }
 
-        [HttpDelete("task-details/{taskDetailPk}/{headerPk}")]
+        [HttpDelete("delete/{taskDetailPk}/{headerPk}")]
         public IActionResult DeleteTaskDetail(long taskDetailPk, long headerPk)
         {
             _taskDetailsService.DeleteTaskDetail(taskDetailPk, headerPk, out int status, out string message);
