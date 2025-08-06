@@ -83,6 +83,8 @@ namespace TaskMail.common
 
         //CodeMaster
         public const string CodeType = "@CodeType";
+   
+
 
         //Stored Procedure
         //Login

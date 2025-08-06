@@ -4,6 +4,8 @@ using TaskMail.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using TaskMail.Common;
 using System.Reflection.Emit;
+using AutoMapper;
+
 
 namespace TaskMail.Controllers
 {
@@ -13,18 +15,22 @@ namespace TaskMail.Controllers
     public class CodeMasterController : ControllerBase
     {
         private readonly ICodeMasterService _CodeMaster;
+        private readonly IMapper _mapper;
         private int _status;
         private string _message;
-        public CodeMasterController(ICodeMasterService codeMaster)
+
+        public CodeMasterController(ICodeMasterService codeMaster, IMapper mapper)
         {
             _CodeMaster = codeMaster;
+                _mapper = mapper;
         }
         [Route("dropdown/{CodeType}")]
         [HttpGet]
 
-        public ActionResult<List<CodeMasterVM>> GetCodeMaster(string CodeType)
+        public ActionResult<List<CodeMaster>> GetCodeMaster(long UserId,string CodeType)
         {
-        var result = _CodeMaster.GetCodeMaster(CodeType,out int _status, out string _message);
+        var CodeMasterDMs = _CodeMaster.GetCodeMaster(UserId,CodeType,out int _status, out string _message);
+        List<CodeMaster> result = _mapper.Map<List<CodeMaster>>(CodeMasterDMs);
         return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
         }
 

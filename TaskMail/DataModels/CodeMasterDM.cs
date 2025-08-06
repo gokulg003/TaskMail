@@ -8,4 +8,8 @@ public class CodeMasterDM
     public string CodeName { get; set; }
     public string ScreenName { get; set; }
     public string FullName { get; set; }
+    public string DefaultFlag { get; set; }
+    public long UserFk { get; set; }
+
+
 }
