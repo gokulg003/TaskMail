@@ -26,6 +26,8 @@ public class TaskDetails
     public int Percentage { get; set; }
     public string Status { get; set; }
     public string? Comments { get; set; }
+    
     public long HeaderId { get; set; }
-    // public string InsertedBy { get; set; }
+    public string UserName { get; set; }
+    public string UserId { get; set; }
 }

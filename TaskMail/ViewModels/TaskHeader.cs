@@ -22,6 +22,9 @@ public class TaskHeader
     public string BreakDuration { get; set; }
     public string ActWorkHours { get; set; }
     public string Comments { get; set; }
+    
+    public string UserName { get; set; }
+    public long UserId { get; set; }
 
 }
 

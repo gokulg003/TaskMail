@@ -68,8 +68,8 @@ namespace TaskMailService.Services
                     // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
                     // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
 
-                    string UserName = "Gokul";
-                    int UserId = 2;
+                    // string UserName = "Gokul";
+                    // int UserId = 2;
 
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);
@@ -83,8 +83,8 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.ActWorkHours, taskHeaderVM.ActWorkHours, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Comments, taskHeaderVM.Comments, DbType.String, ParameterDirection.Input, 5000);
 
-                    parameters.Add(ConstantDetails.InsertedBy, UserName, DbType.String, ParameterDirection.Input, 250);
-                    parameters.Add(ConstantDetails.UserFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.InsertedBy, taskHeaderVM.UserName, DbType.String, ParameterDirection.Input, 250);
+                    parameters.Add(ConstantDetails.UserFK, taskHeaderVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
@@ -119,8 +119,8 @@ namespace TaskMailService.Services
                     // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
                     // string HeaderPk = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
 
-                    string UserName = "Gokul";
-                    int UserId = 2;
+                    // string UserName = "Gokul";
+                    // int UserId = 2;
 
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);
@@ -133,8 +133,8 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.BreakDuration, taskHeaderVM.BreakDuration, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.ActWorkHours, taskHeaderVM.ActWorkHours, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Comments, taskHeaderVM.Comments, DbType.String, ParameterDirection.Input, 5000);
-                    parameters.Add(ConstantDetails.UpdatedBy, UserName, DbType.String, ParameterDirection.Input, 250);
-                    parameters.Add(ConstantDetails.UserFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.UpdatedBy, taskHeaderVM.UserName, DbType.String, ParameterDirection.Input, 250);
+                    parameters.Add(ConstantDetails.UserFK, taskHeaderVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.HeaderId, taskHeaderVM.HeaderId, DbType.Int64, ParameterDirection.Input, 18);
 
 
