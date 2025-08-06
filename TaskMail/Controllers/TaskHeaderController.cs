@@ -17,7 +17,7 @@ namespace TaskMail.Controllers
         private readonly IMapper _mapper;
         private int _status;
         private string _message;
-        private int _HeaderId;
+        private int _headerId;
 
 
 
@@ -27,9 +27,9 @@ namespace TaskMail.Controllers
             _mapper = mapper;
         }
         [HttpGet("taskHeader/retrieve")]
-        public IActionResult GetTaskHeader([FromQuery][Required]string Fromdate,[FromQuery][Required]string Todate,[FromQuery][Required]string UserName)
+        public IActionResult GetTaskHeader([FromQuery][Required]string fromDate,[FromQuery][Required]string toDate,[FromQuery][Required]string userName)
         {
-            var taskHeaderDMs = _TaskHeaderService.GetTaskHeader(UserName,Fromdate,Todate, out _status, out _message);
+            var taskHeaderDMs = _TaskHeaderService.GetTaskHeader(userName,fromDate,toDate, out _status, out _message);
             List<TaskHeader> result = _mapper.Map<List<TaskHeader>>(taskHeaderDMs);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
         }
@@ -39,16 +39,16 @@ namespace TaskMail.Controllers
         [HttpPost]
         public ActionResult<TaskHeader>InsertTaskHeader(TaskHeader taskHeaderVM)
         {
-            var taskHeaderDMs = _TaskHeaderService.InsertTaskHeader(taskHeaderVM, out _status, out _message, out _HeaderId);
+            var taskHeaderDMs = _TaskHeaderService.InsertTaskHeader(taskHeaderVM, out _status, out _message, out _headerId);
             TaskHeader result = _mapper.Map<TaskHeader>(taskHeaderDMs);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, HeaderId = _HeaderId });
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, headerId = _headerId });
         }
         [HttpPut("taskHeader/update")]
         public ActionResult<TaskHeader> UpdateTaskHeader([FromBody]TaskHeader taskHeaderVM)
         {
-            var taskHeaderDMs = _TaskHeaderService.UpdateTaskHeader(taskHeaderVM, out _status, out _message, out _HeaderId);
+            var taskHeaderDMs = _TaskHeaderService.UpdateTaskHeader(taskHeaderVM, out _status, out _message, out _headerId);
             TaskHeader result = _mapper.Map<TaskHeader>(taskHeaderDMs);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, HeaderId = _HeaderId });
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, headerId = _headerId });
         }
         
     }
