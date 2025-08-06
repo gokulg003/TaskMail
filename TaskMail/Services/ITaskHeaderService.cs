@@ -4,8 +4,8 @@ namespace TaskMailService.Services
 {
     public interface ITaskHeaderService
     {
-        List<TaskHeaderDM> GetTaskHeader(string UserName,string Fromdate,string Todate,out int status, out string message);
-        TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int HeaderId);
+        List<TaskHeaderDM> GetTaskHeader(string userName,string fromDate,string toDate,out int status, out string message);
+        TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int headerId);
         TaskHeaderDM UpdateTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int outHeaderId);
     }
 }

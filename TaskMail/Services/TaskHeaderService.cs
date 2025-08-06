@@ -30,7 +30,7 @@ namespace TaskMailService.Services
         }
 
 
-        public List<TaskHeaderDM> GetTaskHeader(string UserName,string Fromdate,string Todate,out int status, out string message)
+        public List<TaskHeaderDM> GetTaskHeader(string userName,string fromDate,string toDate,out int status, out string message)
         {
             var result = new List<TaskHeaderDM>();
             try
@@ -39,9 +39,9 @@ namespace TaskMailService.Services
                 {
                     con.Open();
                     var parameters = new DynamicParameters();
-                    parameters.Add(ConstantDetails.Fromdate, Fromdate, DbType.String, ParameterDirection.Input, 15);
-                    parameters.Add(ConstantDetails.Todate, Todate, DbType.String, ParameterDirection.Input, 15);
-                    parameters.Add(ConstantDetails.UserName, UserName, DbType.String, ParameterDirection.Input, 250);
+                    parameters.Add(ConstantDetails.Fromdate, fromDate, DbType.String, ParameterDirection.Input, 15);
+                    parameters.Add(ConstantDetails.Todate, toDate, DbType.String, ParameterDirection.Input, 15);
+                    parameters.Add(ConstantDetails.UserName, userName, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
                     result = con.Query<TaskHeaderDM>(ConstantDetails.TaskHeader_RetrieveSP, parameters, commandType: CommandType.StoredProcedure).ToList();
@@ -56,7 +56,7 @@ namespace TaskMailService.Services
             }
             return result;
         }
-        public TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int HeaderId)
+        public TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int headerId)
         {
             var result = new TaskHeaderDM();
             try
@@ -66,9 +66,9 @@ namespace TaskMailService.Services
                     con.Open();
                     var parameters = new DynamicParameters();
                     // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
+                    // string userName = _httpContextAccessor.HttpContext.Request.Headers["X-userName"];
 
-                    // string UserName = "Gokul";
+                    // string userName = "Gokul";
                     // int UserId = 2;
 
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
@@ -94,14 +94,14 @@ namespace TaskMailService.Services
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
-                    HeaderId = parameters.Get<Int16>(ConstantDetails.HeaderPk);
+                    headerId = parameters.Get<Int16>(ConstantDetails.HeaderPk);
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
-                HeaderId = 0;
+                headerId = 0;
             }
             return result;
         }
@@ -116,10 +116,10 @@ namespace TaskMailService.Services
                     con.Open();
                     var parameters = new DynamicParameters();
                     // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
+                    // string userName = _httpContextAccessor.HttpContext.Request.Headers["X-userName"];
                     // string HeaderPk = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
 
-                    // string UserName = "Gokul";
+                    // string userName = "Gokul";
                     // int UserId = 2;
 
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);

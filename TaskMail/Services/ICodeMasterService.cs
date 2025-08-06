@@ -5,6 +5,6 @@ namespace TaskMailService.Services
 {
     public interface ICodeMasterService
     {
-        List<CodeMasterDM> GetCodeMaster(long UserId,string CodeType, out int status, out string message);
+        List<CodeMasterDM> GetCodeMaster(long userId,string codeType, out int status, out string message);
     }
 }

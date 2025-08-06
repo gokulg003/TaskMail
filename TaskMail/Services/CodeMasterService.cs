@@ -27,7 +27,7 @@ namespace TaskMailService.Services
             }
         }
 
-        public List<CodeMasterDM> GetCodeMaster(long UserId,string CodeType, out int status, out string message)
+        public List<CodeMasterDM> GetCodeMaster(long userId,string codeType, out int status, out string message)
 
         {
              List<CodeMasterDM> result = new List<CodeMasterDM>();
@@ -38,8 +38,8 @@ namespace TaskMailService.Services
                     conn.Open();
                     var param = new DynamicParameters();
 
-                    param.Add(ConstantDetails.CodeType, CodeType, DbType.String, ParameterDirection.Input, 100);
-                    param.Add(ConstantDetails.UserFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
+                    param.Add(ConstantDetails.CodeType, codeType, DbType.String, ParameterDirection.Input, 100);
+                    param.Add(ConstantDetails.UserFK, userId, DbType.Int64, ParameterDirection.Input, 18);
 
                     param.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     param.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
