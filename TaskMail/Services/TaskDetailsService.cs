@@ -40,8 +40,8 @@ namespace TaskMailService.Services
                 {
                     con.Open();
 
-                    string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
+                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
+                    // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
                     // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
                     // int UserId = 22;
                     // string UserName = "Devi";
@@ -72,9 +72,9 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.Percentage, taskDetailsVM.Percentage, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.Status, taskDetailsVM.Status, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.CommentsDetails, taskDetailsVM.Comments, DbType.String, ParameterDirection.Input, 4000);
-                        parameters.Add(ConstantDetails.UserName, UserName, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.UserName, taskDetailsVM.UserName, DbType.String, ParameterDirection.Input, 18);
 
-                        parameters.Add(ConstantDetails.UsersFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.UsersFK, taskDetailsVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskHeaderFK, taskDetailsVM.HeaderId, DbType.Int64, ParameterDirection.Input, 18);
 
                         parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);
@@ -107,8 +107,8 @@ namespace TaskMailService.Services
                 using (IDbConnection con = Connection)
                 {
                     con.Open();
-                    string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    string UpdatedByName = _httpContextAccessor.HttpContext.Request.Headers["X-UpdatedByName"];
+                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
+                    // string UpdatedByName = _httpContextAccessor.HttpContext.Request.Headers["X-UpdatedByName"];
                     // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
 
                     // int UserId = 22;
@@ -140,8 +140,8 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.Percentage, taskDetailsVM.Percentage, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.Status, taskDetailsVM.Status, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.CommentsDetails, taskDetailsVM.Comments, DbType.String, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.UpdatedBy, UpdatedByName, DbType.String);
-                        parameters.Add(ConstantDetails.UsersFK, UserId, DbType.Int64, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.UpdatedBy, taskDetailsVM.UserName, DbType.String);
+                        parameters.Add(ConstantDetails.UsersFK, taskDetailsVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskHeaderFK, taskDetailsVM.HeaderId, DbType.Int64, ParameterDirection.Input, 18);
 
                         parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);

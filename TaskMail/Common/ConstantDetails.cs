@@ -38,7 +38,7 @@ namespace TaskMail.common
         public const string BreakDuration = "@BreakDuration";
         public const string ActWorkHours = "@ActWorkHours";
         public const string Comments = "@Comments";
-        public const string InsertedBy = "@UserId";
+        public const string InsertedBy = "@UserName";
         public const string UserFK = "@UserFk";
         //update
         public const string HeaderId = "@TaskHeaderPk";
@@ -74,7 +74,7 @@ namespace TaskMail.common
         public const string UsersFK = "@UsersFK";
         public const string UserName = "@UserName";
         // public const string InsertDate = "@InsertDate";
-        public const string UpdatedBy = "@UpdatedBy";
+        public const string UpdatedBy = "@UserName";
         // public const string UpdatedDate = "@UpdatedDate";
         public const string TMDetailsID = "@TaskDetailPk";
 
