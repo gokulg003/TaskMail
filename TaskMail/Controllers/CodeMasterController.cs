@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskMail.Common;
 using System.Reflection.Emit;
 using AutoMapper;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace TaskMail.Controllers
@@ -24,10 +25,10 @@ namespace TaskMail.Controllers
             _CodeMaster = codeMaster;
                 _mapper = mapper;
         }
-        [Route("dropdown/{CodeType}")]
+        [Route("dropdown")]
         [HttpGet]
 
-        public ActionResult<List<CodeMaster>> GetCodeMaster(long userId,string codeType)
+        public ActionResult<List<CodeMaster>> GetCodeMaster(long userId,[Required]string codeType)
         {
         var CodeMasterDMs = _CodeMaster.GetCodeMaster(userId,codeType,out int _status, out string _message);
         List<CodeMaster> result = _mapper.Map<List<CodeMaster>>(CodeMasterDMs);
