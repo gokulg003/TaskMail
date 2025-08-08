@@ -10,6 +10,7 @@ public class CodeMasterDM
     public string FullName { get; set; }
     public string DefaultFlag { get; set; }
     public long UserFk { get; set; }
+    public long CodeId { get; set; }
 
 
 }

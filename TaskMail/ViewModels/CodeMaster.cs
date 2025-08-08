@@ -9,5 +9,7 @@ namespace TaskMail.ViewModels
         public string DefaultFlag { get; set; }
         public long UserId { get; set; }
 
+        public long CodeId { get; set; }
+
     }
 }
