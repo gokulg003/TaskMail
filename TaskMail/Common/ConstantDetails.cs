@@ -46,7 +46,7 @@ namespace TaskMail.common
         //get
         public const string Fromdate = "@Fromdate";
         public const string Todate = "@Todate";
-        
+
         //TaskDetails
         public const string errmsgDetails = "@errormsg";
         public const string StatusDetails = "@StatusCode";
@@ -83,7 +83,7 @@ namespace TaskMail.common
 
         //CodeMaster
         public const string CodeType = "@CodeType";
-   
+
 
 
         //Stored Procedure
@@ -111,6 +111,10 @@ namespace TaskMail.common
 
         //TaskHeader Retrieve
         public const string TaskHeader_RetrieveSP = "RetrieveViewPage";
+
+    
+        // TaskMailSend
+         public const string TaskMailSend_SP = "TM_MailSend";
 
     }
 }

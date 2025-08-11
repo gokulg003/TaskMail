@@ -62,7 +62,7 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 50);
                         parameters.Add(ConstantDetails.Team, taskDetailsVM.Team, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstStDt, taskDetailsVM.EstStDt, DbType.Date, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.Date   , ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.Date, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstHours, taskDetailsVM.EstHours, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.ActStDt, taskDetailsVM.ActStDt, DbType.Date, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.ActEndDt, taskDetailsVM.ActEndDt, DbType.Date, ParameterDirection.Input, 18);
@@ -77,8 +77,8 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.UsersFK, taskDetailsVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskHeaderFK, taskDetailsVM.HeaderId, DbType.Int64, ParameterDirection.Input, 18);
 
-                        parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);
-                        parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size:5000);
+                        parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
+                        parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
                         insertedTaskDetails = con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
 
                         status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
@@ -144,7 +144,7 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.UsersFK, taskDetailsVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskHeaderFK, taskDetailsVM.HeaderId, DbType.Int64, ParameterDirection.Input, 18);
 
-                        parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);
+                        parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                         parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
 
                         updatedTaskDetails = con.Query<TaskDetailsDM>(ConstantDetails.TaskDetails_Update_SP, parameters, commandType: CommandType.StoredProcedure).ToList();
@@ -177,8 +177,8 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.TMDetailsID, taskDetailPk, DbType.Int64);
                     parameters.Add(ConstantDetails.TaskHeaderFK, taskHeader_FK, DbType.Int64);
 
-                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);
-                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size:5000);
+                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
+                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
 
                     con.Execute(ConstantDetails.TaskDetails_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
 
@@ -205,7 +205,7 @@ namespace TaskMailService.Services
                     con.Open();
                     var parameters = new DynamicParameters();
                     parameters.Add(ConstantDetails.TaskHeaderFK, taskHeader_FK, DbType.Int64, ParameterDirection.Input, 18);
-                   
+
                     parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output);
                     parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, size: 4000, direction: ParameterDirection.Output);
 
@@ -221,6 +221,35 @@ namespace TaskMailService.Services
                 message = "Exception: " + ex.Message;
             }
             return GetTaskDetails;
+        }
+        
+         public void TaskMail(long taskHeaderPk,long UserFk, out int status, out string message)
+        {
+            status = -1;
+            message = "Unknown error";
+
+            try
+            {
+                using (IDbConnection con = Connection)
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add(ConstantDetails.TaskHeaderFK, taskHeaderPk, DbType.Int64);
+                    parameters.Add(ConstantDetails.UserFK, UserFk, DbType.Int64, ParameterDirection.Input, 18);
+                
+                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);
+                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size:5000);
+
+                    con.Execute(ConstantDetails.TaskMailSend_SP, parameters, commandType: CommandType.StoredProcedure);
+
+                    status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
+                    message = parameters.Get<string>(ConstantDetails.errmsgDetails);
+                }
+            }
+            catch (Exception ex)
+            {
+                status = -1;
+                message = "Exception: " + ex.Message;
+            }
         }
 
     }
