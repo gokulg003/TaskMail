@@ -14,11 +14,11 @@ namespace TaskMailService.Services
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public TaskHeaderService(IConfiguration config, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public TaskHeaderService(IConfiguration config, IMapper mapper)
         {
             _config = config;
             _mapper = mapper;
-            _httpContextAccessor = httpContextAccessor; ;
+            // _httpContextAccessor = httpContextAccessor; 
         }
 
         public IDbConnection Connection
@@ -65,11 +65,6 @@ namespace TaskMailService.Services
                 {
                     con.Open();
                     var parameters = new DynamicParameters();
-                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string userName = _httpContextAccessor.HttpContext.Request.Headers["X-userName"];
-
-                    // string userName = "Gokul";
-                    // int UserId = 2;
 
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);
@@ -115,13 +110,7 @@ namespace TaskMailService.Services
                 {
                     con.Open();
                     var parameters = new DynamicParameters();
-                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string userName = _httpContextAccessor.HttpContext.Request.Headers["X-userName"];
-                    // string HeaderPk = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
-
-                    // string userName = "Gokul";
-                    // int UserId = 2;
-
+    
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);
                     parameters.Add(ConstantDetails.Month, taskHeaderVM.Month, DbType.String, ParameterDirection.Input, 18);
@@ -136,8 +125,6 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.UpdatedBy, taskHeaderVM.UserName, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.UserFK, taskHeaderVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.HeaderId, taskHeaderVM.HeaderId, DbType.Int64, ParameterDirection.Input, 18);
-
-
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);

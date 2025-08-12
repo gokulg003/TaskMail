@@ -14,11 +14,11 @@ namespace TaskMailService.Services
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public TaskDetailsService(IConfiguration config, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public TaskDetailsService(IConfiguration config, IMapper mapper)
         {
             _config = config;
             _mapper = mapper;
-            _httpContextAccessor = httpContextAccessor; ;
+            // _httpContextAccessor = httpContextAccessor; ;
         }
 
         public IDbConnection Connection
@@ -39,13 +39,6 @@ namespace TaskMailService.Services
                 using (IDbConnection con = Connection)
                 {
                     con.Open();
-
-                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string UserName = _httpContextAccessor.HttpContext.Request.Headers["X-UserName"];
-                    // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
-                    // int UserId = 22;
-                    // string UserName = "Devi";
-                    // int HeaderId = 226;
 
                     foreach (var taskDetailsVM in taskDetailsList)
                     {
@@ -107,13 +100,6 @@ namespace TaskMailService.Services
                 using (IDbConnection con = Connection)
                 {
                     con.Open();
-                    // string UserId = _httpContextAccessor.HttpContext.Request.Headers["X-UserId"];
-                    // string UpdatedByName = _httpContextAccessor.HttpContext.Request.Headers["X-UpdatedByName"];
-                    // string HeaderId = _httpContextAccessor.HttpContext.Request.Headers["X-HeaderId"];
-
-                    // int UserId = 22;
-                    // int HeaderId = 222;
-                    // string UpdatedByName = "gokul";
 
                     foreach (var taskDetailsVM in taskDetailsList)
                     {
@@ -166,9 +152,6 @@ namespace TaskMailService.Services
 
         public void DeleteTaskDetails(long taskDetailPk, long taskHeader_FK, out int status, out string message)
         {
-            status = -1;
-            message = "Unknown error";
-
             try
             {
                 using (IDbConnection con = Connection)
@@ -196,8 +179,6 @@ namespace TaskMailService.Services
         public List<TaskDetailsDM> GetTaskDetails(long taskHeader_FK, out int status, out string message)
         {
             var GetTaskDetails = new List<TaskDetailsDM>();
-            status = -1;
-            message = null;
             try
             {
                 using (IDbConnection con = Connection)
@@ -225,9 +206,6 @@ namespace TaskMailService.Services
         
          public void TaskMail(long taskHeaderPk,long UserFk, out int status, out string message)
         {
-            status = -1;
-            message = "Unknown error";
-
             try
             {
                 using (IDbConnection con = Connection)
