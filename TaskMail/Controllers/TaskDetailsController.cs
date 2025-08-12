@@ -3,6 +3,7 @@ using TaskMailService.Services;
 using TaskMail.ViewModels;
 using TaskMail.Common;
 using AutoMapper;
+using System.ComponentModel.DataAnnotations;
 
 namespace TaskMail.Controllers
 {
@@ -50,12 +51,8 @@ namespace TaskMail.Controllers
         [HttpDelete("delete/{detailsId}/{headerId}")]
         public IActionResult DeleteTaskDetail(long detailsId, long headerId)
         {
-            _taskDetailsService.DeleteTaskDetails(detailsId, headerId, out int status, out string message);
-
-            if (status == 2)
-                return Ok(new { status, message });
-
-            return NotFound(new { status, message });
+            _taskDetailsService.DeleteTaskDetails(detailsId, headerId, out int _status, out string _message);
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = new { }, status = _status, message = _message });
         }
 
 
@@ -64,12 +61,21 @@ namespace TaskMail.Controllers
         {
             var taskDetailsDMs = _taskDetailsService.GetTaskDetails(headerId, out _status, out _message);
             List<TaskDetails> result = _mapper.Map<List<TaskDetails>>(taskDetailsDMs);
+
             return StatusCode(CommonDetails.StatusCode(_status), new
             {
                 data = result,
                 status = _status,
                 message = _message
             });
+        }
+        
+        [HttpGet("taskMail/{headerId}")]
+        public IActionResult TaskMail(long headerId, [Required]long UserId)
+        {
+            _taskDetailsService.TaskMail(headerId, UserId, out int _status, out string _message);
+            // _mapper.Map<List<TaskDetails>>(_taskDetailsService);
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = new { }, status = _status, message = _message });
         }
     
         

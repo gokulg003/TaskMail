@@ -10,5 +10,6 @@ namespace TaskMailService.Services
         List<TaskDetailsDM> UpdateTaskDetails(List<TaskDetails> taskDetailsList, out int status, out string message);
         public void DeleteTaskDetails(long taskDetailPk, long taskHeader_FK, out int status, out string message);
         public List<TaskDetailsDM> GetTaskDetails(long taskHeader_FK, out int status, out string message);
+        public void TaskMail(long taskHeaderPk,long UserPk, out int status, out string message);
     }
 }
