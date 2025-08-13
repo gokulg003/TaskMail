@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 namespace TaskMail.Controllers
 {
     
-    [Route("api/CodeMaster")]
+    [Route("api/SendMail")]
     [ApiController]
     public class SendMailController : ControllerBase
     {
