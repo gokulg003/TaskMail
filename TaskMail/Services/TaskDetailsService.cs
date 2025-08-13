@@ -12,7 +12,7 @@ namespace TaskMailService.Services
     {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        // private readonly IHttpContextAccessor _httpContextAccessor;
 
         public TaskDetailsService(IConfiguration config, IMapper mapper)
         {
