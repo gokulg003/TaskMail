@@ -204,31 +204,6 @@ namespace TaskMailService.Services
             return GetTaskDetails;
         }
         
-         public void TaskMail(long taskHeaderPk,long UserFk, out int status, out string message)
-        {
-            try
-            {
-                using (IDbConnection con = Connection)
-                {
-                    var parameters = new DynamicParameters();
-                    parameters.Add(ConstantDetails.TaskHeaderFK, taskHeaderPk, DbType.Int64);
-                    parameters.Add(ConstantDetails.UserFK, UserFk, DbType.Int64, ParameterDirection.Input, 18);
-                
-                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size:1);
-                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size:5000);
-
-                    con.Execute(ConstantDetails.TaskMailSend_SP, parameters, commandType: CommandType.StoredProcedure);
-
-                    status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
-                    message = parameters.Get<string>(ConstantDetails.errmsgDetails);
-                }
-            }
-            catch (Exception ex)
-            {
-                status = -1;
-                message = "Exception: " + ex.Message;
-            }
-        }
 
     }
 }

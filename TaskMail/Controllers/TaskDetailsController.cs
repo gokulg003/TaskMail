@@ -69,15 +69,5 @@ namespace TaskMail.Controllers
                 message = _message
             });
         }
-        
-        [HttpGet("taskMail/{headerId}")]
-        public IActionResult TaskMail(long headerId, [Required]long UserId)
-        {
-            _taskDetailsService.TaskMail(headerId, UserId, out int _status, out string _message);
-            // _mapper.Map<List<TaskDetails>>(_taskDetailsService);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = new { }, status = _status, message = _message });
-        }
-    
-        
     }
 }
