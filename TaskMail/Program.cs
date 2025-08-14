@@ -1,14 +1,14 @@
 using TaskMailService.Services;
-
-
+ 
+ 
 var builder = WebApplication.CreateBuilder(args);
-
+ 
 var configuration = builder.Configuration;
-
+ 
 builder.Services.AddHttpContextAccessor();
-
+ 
 builder.Services.AddSingleton<IConfiguration>(configuration);
-
+ 
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<ITaskHeaderService, TaskHeaderService>();
 builder.Services.AddScoped<ICodeMasterService, CodeMasterService>();
@@ -21,7 +21,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
+ 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
