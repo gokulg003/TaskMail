@@ -19,31 +19,37 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
     {
-        policy.WithOrigins("MyAllowSpecificOrigins") // or whatever your frontend is
-              .AllowCredentials()
+        policy.WithOrigins("http://localhost:4200", "https://192.168.2.107:9002")
+              .AllowAnyHeader()
               .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowCredentials();
     });
 });
-var app = builder.Build();
 
- 
+var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseRouting();
 
-// app.UseHttpsRedirection();
-// app.UseAuthentication();
-// app.UseAuthorization();
-
+app.UseCors(MyAllowSpecificOrigins);
+app.Use(async (context, next) =>
+{
+    if (context.Request.Method == "OPTIONS")
+    {
+        context.Response.StatusCode = 204;
+        return;
+    }
+    await next();
+});
+app.UseAuthorization();
 app.MapControllers();
-app.UseCors();
 app.Run();
-
 

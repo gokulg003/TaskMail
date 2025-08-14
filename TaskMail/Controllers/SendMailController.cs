@@ -22,10 +22,10 @@ namespace TaskMail.Controllers
             _SendMail = sendMail;
            
         }
-        [HttpPost]
-        public IActionResult TaskMail([Required]long headerId, [Required]long UserId)
+        [HttpGet]
+        public IActionResult TaskMail([Required]long headerId, [Required]long userId)
         {
-            _SendMail.TaskMail(headerId, UserId, out int _status, out string _message);
+            _SendMail.TaskMail(headerId, userId, out int _status, out string _message);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = new { }, status = _status, message = _message });
         }
 

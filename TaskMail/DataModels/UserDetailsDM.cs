@@ -6,5 +6,6 @@
         public string UserName { get; set; }
         public string UserEmailId { get; set; }
         public string UserType { get; set; }
+        public string ScreenName { get; set; }
     }
 }
