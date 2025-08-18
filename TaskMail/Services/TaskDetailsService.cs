@@ -66,6 +66,7 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.Status, taskDetailsVM.Status, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.CommentsDetails, taskDetailsVM.Comments, DbType.String, ParameterDirection.Input, 4000);
                         parameters.Add(ConstantDetails.UserName, taskDetailsVM.UserName, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.DetailsResourceId, taskDetailsVM.DetailsResourceId, DbType.String, ParameterDirection.Input, 18);
 
                         parameters.Add(ConstantDetails.UsersFK, taskDetailsVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskHeaderFK, taskDetailsVM.HeaderId, DbType.Int64, ParameterDirection.Input, 18);
@@ -129,6 +130,7 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.UpdatedBy, taskDetailsVM.UserName, DbType.String);
                         parameters.Add(ConstantDetails.UsersFK, taskDetailsVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskHeaderFK, taskDetailsVM.HeaderId, DbType.Int64, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.DetailsResourceId, taskDetailsVM.DetailsResourceId, DbType.String, ParameterDirection.Input, 18);
 
                         parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                         parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
