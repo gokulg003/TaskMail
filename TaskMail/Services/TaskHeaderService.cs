@@ -84,7 +84,7 @@ namespace TaskMailService.Services
 
                     parameters.Add(ConstantDetails.InsertedBy, taskHeaderVM.UserName, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.UserFK, taskHeaderVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
-                    parameters.Add(ConstantDetails.HeaderResourcePk, taskHeaderVM.HeaderResourceId, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.HeaderResourceFk, taskHeaderVM.HeaderResourceId, DbType.Int64, ParameterDirection.Input, 18);
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
@@ -127,9 +127,11 @@ namespace TaskMailService.Services
                     parameters.Add(ConstantDetails.BreakDuration, taskHeaderVM.BreakDuration, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.ActWorkHours, taskHeaderVM.ActWorkHours, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Comments, taskHeaderVM.Comments, DbType.String, ParameterDirection.Input, 5000);
+
                     parameters.Add(ConstantDetails.UpdatedBy, taskHeaderVM.UserName, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.UserFK, taskHeaderVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.HeaderId, taskHeaderVM.HeaderId, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.HeaderResourceFk, taskHeaderVM.HeaderResourceId, DbType.Int64, ParameterDirection.Input, 18);
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
