@@ -49,7 +49,7 @@ namespace TaskMailService.Services
                     userlogindetailsDM = conn.Query<UserDetailsDM>(ConstantDetails.Login_SP, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     status = param.Get<Int16>(ConstantDetails.status);
-                    message = param.Get<string>(ConstantDetails.errMsg);
+                    message = param.Get<string>(ConstantDetails.errMsg); 
                 }
             }
             catch (Exception ex)

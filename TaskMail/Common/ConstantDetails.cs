@@ -74,6 +74,7 @@ namespace TaskMail.common
         public const string TaskHeaderFK = "@HeaderPk";
         public const string UsersFK = "@UsersFK";
         public const string UserName = "@UserName";
+        public const string DetailsResourceId = "@DetailsResourceId";
         // public const string InsertDate = "@InsertDate";
         public const string UpdatedBy = "@UserName";
         // public const string UpdatedDate = "@UpdatedDate";
