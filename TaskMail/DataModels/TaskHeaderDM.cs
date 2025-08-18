@@ -7,6 +7,7 @@ public class TaskHeaderDM
 
     public long HeaderPk { get; set; }
     public string Resource { get; set; }
+    public long HeaderResourcePk { get; set; }
     public string Type { get; set; }
     public string Month { get; set; }
     public string Date { get; set; }
@@ -20,8 +21,6 @@ public class TaskHeaderDM
 
     public string UserName { get; set; }
     public long UserFk { get; set; }
-
-
-
+  
 }
 

@@ -7,6 +7,7 @@ public class TaskHeader
 {
     public long HeaderId { get; set; }
     public string Resource { get; set; }
+    public long HeaderResourceId { get; set; }
     public string Type { get; set; }
     public string Month { get; set; }
     public string Date { get; set; }

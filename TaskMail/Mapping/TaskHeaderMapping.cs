@@ -7,7 +7,9 @@ public class TaskHeaderMapping : Profile
    {
       CreateMap<TaskHeaderDM, TaskHeader>()
        .ForMember(dest => dest.HeaderId, opt => opt.MapFrom(src => src.HeaderPk))
-       .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserFk)).ReverseMap();
+       .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserFk))
+       .ForMember(dest => dest.HeaderResourceId, opt => opt.MapFrom(src => src.HeaderResourcePk))
+       .ReverseMap();
 
       
       // CreateMap<TaskHeader, TaskHeaderDM>()

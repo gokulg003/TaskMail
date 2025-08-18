@@ -13,7 +13,9 @@ public class TaskSetailsMapping : Profile
          .ForMember(dest => dest.HeaderId, opt => opt.MapFrom(src => src.TaskHeaderFk))
          .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserFk))
          .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserFk))
-         .ForMember(dest => dest.HeaderId, opt => opt.MapFrom(src => src.TaskHeaderFk)) .ReverseMap();
+         .ForMember(dest => dest.HeaderId, opt => opt.MapFrom(src => src.TaskHeaderFk))
+         .ForMember(dest => dest.DetailsResourceId, opt => opt.MapFrom(src => src.DetailsResourceFk))
+         .ReverseMap();
     //  .ForMember(dest => dest.InsertedBy, opt => opt.MapFrom(src => src.InsertedBy)).ReverseMap();
    
     // CreateMap<TaskDetails, TaskDetailsDM>()

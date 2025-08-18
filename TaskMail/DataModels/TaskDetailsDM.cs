@@ -28,8 +28,5 @@ public class TaskDetailsDM
     public int TaskHeaderFk { get; set; }
     public string UserName { get; set; }
     public string UserFk { get; set; }
-    
-    // public string InsertDate { get; set; }
-    // public string UpdatedBy { get; set; }
-    // public string UpdatedDate{ get; set; }    
+    public long DetailsResourceFk { get; set; }  
 }
