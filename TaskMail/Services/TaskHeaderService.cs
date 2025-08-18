@@ -84,6 +84,7 @@ namespace TaskMailService.Services
 
                     parameters.Add(ConstantDetails.InsertedBy, taskHeaderVM.UserName, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.UserFK, taskHeaderVM.UserId, DbType.Int64, ParameterDirection.Input, 18);
+                    parameters.Add(ConstantDetails.HeaderResourcePk, taskHeaderVM.HeaderResourceId, DbType.Int64, ParameterDirection.Input, 18);
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);

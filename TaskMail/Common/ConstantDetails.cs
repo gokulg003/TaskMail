@@ -40,6 +40,7 @@ namespace TaskMail.common
         public const string Comments = "@Comments";
         public const string InsertedBy = "@UserName";
         public const string UserFK = "@UserFk";
+        public const string HeaderResourcePk = "@HeaderResourcePk";
         //update
         public const string HeaderId = "@TaskHeaderPk";
 
