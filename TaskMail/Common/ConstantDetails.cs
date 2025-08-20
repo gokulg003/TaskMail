@@ -92,7 +92,7 @@ namespace TaskMail.common
         //Login
         public const string Login_SP = "TM_LoginValidation";
         //TaskHeaderInsert
-        public const string TaskHeader_SP = "TM_TaskHeader‌put";
+        public const string TaskHeader_SP = "TM_TaskHeaderInsert";
 
         //TaskHeaderUpdate
         public const string TaskHeaderUpdate_SP = "TM_TaskHeaderUpdate";
@@ -101,7 +101,7 @@ namespace TaskMail.common
         public const string TaskDetails_SP = "TM_TaskDetails_Insert";
 
         //Code_MasterSP
-        public const string CodeMasterSP = "TM_Retrive_DDL_TaskDetails";
+        public const string CodeMasterSP = "TM_Code_Master_Retrieve";
 
         // TaskDetails Update
         public const string TaskDetails_Update_SP = "TM_TaskDetails_Update";
