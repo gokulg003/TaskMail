@@ -10,7 +10,7 @@ public class TaskHeader
     public long HeaderResourceId { get; set; }
     public string Type { get; set; }
     public string Month { get; set; }
-    public string Date { get; set; }
+    public string Date { get; set; } 
     public string Year { get; set; }
     public string InTime { get; set; }
     public string OutTime { get; set; }
