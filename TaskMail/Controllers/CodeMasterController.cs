@@ -30,8 +30,8 @@ namespace TaskMail.Controllers
 
         public ActionResult<List<CodeMaster>> GetCodeMaster(long userId,[Required]string codeType)
         {
-        var CodeMasterDMs = _CodeMaster.GetCodeMaster(userId,codeType,out int _status, out string _message);
-        List<CodeMaster> result = _mapper.Map<List<CodeMaster>>(CodeMasterDMs);
+        var result = _CodeMaster.GetCodeMaster(userId,codeType,out int _status, out string _message);
+        // List<CodeMaster> result = _mapper.Map<List<CodeMaster>>(CodeMasterDMs);
         return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
         }
 
