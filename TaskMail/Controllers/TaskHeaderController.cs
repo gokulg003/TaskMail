@@ -17,7 +17,7 @@ namespace TaskMail.Controllers
         private readonly IMapper _mapper;
         private int _status;
         private string _message;
-        private int _headerId;
+        private long _headerId;
 
 
 
