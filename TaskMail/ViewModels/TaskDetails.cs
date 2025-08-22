@@ -31,4 +31,10 @@ public class TaskDetails
     public string UserName { get; set; }
     public string UserId { get; set; }
     public long DetailsResourceId { get; set; }
+    public string ProjectCode { get; set; }
+    public string TypeCode { get; set; }
+    public string BillingTypeCode { get; set; }
+    public string TeamCode { get; set; }
+    public string StatusCode { get; set; }
+    
 }

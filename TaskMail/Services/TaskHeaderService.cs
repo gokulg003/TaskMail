@@ -70,8 +70,8 @@ namespace TaskMailService.Services
                     con.Open();
                     var parameters = new DynamicParameters();
 
-                    parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
-                    parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);
+                    parameters.Add(ConstantDetails.Resource, taskHeaderVM.ResourceCode, DbType.String, ParameterDirection.Input, 250);
+                    parameters.Add(ConstantDetails.Type, taskHeaderVM.TypeCode, DbType.String, ParameterDirection.Input, 15);
                     parameters.Add(ConstantDetails.Month, taskHeaderVM.Month, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Date, taskHeaderVM.Date, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Year, taskHeaderVM.Year, DbType.String, ParameterDirection.Input, 18);
@@ -116,8 +116,8 @@ namespace TaskMailService.Services
                     con.Open();
                     var parameters = new DynamicParameters();
     
-                    parameters.Add(ConstantDetails.Resource, taskHeaderVM.Resource, DbType.String, ParameterDirection.Input, 250);
-                    parameters.Add(ConstantDetails.Type, taskHeaderVM.Type, DbType.String, ParameterDirection.Input, 15);
+                    parameters.Add(ConstantDetails.Resource, taskHeaderVM.ResourceCode, DbType.String, ParameterDirection.Input, 250);
+                    parameters.Add(ConstantDetails.Type, taskHeaderVM.TypeCode, DbType.String, ParameterDirection.Input, 15);
                     parameters.Add(ConstantDetails.Month, taskHeaderVM.Month, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Date, taskHeaderVM.Date, DbType.String, ParameterDirection.Input, 18);
                     parameters.Add(ConstantDetails.Year, taskHeaderVM.Year, DbType.String, ParameterDirection.Input, 18);

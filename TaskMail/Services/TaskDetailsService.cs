@@ -45,15 +45,15 @@ namespace TaskMailService.Services
                         var parameters = new DynamicParameters();
 
 
-                        parameters.Add(ConstantDetails.Project, taskDetailsVM.Project, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.Project, taskDetailsVM.ProjectCode, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.Sprint, taskDetailsVM.Sprint, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.TaskName, taskDetailsVM.TaskName, DbType.String, ParameterDirection.Input, 200);
-                        parameters.Add(ConstantDetails.Type, taskDetailsVM.Type, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.Types, taskDetailsVM.TypeCode, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.SOWIssueNo, taskDetailsVM.SOWIssueNo, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.IsBillable, taskDetailsVM.IsBillable, DbType.String, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.BillingType, taskDetailsVM.BillingType, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.BillingType, taskDetailsVM.BillingTypeCode, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.ResName, taskDetailsVM.ResName, DbType.String, ParameterDirection.Input, 50);
-                        parameters.Add(ConstantDetails.Team, taskDetailsVM.Team, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.Team, taskDetailsVM.TeamCode, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstStDt, taskDetailsVM.EstStDt, DbType.Date, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstEndDt, taskDetailsVM.EstEndDt, DbType.Date, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.EstHours, taskDetailsVM.EstHours, DbType.String, ParameterDirection.Input, 18);
@@ -63,7 +63,7 @@ namespace TaskMailService.Services
                         parameters.Add(ConstantDetails.EndTime, taskDetailsVM.EndTime, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.ActHours, taskDetailsVM.ActHours, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.Percentage, taskDetailsVM.Percentage, DbType.Int64, ParameterDirection.Input, 18);
-                        parameters.Add(ConstantDetails.Status, taskDetailsVM.Status, DbType.String, ParameterDirection.Input, 18);
+                        parameters.Add(ConstantDetails.Status, taskDetailsVM.StatusCode, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.CommentsDetails, taskDetailsVM.Comments, DbType.String, ParameterDirection.Input, 4000);
                         parameters.Add(ConstantDetails.UserName, taskDetailsVM.UserName, DbType.String, ParameterDirection.Input, 18);
                         parameters.Add(ConstantDetails.DetailsResourceId, taskDetailsVM.DetailsResourceId, DbType.String, ParameterDirection.Input, 18);

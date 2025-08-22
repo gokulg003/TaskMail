@@ -25,8 +25,16 @@ public class TaskDetailsDM
     public int Percentage { get; set; }
     public string Status { get; set; }
     public string Comments { get; set; }
+    
     public int TaskHeaderFk { get; set; }
     public string UserName { get; set; }
     public string UserFk { get; set; }
-    public long DetailsResourceFk { get; set; }  
+    public long DetailsResourceFk { get; set; }
+
+    public string ProjectCode { get; set; }
+    public string TypeCode { get; set; }
+    public string BillingTypeCode { get; set; }
+    public string TeamCode { get; set; }
+    public string StatusCode { get; set; }
+  
 }
