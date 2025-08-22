@@ -21,6 +21,8 @@ public class TaskHeaderDM
     public string UserName { get; set; }
     public long UserFk { get; set; }
     public long HeaderResourceFk { get; set; }
-  
+
+    public string ResourceCode { get; set; }
+    public string TypeCode { get; set; }
 }
 

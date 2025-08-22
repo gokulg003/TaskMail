@@ -27,8 +27,8 @@ namespace TaskMail.common
 
         //TaskHeader
         public const string errmsg = "@ErrorMsgGrid";
-        public const string Resource = "@Resource";
-        public const string Type = "@Type";
+        public const string Resource = "@ResourceCode";
+        public const string Type = "@TypeCode";
         public const string Month = "@Month";
         public const string Date = "@Date";
         public const string Year = "@Year";
@@ -49,17 +49,17 @@ namespace TaskMail.common
         public const string Todate = "@Todate";
 
         //TaskDetails
-        public const string errmsgDetails = "@errormsg";
-        public const string StatusDetails = "@StatusCode";
-        public const string Project = "@Project";
+        public const string errmsgDetails = "@Errormsg";
+        public const string StatusDetails = "@Status";
+        public const string Project = "@ProjectCode";
         public const string Sprint = "@Sprint";
         public const string TaskName = "@TaskName";
-        public const string Types = "@Type";
+        public const string Types = "@TypeCode";
         public const string SOWIssueNo = "@SOWIssueNo";
         public const string IsBillable = "@IsBillable";
-        public const string BillingType = "@BillingType";
+        public const string BillingType = "@BillingTypeCode";
         public const string ResName = "@ResName";
-        public const string Team = "@Team";
+        public const string Team = "@TeamCode";
         public const string EstStDt = "@EstStDt";
         public const string EstEndDt = "EstEndDt";
         public const string EstHours = "@EstHours";
@@ -69,7 +69,7 @@ namespace TaskMail.common
         public const string EndTime = "@EndTime";
         public const string ActHours = "@ActHours";
         public const string Percentage = "@Percentage";
-        public const string Status = "@Status";
+        public const string Status = "@StatusCode";
         public const string CommentsDetails = "@Comments";
         public const string TaskHeaderFK = "@HeaderPk";
         public const string UsersFK = "@UsersFK";
@@ -109,14 +109,15 @@ namespace TaskMail.common
         public const string TaskDetails_Delete_SP = "TM_TaskDetails_Delete";
         //TaskDetails Retrive
 
-        public const string TaskDetails_Retrive_SP = "TM_RetriveHeaderTaskDetails";
+        public const string TaskDetails_Retrive_SP = "TM_RetriveTaskDetails";
 
         //TaskHeader Retrieve
-        public const string TaskHeader_RetrieveSP = "RetrieveViewPage";
+        public const string TaskHeader_RetrieveSP = "TM_RetriveViewPageTaskHeader";
 
-    
+
         // TaskMailSend
-         public const string TaskMailSend_SP = "TM_MailSend";
+        public const string TaskMailSend_SP = "TM_MailSend";
+
 
     }
 }
