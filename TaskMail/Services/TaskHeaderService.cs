@@ -60,7 +60,7 @@ namespace TaskMailService.Services
             }
             return result;
         }
-        public TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out long headerId)
+        public TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message)
         {
             var result = new TaskHeaderDM();
             try
@@ -88,25 +88,22 @@ namespace TaskMailService.Services
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
-                    parameters.Add(ConstantDetails.dbparamHeaderPk, dbType: DbType.Int64, direction: ParameterDirection.Output, size: 18);
 
                     result = con.Query<TaskHeaderDM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
-                    headerId = parameters.Get<Int64>(ConstantDetails.HeaderPk);
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
-                headerId = 0;
             }
             return result;
         }
 
-        public TaskHeaderDM UpdateTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out long outHeaderId)
+        public TaskHeaderDM UpdateTaskHeader(TaskHeader taskHeaderVM, out int status, out string message)
         {
             var result = new TaskHeaderDM();
             try
@@ -135,20 +132,17 @@ namespace TaskMailService.Services
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
-                    parameters.Add(ConstantDetails.dbparamHeaderPk, dbType: DbType.Int64, direction: ParameterDirection.Output, size: 18);
 
                     result = con.Query<TaskHeaderDM>(ConstantDetails.TaskHeaderUpdate_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
-                    outHeaderId = parameters.Get<Int64>(ConstantDetails.HeaderPk);
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
-                outHeaderId = 0;
             }
             return result;
         }
