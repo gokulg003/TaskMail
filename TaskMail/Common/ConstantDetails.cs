@@ -42,7 +42,7 @@ namespace TaskMail.common
         public const string UserFK = "@UserFk";
         public const string HeaderResourceFk = "@HeaderResourceFk";
         //update
-        public const string HeaderId = "@TaskHeaderPk";
+        public const string HeaderId = "@HeaderPk";
 
         //get
         public const string Fromdate = "@Fromdate";
