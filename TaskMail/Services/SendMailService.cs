@@ -27,7 +27,7 @@ namespace TaskMailService.Services
             }
         }
 
-        public void TaskMail(long taskHeaderPk,long UserFk, out int status, out string message, out int mailCount)
+        public void TaskMail(long taskHeaderPk,long UserFk, out int status, out string message, out long mailCount)
         {
             try
             {
