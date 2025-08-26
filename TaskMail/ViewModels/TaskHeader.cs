@@ -24,6 +24,6 @@ public class TaskHeader
 
     public string ResourceCode { get; set; }
     public string TypeCode { get; set; }
-    public string MailCount{ get; set; }
+    public long MailCount{ get; set; }
 }
 
