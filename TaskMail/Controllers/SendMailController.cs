@@ -20,13 +20,13 @@ namespace TaskMail.Controllers
         public SendMailController(ISendMailService sendMail)
         {
             _SendMail = sendMail;
-           
+
         }
         [HttpGet]
         public IActionResult TaskMail([Required]long headerId, [Required]long userId)
         {
-            _SendMail.TaskMail(headerId, userId, out int _status, out string _message);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = new { }, status = _status, message = _message });
+            _SendMail.TaskMail(headerId, userId, out int _status, out string _message, out int _mailCount);
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = new { }, status = _status, message = _message , mailCount=_mailCount});
         }
 
     }                       

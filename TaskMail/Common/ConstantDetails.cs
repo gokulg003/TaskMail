@@ -20,6 +20,10 @@ namespace TaskMail.common
         public const string TM_User_PK = "TM_User_PK";
         public const string TM_Type = "TM_Type";
 
+
+        //sendMail        
+        public const string MailCount = "@MailCount";
+
         //Login
 
         public const string dbparamUserName = "@UserName";
@@ -41,7 +45,7 @@ namespace TaskMail.common
         public const string InsertedBy = "@UserName";
         public const string UserFK = "@UserFk";
         public const string HeaderResourceFk = "@HeaderResourceFk";
-        public const string MailCount = "@MailCount";
+
         //update
         public const string HeaderId = "@HeaderPk";
 
@@ -118,6 +122,7 @@ namespace TaskMail.common
 
         // TaskMailSend
         public const string TaskMailSend_SP = "TM_MailSend";
+        
 
 
     }

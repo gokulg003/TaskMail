@@ -5,6 +5,6 @@ namespace TaskMailService.Services
 {
     public interface ISendMailService
     {
-        public void TaskMail(long taskHeaderPk,long UserFk, out int status, out string message);
+        public void TaskMail(long taskHeaderPk,long UserFk, out int status, out string message, out int mailCount);
     }
 }
