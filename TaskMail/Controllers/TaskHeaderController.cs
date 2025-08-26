@@ -17,6 +17,7 @@ namespace TaskMail.Controllers
         private readonly IMapper _mapper;
         private int _status;
         private string _message;
+        private int _mailCount;
 
 
 
@@ -38,16 +39,16 @@ namespace TaskMail.Controllers
         [HttpPost]
         public ActionResult<TaskHeader>InsertTaskHeader(TaskHeader taskHeaderVM)
         {
-            var taskHeaderDMs = _TaskHeaderService.InsertTaskHeader(taskHeaderVM, out _status, out _message);
+            var taskHeaderDMs = _TaskHeaderService.InsertTaskHeader(taskHeaderVM, out _status, out _message, out _mailCount);
             TaskHeader result = _mapper.Map<TaskHeader>(taskHeaderDMs);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message});
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message, mailCount =_mailCount});
         }
         [HttpPut("taskHeader/update")]
         public ActionResult<TaskHeader> UpdateTaskHeader([FromBody]TaskHeader taskHeaderVM)
         {
-            var taskHeaderDMs = _TaskHeaderService.UpdateTaskHeader(taskHeaderVM, out _status, out _message);
+            var taskHeaderDMs = _TaskHeaderService.UpdateTaskHeader(taskHeaderVM, out _status, out _message, out _mailCount);
             TaskHeader result = _mapper.Map<TaskHeader>(taskHeaderDMs);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message , mailCount =_mailCount});
         }
         
     }

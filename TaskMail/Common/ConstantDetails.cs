@@ -41,6 +41,7 @@ namespace TaskMail.common
         public const string InsertedBy = "@UserName";
         public const string UserFK = "@UserFk";
         public const string HeaderResourceFk = "@HeaderResourceFk";
+        public const string MailCount = "@MailCount";
         //update
         public const string HeaderId = "@HeaderPk";
 
