@@ -60,7 +60,7 @@ namespace TaskMailService.Services
             }
             return result;
         }
-        public TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int mailCount)
+        public TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message)
         {
             var result = new TaskHeaderDM();
             try
@@ -88,25 +88,22 @@ namespace TaskMailService.Services
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
-                    parameters.Add(ConstantDetails.MailCount, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
-
+                
                     result = con.Query<TaskHeaderDM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
-                    mailCount = parameters.Get<Int16>(ConstantDetails.MailCount);
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
-                mailCount = 0;
             }
             return result;
         }
 
-        public TaskHeaderDM UpdateTaskHeader(TaskHeader taskHeaderVM, out int status, out string message, out int mailCount)
+        public TaskHeaderDM UpdateTaskHeader(TaskHeader taskHeaderVM, out int status, out string message)
         {
             var result = new TaskHeaderDM();
             try
@@ -115,7 +112,7 @@ namespace TaskMailService.Services
                 {
                     con.Open();
                     var parameters = new DynamicParameters();
-
+    
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.ResourceCode, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.TypeCode, DbType.String, ParameterDirection.Input, 15);
                     parameters.Add(ConstantDetails.Month, taskHeaderVM.Month, DbType.String, ParameterDirection.Input, 18);
@@ -135,20 +132,17 @@ namespace TaskMailService.Services
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
-                    parameters.Add(ConstantDetails.MailCount, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
 
                     result = con.Query<TaskHeaderDM>(ConstantDetails.TaskHeaderUpdate_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
-                    mailCount = parameters.Get<Int16>(ConstantDetails.MailCount);
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
-                mailCount = 0;
             }
             return result;
         }
