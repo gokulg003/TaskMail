@@ -30,7 +30,7 @@ namespace TaskMailService.Services
         }
 
 
-        public List<TaskHeaderDM> GetTaskHeader(string userName,string fromDate,string toDate,out int status, out string message)
+        public List<TaskHeaderDM> GetTaskHeader(string userName, string fromDate, string toDate, out int status, out string message)
         {
             var result = new List<TaskHeaderDM>();
             try
@@ -88,7 +88,7 @@ namespace TaskMailService.Services
 
                     parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
                     parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
-                
+
                     result = con.Query<TaskHeaderDM>(ConstantDetails.TaskHeader_SP, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
@@ -112,7 +112,7 @@ namespace TaskMailService.Services
                 {
                     con.Open();
                     var parameters = new DynamicParameters();
-    
+
                     parameters.Add(ConstantDetails.Resource, taskHeaderVM.ResourceCode, DbType.String, ParameterDirection.Input, 250);
                     parameters.Add(ConstantDetails.Type, taskHeaderVM.TypeCode, DbType.String, ParameterDirection.Input, 15);
                     parameters.Add(ConstantDetails.Month, taskHeaderVM.Month, DbType.String, ParameterDirection.Input, 18);
@@ -145,6 +145,31 @@ namespace TaskMailService.Services
                 message = ex.Message;
             }
             return result;
+        }
+        
+        public void DeleteTaskHeader(long taskHeader_PK, out int status, out string message)
+        {
+            try
+            {
+                using (IDbConnection con = Connection)
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add(ConstantDetails.HeaderId, taskHeader_PK, DbType.Int64);
+
+                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
+                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
+
+                    con.Execute(ConstantDetails.TaskHeader_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
+
+                    status = parameters.Get<Int16>(ConstantDetails.Status);
+                    message = parameters.Get<string>(ConstantDetails.errmsg);
+                }
+            }
+            catch (Exception ex)
+            {
+                status = -1;
+                message = ex.Message;
+            }
         }
     }
 
