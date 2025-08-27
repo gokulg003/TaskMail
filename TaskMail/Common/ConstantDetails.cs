@@ -113,8 +113,9 @@ namespace TaskMail.common
         //  TaskDetails Delete
         public const string TaskDetails_Delete_SP = "TM_TaskDetails_Delete";
         //TaskDetails Retrive
-
         public const string TaskDetails_Retrive_SP = "TM_RetriveTaskDetails";
+         //  TaskDetails Delete
+        public const string TaskHeader_Delete_SP = "TM_TaskHeader_Delete";
 
         //TaskHeader Retrieve
         public const string TaskHeader_RetrieveSP = "TM_RetriveViewPageTaskHeader";
