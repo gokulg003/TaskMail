@@ -16,17 +16,21 @@ namespace TaskMail.Controllers
     public class SendMailController : ControllerBase
     {
         private readonly ISendMailService _SendMail;
-    
-        public SendMailController(ISendMailService sendMail)
+        private readonly ILogger<SendMailService> _logger;
+
+        public SendMailController(ISendMailService sendMail, ILogger<SendMailService> logger)
         {
             _SendMail = sendMail;
+            _logger = logger;
 
         }
         [HttpGet]
         public IActionResult TaskMail([Required]long headerId, [Required]long userId)
         {
+            _logger.LogTrace("Controller: Start Send Mail");
             _SendMail.TaskMail(headerId, userId, out int _status, out string _message, out long _mailCount);
-            return StatusCode(CommonDetails.StatusCode(_status), new { data = new { }, status = _status, message = _message , mailCount=_mailCount});
+            _logger.LogTrace("Controller: Completed Send Mail");
+            return StatusCode(CommonDetails.StatusCode(_status), new { data = new { }, status = _status, message = _message, mailCount = _mailCount });
         }
 
     }                       

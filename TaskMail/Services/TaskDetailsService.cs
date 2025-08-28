@@ -13,11 +13,14 @@ namespace TaskMailService.Services
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
         // private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ILogger<TaskDetailsService> _logger;
 
-        public TaskDetailsService(IConfiguration config, IMapper mapper)
+
+        public TaskDetailsService(IConfiguration config, IMapper mapper, ILogger<TaskDetailsService> logger)
         {
             _config = config;
             _mapper = mapper;
+             _logger = logger;
             // _httpContextAccessor = httpContextAccessor; ;
         }
 
@@ -42,6 +45,7 @@ namespace TaskMailService.Services
 
                     foreach (var taskDetailsVM in taskDetailsList)
                     {
+                        _logger.LogTrace("Start Insert Task Details", taskDetailsVM.UserName);
                         var parameters = new DynamicParameters();
 
 
@@ -77,6 +81,8 @@ namespace TaskMailService.Services
 
                         status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
                         message = parameters.Get<string>(ConstantDetails.errmsgDetails);
+                        _logger.LogTrace("Successfully added Details", taskDetailsVM.UserName);
+
 
                     }
                 }
@@ -85,6 +91,7 @@ namespace TaskMailService.Services
             {
                 status = -1;
                 message = ex.Message;
+                _logger.LogError(ex, "Error while Details Insert", taskDetailsList);
             }
 
             return insertedTaskDetails;
@@ -104,6 +111,7 @@ namespace TaskMailService.Services
 
                     foreach (var taskDetailsVM in taskDetailsList)
                     {
+                        _logger.LogTrace("Start Updated Task Details", taskDetailsVM.UserName);
                         var parameters = new DynamicParameters();
 
                         parameters.Add(ConstantDetails.TMDetailsID, taskDetailsVM.DetailsId, DbType.Int64);
@@ -139,6 +147,8 @@ namespace TaskMailService.Services
 
                         status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
                         message = parameters.Get<string>(ConstantDetails.errmsgDetails);
+                        _logger.LogTrace("Successfully added Details", taskDetailsVM.UserName);
+
                     }
                 }
             }
@@ -146,6 +156,7 @@ namespace TaskMailService.Services
             {
                 status = -1;
                 message = ex.Message;
+                _logger.LogError(ex, "Error while Details Update", taskDetailsList);
             }
 
             return updatedTaskDetails;
@@ -158,6 +169,7 @@ namespace TaskMailService.Services
             {
                 using (IDbConnection con = Connection)
                 {
+                    _logger.LogTrace("Start Delete Task Details");
                     var parameters = new DynamicParameters();
                     parameters.Add(ConstantDetails.TMDetailsID, taskDetailPk, DbType.Int64);
                     parameters.Add(ConstantDetails.TaskHeaderFK, taskHeader_FK, DbType.Int64);
@@ -169,12 +181,15 @@ namespace TaskMailService.Services
 
                     status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
                     message = parameters.Get<string>(ConstantDetails.errmsgDetails);
+                    _logger.LogTrace("Successfully Details Deleted");
+
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = "Exception: " + ex.Message;
+                _logger.LogError(ex, "Error while Details Delete");
             }
         }
 
@@ -185,6 +200,8 @@ namespace TaskMailService.Services
             {
                 using (IDbConnection con = Connection)
                 {
+                    _logger.LogTrace("Start Details Retriving the data ");
+
                     con.Open();
                     var parameters = new DynamicParameters();
                     parameters.Add(ConstantDetails.TaskHeaderFK, taskHeader_FK, DbType.Int64, ParameterDirection.Input, 18);
@@ -196,12 +213,14 @@ namespace TaskMailService.Services
 
                     status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
                     message = parameters.Get<string>(ConstantDetails.errmsgDetails);
+                    _logger.LogTrace("Successfully Details Retrived");
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = "Exception: " + ex.Message;
+                _logger.LogError(ex, "Error while Details Retrive");
             }
             return GetTaskDetails;
         }
