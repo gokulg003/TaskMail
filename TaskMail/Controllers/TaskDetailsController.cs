@@ -48,16 +48,18 @@ namespace TaskMail.Controllers
             });
         }
 
-        [HttpDelete("delete/{detailsId}/{headerId}")]
-        public IActionResult DeleteTaskDetail(long detailsId, long headerId)
+        [HttpDelete]
+         [Route("delete")]
+        public IActionResult DeleteTaskDetail([Required] long detailsId, [Required] long headerId)
         {
             _taskDetailsService.DeleteTaskDetails(detailsId, headerId, out int _status, out string _message);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = new { }, status = _status, message = _message });
         }
 
 
-        [HttpGet("retrieve/{headerId}")]
-        public IActionResult GetTaskDetails(long headerId)
+        [HttpGet]
+         [Route("retrieve")]
+        public IActionResult GetTaskDetails([Required] long headerId)
         {
             var taskDetailsDMs = _taskDetailsService.GetTaskDetails(headerId, out _status, out _message);
             List<TaskDetails> result = _mapper.Map<List<TaskDetails>>(taskDetailsDMs);
