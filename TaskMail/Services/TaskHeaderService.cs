@@ -13,11 +13,13 @@ namespace TaskMailService.Services
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
         // private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ILogger<TaskDetailsService> _logger;
 
-        public TaskHeaderService(IConfiguration config, IMapper mapper)
+        public TaskHeaderService(IConfiguration config, IMapper mapper, ILogger<TaskDetailsService> logger)
         {
             _config = config;
             _mapper = mapper;
+            _logger = logger;
             // _httpContextAccessor = httpContextAccessor; 
         }
 
@@ -33,6 +35,7 @@ namespace TaskMailService.Services
         public List<TaskHeaderDM> GetTaskHeader(string userName, string fromDate, string toDate, out int status, out string message)
         {
             var result = new List<TaskHeaderDM>();
+            
             try
             {
                 using (IDbConnection con = Connection)
@@ -62,6 +65,7 @@ namespace TaskMailService.Services
         }
         public TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message)
         {
+            _logger.LogTrace("Start Insert TaskHeader", taskHeaderVM.UserName);
             var result = new TaskHeaderDM();
             try
             {
@@ -93,18 +97,21 @@ namespace TaskMailService.Services
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
+                    _logger.LogTrace("Successfully added Header", taskHeaderVM.UserName);
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
+                _logger.LogError(ex, "Error while Header Insert", taskHeaderVM);
             }
             return result;
         }
 
         public TaskHeaderDM UpdateTaskHeader(TaskHeader taskHeaderVM, out int status, out string message)
         {
+            _logger.LogTrace("Start Update TaskHeader", taskHeaderVM.UserName);
             var result = new TaskHeaderDM();
             try
             {
@@ -137,18 +144,21 @@ namespace TaskMailService.Services
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
+                    _logger.LogTrace("Successfully Updated Header", taskHeaderVM.UserName);
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
+                _logger.LogError(ex, "Error while Header Update", taskHeaderVM);
             }
             return result;
         }
         
         public void DeleteTaskHeader(long taskHeader_PK, out int status, out string message)
         {
+            _logger.LogTrace("Start Delete TaskHeader");
             try
             {
                 using (IDbConnection con = Connection)
@@ -163,12 +173,14 @@ namespace TaskMailService.Services
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
+                    _logger.LogTrace("Successfully Delete Header");
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
+                _logger.LogError(ex, "Error while Header Delete");
             }
         }
     }
