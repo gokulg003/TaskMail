@@ -1,11 +1,24 @@
 using TaskMailService.Services;
- 
- 
+using Serilog;
+
+
 var builder = WebApplication.CreateBuilder(args);
- 
+
+// Ensure console logging is enabled
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 var configuration = builder.Configuration;
- 
+
 builder.Services.AddHttpContextAccessor();
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
  
 builder.Services.AddSingleton<IConfiguration>(configuration);
  
