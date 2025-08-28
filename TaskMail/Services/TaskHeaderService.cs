@@ -161,8 +161,8 @@ namespace TaskMailService.Services
 
                     con.Execute(ConstantDetails.TaskHeader_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
 
-                    status = parameters.Get<Int16>(ConstantDetails.Status);
-                    message = parameters.Get<string>(ConstantDetails.errmsg);
+                    status = parameters.Get<Int16>(ConstantDetails.status);
+                    message = parameters.Get<string>(ConstantDetails.errMsg);
                 }
             }
             catch (Exception ex)
