@@ -13,12 +13,14 @@ namespace TaskMailService.Services
     {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-        
+        private readonly ILogger<SendMailService> _logger;
 
-        public LoginService(IConfiguration config, IMapper mapper)
+
+        public LoginService(IConfiguration config, IMapper mapper, ILogger<SendMailService> logger)
         {
             _config = config;
             _mapper = mapper;
+            _logger = logger; 
         }
 
        public IDbConnection Connection
@@ -31,6 +33,7 @@ namespace TaskMailService.Services
 
        public UserDetailsDM Login(Login login, out int status, out string message)
         {
+            _logger.LogTrace("Login Validation Started");
             var userlogindetailsDM = new UserDetailsDM();
             try
             {
@@ -49,13 +52,15 @@ namespace TaskMailService.Services
                     userlogindetailsDM = conn.Query<UserDetailsDM>(ConstantDetails.Login_SP, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     status = param.Get<Int16>(ConstantDetails.status);
-                    message = param.Get<string>(ConstantDetails.errMsg); 
+                    message = param.Get<string>(ConstantDetails.errMsg);
+                    _logger.LogTrace("Login validation Successfull");
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
+                _logger.LogError(ex, "Error in Login");
             }
             return userlogindetailsDM;
         }
