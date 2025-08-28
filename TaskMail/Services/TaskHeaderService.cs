@@ -156,8 +156,8 @@ namespace TaskMailService.Services
                     var parameters = new DynamicParameters();
                     parameters.Add(ConstantDetails.HeaderId, taskHeader_PK, DbType.Int64);
 
-                    parameters.Add(ConstantDetails.StatusDetails, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
-                    parameters.Add(ConstantDetails.errmsgDetails, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
+                    parameters.Add(ConstantDetails.dbparamstatus, dbType: DbType.Int16, direction: ParameterDirection.Output, size: 1);
+                    parameters.Add(ConstantDetails.dbparamerrmsg, dbType: DbType.String, direction: ParameterDirection.Output, size: 5000);
 
                     con.Execute(ConstantDetails.TaskHeader_Delete_SP, parameters, commandType: CommandType.StoredProcedure);
 

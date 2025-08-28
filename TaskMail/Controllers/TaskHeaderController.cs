@@ -50,8 +50,8 @@ namespace TaskMail.Controllers
             return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
         }
         
-         [HttpDelete("delete/{headerId}")]
-        public IActionResult DeleteTaskHeader(long headerId)
+         [HttpDelete("taskHeader/delete")]
+        public IActionResult DeleteTaskHeader([Required]long headerId)
         {
             _TaskHeaderService.DeleteTaskHeader(headerId, out int _status, out string _message);
             return StatusCode(CommonDetails.StatusCode(_status), new { data = new{ }, status = _status, message = _message });

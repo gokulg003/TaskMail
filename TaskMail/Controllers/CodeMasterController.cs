@@ -28,9 +28,9 @@ namespace TaskMail.Controllers
         [Route("dropdown")]
         [HttpGet]
 
-        public ActionResult<List<CodeMaster>> GetCodeMaster(long userId,[Required]string codeType)
+        public ActionResult<List<CodeMaster>> GetCodeMaster(long userId,[Required]string codeType,long headerId)
         {
-        var result = _CodeMaster.GetCodeMaster(userId,codeType,out int _status, out string _message);
+        var result = _CodeMaster.GetCodeMaster(userId,codeType,headerId,out int _status, out string _message);
         // List<CodeMaster> result = _mapper.Map<List<CodeMaster>>(CodeMasterDMs);
         return StatusCode(CommonDetails.StatusCode(_status), new { data = result, status = _status, message = _message });
         }
