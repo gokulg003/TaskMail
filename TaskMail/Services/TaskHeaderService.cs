@@ -34,8 +34,9 @@ namespace TaskMailService.Services
 
         public List<TaskHeaderDM> GetTaskHeader(string userName, string fromDate, string toDate, out int status, out string message)
         {
+            _logger.LogTrace("Start Retrive TaskHeader");
             var result = new List<TaskHeaderDM>();
-            
+
             try
             {
                 using (IDbConnection con = Connection)
@@ -54,12 +55,14 @@ namespace TaskMailService.Services
 
                     status = parameters.Get<Int16>(ConstantDetails.status);
                     message = parameters.Get<string>(ConstantDetails.errMsg);
+                    _logger.LogTrace("Successfully Retrive Task Header");
                 }
             }
             catch (Exception ex)
             {
                 status = -1;
                 message = ex.Message;
+                 _logger.LogError(ex, "Error while Retrive the Header");
             }
             return result;
         }
@@ -104,7 +107,7 @@ namespace TaskMailService.Services
             {
                 status = -1;
                 message = ex.Message;
-                _logger.LogError(ex, "Error while Header Insert", taskHeaderVM);
+                _logger.LogError(ex, "An error occurred while inserting the header", taskHeaderVM);
             }
             return result;
         }
@@ -151,7 +154,7 @@ namespace TaskMailService.Services
             {
                 status = -1;
                 message = ex.Message;
-                _logger.LogError(ex, "Error while Header Update", taskHeaderVM);
+                _logger.LogError(ex, "An error occurred while Updating the header", taskHeaderVM);
             }
             return result;
         }
@@ -180,7 +183,7 @@ namespace TaskMailService.Services
             {
                 status = -1;
                 message = ex.Message;
-                _logger.LogError(ex, "Error while Header Delete");
+                _logger.LogError(ex, "An error occurred while Deleting the header");
             }
         }
     }
