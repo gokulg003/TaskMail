@@ -34,13 +34,13 @@ namespace TaskMailService.Services
 
         public List<TaskHeaderDM> GetTaskHeader(string userName, string fromDate, string toDate, out int status, out string message)
         {
-            _logger.LogTrace("Start Retrive TaskHeader");
             var result = new List<TaskHeaderDM>();
 
             try
             {
                 using (IDbConnection con = Connection)
                 {
+                    _logger.LogTrace("Start Retrive TaskHeader");
                     con.Open();
                     var parameters = new DynamicParameters();
 
@@ -68,12 +68,12 @@ namespace TaskMailService.Services
         }
         public TaskHeaderDM InsertTaskHeader(TaskHeader taskHeaderVM, out int status, out string message)
         {
-            _logger.LogTrace("Start Insert TaskHeader", taskHeaderVM.UserName);
             var result = new TaskHeaderDM();
             try
             {
                 using (IDbConnection con = Connection)
                 {
+                    _logger.LogTrace("Start Insert TaskHeader", taskHeaderVM.UserName);
                     con.Open();
                     var parameters = new DynamicParameters();
 
@@ -114,12 +114,13 @@ namespace TaskMailService.Services
 
         public TaskHeaderDM UpdateTaskHeader(TaskHeader taskHeaderVM, out int status, out string message)
         {
-            _logger.LogTrace("Start Update TaskHeader", taskHeaderVM.UserName);
+           
             var result = new TaskHeaderDM();
             try
             {
                 using (IDbConnection con = Connection)
                 {
+                    _logger.LogTrace("Start Update TaskHeader", taskHeaderVM.UserName);
                     con.Open();
                     var parameters = new DynamicParameters();
 
@@ -161,11 +162,11 @@ namespace TaskMailService.Services
         
         public void DeleteTaskHeader(long taskHeader_PK, out int status, out string message)
         {
-            _logger.LogTrace("Start Delete TaskHeader");
             try
             {
                 using (IDbConnection con = Connection)
                 {
+                    _logger.LogTrace("Start Delete TaskHeader");
                     var parameters = new DynamicParameters();
                     parameters.Add(ConstantDetails.HeaderId, taskHeader_PK, DbType.Int64);
 
