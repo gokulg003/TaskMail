@@ -13,10 +13,10 @@ namespace TaskMailService.Services
     {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-        private readonly ILogger<SendMailService> _logger;
+        private readonly ILogger<LoginService> _logger;
 
 
-        public LoginService(IConfiguration config, IMapper mapper, ILogger<SendMailService> logger)
+        public LoginService(IConfiguration config, IMapper mapper, ILogger<LoginService> logger)
         {
             _config = config;
             _mapper = mapper;
@@ -51,8 +51,8 @@ namespace TaskMailService.Services
 
                     userlogindetailsDM = conn.Query<UserDetailsDM>(ConstantDetails.Login_SP, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
 
-                    status = param.Get<Int16>(ConstantDetails.status);
-                    message = param.Get<string>(ConstantDetails.errMsg);
+                    status = param.Get<Int16>(ConstantDetails.dbparamstatus);
+                    message = param.Get<string>(ConstantDetails.dbparamerrmsg);
                     _logger.LogTrace("Login validation Successfull");
                 }
             }

@@ -91,7 +91,7 @@ namespace TaskMailService.Services
             {
                 status = -1;
                 message = ex.Message;
-                _logger.LogError(ex, "Error while Details Insert", taskDetailsList);
+                _logger.LogError(ex, "An error occurred while Inserting the Details", taskDetailsList);
             }
 
             return insertedTaskDetails;
@@ -147,7 +147,7 @@ namespace TaskMailService.Services
 
                         status = parameters.Get<Int16>(ConstantDetails.StatusDetails);
                         message = parameters.Get<string>(ConstantDetails.errmsgDetails);
-                        _logger.LogTrace("Successfully added Details", taskDetailsVM.UserName);
+                        _logger.LogTrace("Successfully Update Details", taskDetailsVM.UserName);
 
                     }
                 }
@@ -156,7 +156,7 @@ namespace TaskMailService.Services
             {
                 status = -1;
                 message = ex.Message;
-                _logger.LogError(ex, "Error while Details Update", taskDetailsList);
+                _logger.LogError(ex, "An error occurred while Updating the Details", taskDetailsList);
             }
 
             return updatedTaskDetails;
@@ -189,7 +189,7 @@ namespace TaskMailService.Services
             {
                 status = -1;
                 message = "Exception: " + ex.Message;
-                _logger.LogError(ex, "Error while Details Delete");
+                _logger.LogError(ex, "An error occurred while Deleting the Details");
             }
         }
 
@@ -220,7 +220,7 @@ namespace TaskMailService.Services
             {
                 status = -1;
                 message = "Exception: " + ex.Message;
-                _logger.LogError(ex, "Error while Details Retrive");
+                _logger.LogError(ex,  "An error occurred while Retrive the Details");
             }
             return GetTaskDetails;
         }
